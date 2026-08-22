@@ -36,6 +36,8 @@ foreach ($prop in $config.defaults.PSObject.Properties) {
   $vars[[string]$prop.Name] = if ($envVal) { $envVal } else { [string]$prop.Value }
 }
 
+& (Join-Path $Install "scripts\bootstrap-mesh-repos.ps1") -Install $Install -Vars $vars
+
 $meshEnv = @{}
 foreach ($prop in $config.meshEnv.PSObject.Properties) {
   $meshEnv[[string]$prop.Name] = Expand-Placeholders ([string]$prop.Value) $vars

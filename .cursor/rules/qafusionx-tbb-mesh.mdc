@@ -10,7 +10,7 @@ When installing or running QAFusionX:
 
 1. **Run the mesh installer** (once per machine):
    `powershell -ExecutionPolicy Bypass -File scripts/install-full-mesh.ps1`
-   This links **ThejaBackBone (TBB)**, **TTP**, **TCB**, **ThejaUltimate**, **theGod**, **ThejaD**, and **QAFusionX** in global Cursor MCP.
+   This **auto-clones** TBB, ThejaUltimate, theGod, TTP, TCB (and links ThejaD if present), runs `npm install`, and registers all MCPs in global Cursor.
 
 2. **Credentials** come from **TBB vault** (`THEJA_BACKBONE_ROOT/.tbb/vault`), not from guessing:
    - Jira: `JIRA_API_TOKEN` via `scripts/resolve-jira-token.py`

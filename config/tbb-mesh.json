@@ -69,5 +69,55 @@
   "vaultKeys": {
     "jira": ["JIRA_API_TOKEN", "ATLASSIAN_API_TOKEN", "JIRA_TOKEN"],
     "fusionxUat": ["FUSIONX_UAT_USER", "FUSIONX_UAT_PASSWORD", "QAFUSIONX_EMAIL", "QAFUSIONX_PASSWORD"]
-  }
+  },
+  "meshRepos": [
+    {
+      "label": "ThejaBackBone (TBB)",
+      "envKey": "THEJA_BACKBONE_ROOT",
+      "github": "https://github.com/thejanaloit/thejaBackBone.git",
+      "marker": ".tbb/spine/LOCK.md",
+      "npmInstall": false,
+      "required": true
+    },
+    {
+      "label": "ThejaUltimate",
+      "envKey": "THEJA_ULTIMATE_ROOT",
+      "github": "https://github.com/thejanaloit/ThejaUltimate.git",
+      "marker": "bin/theja-ultimate.js",
+      "npmInstall": true,
+      "required": true
+    },
+    {
+      "label": "theGod",
+      "envKey": "THEGOD_ROOT",
+      "github": "https://github.com/thejanaloit/theGod-.git",
+      "marker": "bin/thegod.js",
+      "npmInstall": true,
+      "required": true
+    },
+    {
+      "label": "ThejaThinkingPattern (TTP)",
+      "envKey": "THEJA_TTP_ROOT",
+      "github": "https://github.com/thejanaloit/ThejaThinkingPattern.git",
+      "marker": "bin/ttp.js",
+      "npmInstall": true,
+      "required": true
+    },
+    {
+      "label": "ThejaCentralBrain (TCB)",
+      "envKey": "THEJA_TCB_ROOT",
+      "github": "https://github.com/thejanaloit/ThejaCentralBrain.git",
+      "marker": "bin/tcb.js",
+      "npmInstall": true,
+      "required": true
+    },
+    {
+      "label": "ThejaD (internetBanking/thejad)",
+      "envKey": "THEJAD_REPO_ROOT",
+      "github": "https://github.com/thejanaloit/internetBanking.git",
+      "marker": "thejad/bin/thejad.js",
+      "npmInstall": true,
+      "required": false
+    }
+  ]
 }

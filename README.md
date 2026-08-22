@@ -58,16 +58,16 @@ npm run install:mesh
 # or: powershell -ExecutionPolicy Bypass -File .\scripts\install-full-mesh.ps1
 ```
 
-This automatically links:
+This automatically links **and bootstraps** (clone + npm install if missing):
 
 | Component | Role |
 | --- | --- |
-| **ThejaBackBone (TBB)** | Vault for `JIRA_API_TOKEN`, `FUSIONX_UAT_*`, flow spine |
+| **ThejaBackBone (TBB)** | Vault for credentials; auto-cloned from GitHub if missing |
+| **ThejaUltimate** | Orchestration + browser QA; auto-cloned + `npm install` |
+| **theGod** | Supreme invent / unstuck; auto-cloned + `npm install` |
 | **ThejaThinkingPattern (TTP)** | Rule2 thinking |
 | **ThejaCentralBrain (TCB)** | Fused QA knowledge |
-| **ThejaUltimate** | Orchestration + browser QA helpers |
-| **theGod** | Supreme invent / unstuck |
-| **ThejaD** | FusionX banking toolkit |
+| **ThejaD** | FusionX banking toolkit (optional clone) |
 | **QAFusionX** | Sequential QA workflow (this repo) |
 
 Config lives in `config/tbb-mesh.json`. Override roots with env vars (`THEJA_BACKBONE_ROOT`, etc.) before install.

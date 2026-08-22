@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import json
 import os
-import re
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -15,6 +15,40 @@ def expand(text: str, vars_: dict[str, str]) -> str:
     for k, v in vars_.items():
         out = out.replace("${" + k + "}", v)
     return out
+
+
+def bootstrap_mesh_repos(install: Path, vars_: dict[str, str], cfg: dict) -> None:
+    repos = cfg.get("meshRepos") or []
+    if not repos:
+        return
+    print("=== Bootstrap Theja mesh repos ===", file=sys.stderr)
+    for repo in repos:
+        env_key = repo["envKey"]
+        root = Path(vars_.get(env_key, ""))
+        if not root or not str(root):
+            print(f"Skip {repo.get('label')} — no {env_key}", file=sys.stderr)
+            continue
+        marker = root / repo["marker"]
+        if not marker.is_file():
+            print(f"Cloning {repo.get('label')} -> {root}", file=sys.stderr)
+            root.parent.mkdir(parents=True, exist_ok=True)
+            if root.exists() and not marker.is_file():
+                shutil.rmtree(root, ignore_errors=True)
+            if not root.exists():
+                subprocess.run(["git", "clone", repo["github"], str(root)], check=False)
+        else:
+            print(f"Updating {repo.get('label')} (git pull)", file=sys.stderr)
+            subprocess.run(["git", "-C", str(root), "pull", "--ff-only"], check=False)
+        if repo.get("npmInstall") and (root / "package.json").is_file():
+            print(f"npm install -> {root}", file=sys.stderr)
+            subprocess.run(["npm", "install", "--omit=dev"], cwd=root, check=False)
+        if env_key == "THEJA_BACKBONE_ROOT":
+            vault = root / ".tbb" / "vault" / "index.json"
+            if vault.is_file():
+                print(f"TBB vault OK -> {vault}", file=sys.stderr)
+            else:
+                print(f"WARN: TBB vault missing at {vault}", file=sys.stderr)
+    print("=== Mesh repo bootstrap done ===", file=sys.stderr)
 
 
 def main() -> int:
@@ -30,6 +64,8 @@ def main() -> int:
     vars_: dict[str, str] = {}
     for k, v in defaults.items():
         vars_[k] = os.environ.get(k, v)
+
+    bootstrap_mesh_repos(install, vars_, cfg)
 
     mesh_env = {k: expand(str(v), vars_) for k, v in cfg.get("meshEnv", {}).items()}
     workspace = os.environ.get("QAFUSIONX_WORKSPACE", str(install / "artifacts"))
