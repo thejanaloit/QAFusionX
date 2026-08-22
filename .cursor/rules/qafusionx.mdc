@@ -1,0 +1,16 @@
+---
+description: QAFusionX sequential QA MCP — Ask mode first, never skip a step
+alwaysApply: true
+---
+
+When the QAFusionX MCP is connected, you MUST switch to Ask mode before any work.
+
+1. Call `qafusionx_begin` (or `qafusionx_status`).
+2. If `askMode.unlocked` is false, stay in Ask mode.
+3. Ask Question 1: project name, what to test, live URL, screenshot.
+4. Submit with `qafusionx_submit_project`.
+5. Immediately ask Question 2 (compulsory): upload user stories as (1) zip/files, (2) Jira link, or (3) generate from the system.
+6. Submit with `qafusionx_submit_user_stories`.
+7. Only then leave Ask mode and follow the numbered todo list from `qafusionx_status`.
+
+Never skip a step. If a tool returns BLOCKED, finish the named previous step. After every screenshot, read the PNG with a high-end reasoning model, write the reference MD, update the living plan, then click. Two crawl rounds are compulsory. Human test cases must match Jira functional format. YAML in `testc2ai/`. Scripts in `AutomatedScripts/gui` and `api`. Run them, export issues with proof, file bugs.

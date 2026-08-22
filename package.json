@@ -1,0 +1,40 @@
+{
+  "name": "qafusionx",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QAFusionX — sequential MCP QA agent. Ask mode first, then crawl, test, automate, and file Jira bugs. No step may be skipped.",
+  "type": "module",
+  "bin": {
+    "qafusionx": "./dist/index.js"
+  },
+  "scripts": {
+    "mcp": "tsx src/index.ts",
+    "mcp:http": "tsx src/http.ts",
+    "dev": "concurrently -n engine,console -c teal,gold \"tsx src/http.ts\" \"npm run dev --prefix console\"",
+    "dev:console": "npm run dev --prefix console",
+    "build": "tsc -p tsconfig.json --noEmit",
+    "start": "tsx src/http.ts",
+    "lint": "npm run lint --prefix console",
+    "demo": "tsx src/demo/runDemo.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.0",
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "adm-zip": "^0.5.16",
+    "exceljs": "^4.4.0",
+    "hono": "^4.7.11",
+    "playwright": "^1.54.0",
+    "yaml": "^2.8.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "@types/node": "^20.19.9",
+    "concurrently": "^9.2.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2"
+  }
+}

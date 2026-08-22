@@ -1,0 +1,98 @@
+# QAFusionX
+
+Sequential MCP QA agent. When this server is connected in Cursor it **locks Ask mode**, asks two compulsory questions, then walks a 14-step workflow that cannot skip. Completing step N writes a tick in `step-by-step/` — that tick is the only way step N+1 unlocks.
+
+The Control Console is a live GUI for the same engine: numbered pipeline, Ask-mode banner, artifact browser, and a test-run console you can watch.
+
+## What it does
+
+1. **Ask — project & target** (Ask mode) — product name, what to test, live URL, screenshot.
+2. **Ask — user stories** (Ask mode, compulsory) — zip / files, Jira link, or generate-from-system.
+3. Persist `User stories/` and `General/01-target.md`.
+4. **Round 1 crawl** — every screen and popup: capture → reason → reference MD → living plan → next click.
+5. Freeze Round 1 plan / todo.
+6. **Round 2 crawl** — same directory shape, hunting anything Round 1 missed.
+7. **Complete system map** — long, exhaustive markdown (short files are rejected).
+8. **Human test cases** in Jira functional format under `testCase Human/`.
+9. Upload those cases to Jira (or write offline payloads).
+10. Convert 1:1 to YAML in `testc2ai/`.
+11. Generate **GUI and API** Playwright scripts in `AutomatedScripts/`.
+12. Run the suite with results streamed to the GUI.
+13. Export failures to `reports/QAFusionX-Issues.xlsx` + `.csv` with proof.
+14. File Jira **bug** tickets: subject, precondition, steps, expected, actual, proof.
+
+## Run locally
+
+```bash
+npm install
+npx playwright install chromium
+cd console && npm install && cd ..
+cp .env.example .env   # optional Jira credentials
+npm run dev
+```
+
+- Control Console: http://127.0.0.1:43181
+- Engine API: http://127.0.0.1:43180
+- Sample app under test: http://127.0.0.1:43181/sample/login  
+  Demo login: `qa.analyst` / `FusionX@2026`
+
+Click **Run guided demo** on the console to execute every step against the bundled Intermediary Management sample (Emergency Details fields matching a Jira functional case).
+
+MCP-only:
+
+```bash
+npx tsx src/index.ts
+```
+
+## Connect in Cursor
+
+Copy `.cursor/mcp.json.example` into your Cursor MCP config (or merge the `QAFusionX` server). On first use the agent **must**:
+
+1. Switch to **Ask** mode.
+2. Ask what the project is and what to test (URL + screenshot).
+3. Ask for user stories (zip, Jira, or generate). This second question is mandatory.
+
+Until both answers are stored, every later tool returns `BLOCKED`.
+
+## User story sources
+
+| Method | How |
+| --- | --- |
+| Zip / files | `qafusionx_submit_user_stories` with `source: "zip"` and `zipPath` or `files[]` |
+| Jira | `source: "jira"` and `jiraLink` (browse URL, JQL, or issue key). Needs `JIRA_EMAIL` + `JIRA_API_TOKEN` |
+| Generate | `source: "generate"` records the choice; stories are drafted from the crawl / system map |
+
+## Artifact layout
+
+```
+artifacts/
+  step-by-step/                 ticks — the only unlock
+  User stories/
+  General/                      01-target.md, human-qa-research.md
+  Screens/
+    round one/screenshots|references|plan/
+    round two/screenshots|references|plan/
+    complete-system-map.md
+  testCase Human/               Jira-shaped markdown + json
+  testc2ai/                     YAML for the AI runner
+  AutomatedScripts/gui|api
+  reports/                      suite results, XLSX/CSV, proof
+  jira/                         upload log, payloads, created keys
+  bugs/                         bug tickets with proof
+```
+
+## Human test case shape
+
+Titles follow the Jira functional pattern:
+
+`[Sales & Marketing Module] [Intermediary Management][Add new/Manage][FP] - Validate that the Emergency Details section displays all required fields.`
+
+Required sections: Affects versions, Labels, Test Case Type, Priority, Parent, Linked work items, Preconditions, Test Steps, Test Comments, Expected Result, Actual Result.
+
+## Jira
+
+Set `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN`, `JIRA_PROJECT_KEY`. Without them, QAFusionX still completes the steps by writing `jira/payloads/*.json` — it never skips the node.
+
+## Sinhala — මෙය කොහොමද පාවිච්චි කරන්නේ
+
+Cursor එකේ QAFusionX MCP එක connect කළාම **Ask mode** එකට යන්න. මුලින්ම project එක සහ test කරන්න ඕන දේ, URL එක, screenshot එක අහනවා. ඊට පස්සේ **අනිවාර්යයෙන්** user stories අහනවා — zip, Jira link, හෝ system එකෙන් generate. මේ දෙකම උත්තර දුන්නට පස්සේ විතරක් crawl / test generation පටන් ගන්න පුළුවන්. කිසිම step එකක් skip කරලා ඊළඟ එකට යන්න බෑ; `step-by-step/` තියෙන tick එක තමයි ඊළඟ unlock එක.
