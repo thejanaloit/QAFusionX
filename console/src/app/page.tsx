@@ -176,6 +176,12 @@ export default function ControlConsolePage() {
         </div>
       ) : null}
 
+      <div className="border-b border-teal-400/25 bg-teal-400/10 px-5 py-3 text-sm text-teal-50">
+        <strong className="mr-2">VISIBLE WATCH MODE</strong>
+        Round 1, Round 2, and GUI suite open a real headed browser. You watch every navigation and click. Silent /
+        headless is off unless you set <code className="text-teal-200">QAFUSIONX_HEADED=0</code>.
+      </div>
+
       {error ? (
         <pre className="max-h-40 overflow-auto border-b border-red-400/30 bg-red-500/10 px-5 py-3 text-xs text-red-100">
           {error}
@@ -260,7 +266,7 @@ export default function ControlConsolePage() {
             <TabsContent value="runner">
               <Card className="border-white/10 bg-[#101826]">
                 <CardHeader>
-                  <CardTitle className="text-base">Suite console</CardTitle>
+                  <CardTitle className="text-base">Suite console — watch the live browser plus these events</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="mb-3 flex flex-wrap gap-2 text-sm">
@@ -362,7 +368,8 @@ export default function ControlConsolePage() {
       "command": "npx",
       "args": ["tsx", "src/index.ts"],
       "env": {
-        "QAFUSIONX_WORKSPACE": "./artifacts"
+        "QAFUSIONX_WORKSPACE": "./artifacts",
+        "QAFUSIONX_HEADED": "1"
       }
     }
   }

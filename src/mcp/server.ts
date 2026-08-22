@@ -120,7 +120,8 @@ export function createQaFusionXServer(): McpServer {
     "qafusionx_open_target",
     {
       title: "Open the target URL",
-      description: "Opens the recorded application URL in the headed/headless crawler. Round 1.",
+      description:
+        "Opens the recorded application URL in a VISIBLE headed browser so the user can watch. Never silent/headless unless they explicitly asked. Round 1.",
     },
     async () => {
       try {
@@ -181,7 +182,7 @@ export function createQaFusionXServer(): McpServer {
     {
       title: "Click a control by index",
       description:
-        "Click the interactive control at index from the last capture. Then immediately capture the next screen or popup.",
+        "Click the interactive control at index from the last capture in the visible browser. Then immediately capture the next screen or popup so the user can watch the transition.",
       inputSchema: {
         index: z.number().int().nonnegative(),
         label: z.string().optional(),
@@ -414,7 +415,8 @@ export function createQaFusionXServer(): McpServer {
     "qafusionx_run_suite",
     {
       title: "Run the automated suite",
-      description: "Executes every generated script. Results stream to the Control Console GUI.",
+      description:
+        "Executes every generated script. GUI cases run in a VISIBLE headed browser the user can watch (not silent/headless). Results also stream to the Control Console.",
     },
     async () => {
       try {

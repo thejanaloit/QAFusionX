@@ -31,21 +31,39 @@ let browser: Browser | null = null;
 let context: BrowserContext | null = null;
 let page: Page | null = null;
 
+export function headedEnabled(): boolean {
+  const raw = (process.env.QAFUSIONX_HEADED ?? "1").trim().toLowerCase();
+  return raw !== "0" && raw !== "false" && raw !== "silent";
+}
+
 export async function getPage(): Promise<Page> {
   if (page && !page.isClosed()) return page;
+  const headed = headedEnabled();
   if (!browser) {
     browser = await chromium.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-dev-shm-usage"],
+      headless: !headed,
+      slowMo: headed ? 400 : 0,
+      args: headed
+        ? ["--no-sandbox", "--disable-dev-shm-usage", "--start-maximized"]
+        : ["--no-sandbox", "--disable-dev-shm-usage"],
     });
+    bus.emitEvent(
+      "browser:launch",
+      headed
+        ? "Opened a visible browser so the user can watch crawl and GUI tests."
+        : "WARNING: silent/headless browser. Visible watch mode is off (QAFUSIONX_HEADED=0).",
+    );
   }
   const videoDir = abs(path.join("reports", "video"));
   fs.mkdirSync(videoDir, { recursive: true });
   context = await browser.newContext({
-    viewport: { width: 1440, height: 900 },
+    viewport: headed ? null : { width: 1440, height: 900 },
     recordVideo: { dir: videoDir },
   });
   page = await context.newPage();
+  if (headed) {
+    await page.setViewportSize({ width: 1440, height: 900 }).catch(() => undefined);
+  }
   return page;
 }
 
@@ -60,7 +78,7 @@ export async function closeBrowser(): Promise<void> {
 export async function openTarget(url: string): Promise<{ url: string; title: string }> {
   const p = await getPage();
   await p.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
-  await p.waitForTimeout(400);
+  await p.waitForTimeout(headedEnabled() ? 900 : 400);
   return { url: p.url(), title: await p.title() };
 }
 
@@ -211,7 +229,7 @@ export async function clickControl(index: number): Promise<{ url: string; title:
     )
     .locator("visible=true");
   await locator.nth(index).click({ timeout: 8_000 });
-  await p.waitForTimeout(500);
+  await p.waitForTimeout(headedEnabled() ? 800 : 400);
   const dialogAfter = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
   return {
     url: p.url(),

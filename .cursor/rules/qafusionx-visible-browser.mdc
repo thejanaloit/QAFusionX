@@ -1,0 +1,14 @@
+---
+description: QAFusionX crawl and GUI tests must be visible — never silent/headless
+alwaysApply: true
+---
+
+When QAFusionX is crawling (Round 1, Round 2) or running GUI automated tests:
+
+1. Open a **real, visible browser window** (headed Playwright / Chrome / Edge / computer-use browser). The user must be able to watch every navigation, click, and popup.
+2. **Do not use a silent method.** No headless crawl, no background-only HTTP fetch as a substitute for the GUI pass, no hidden webview.
+3. Slow enough to watch: pause after each goto/click/capture before the next action.
+4. If this environment has no display, say so and use the visible computer-use desktop / screen recording so the user can still see it. Do not silently continue headless.
+5. API tests may run without a window. GUI rounds and GUI scripts may not.
+
+Set `QAFUSIONX_HEADED=1` (default). `QAFUSIONX_HEADED=0` is forbidden unless the user explicitly asks for silent mode.

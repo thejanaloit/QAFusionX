@@ -61,7 +61,7 @@ export const STEPS: StepDefinition[] = [
     summary:
       "Open the target URL. Capture every screen and popup. After each shot, reason over it, write a reference MD of every button, then choose the next click. Continue until no unvisited screen remains.",
     agentInstructions:
-      "Use a high-end reasoning/vision model. Loop: capture → save PNG under Screens/round one/screenshots → read the image → write Screens/round one/references/<n>.md listing EVERY button and reachable screen → update the living plan → click the next unvisited control (prefer first unvisited). Include popups/modals/drawers. Do not stop early.",
+      "Open a VISIBLE headed browser — the user must watch. No headless/silent crawl. Use a high-end reasoning/vision model. Loop: capture → save PNG under Screens/round one/screenshots → read the image → write Screens/round one/references/<n>.md listing EVERY button and reachable screen → update the living plan → click the next unvisited control (prefer first unvisited). Include popups/modals/drawers. Do not stop early.",
     gates: ["openedTarget", "atLeastOneScreen", "referencesMatchScreenshots", "noPendingQueue"],
     produces: ["Screens/round one/screenshots/", "Screens/round one/references/"],
   },
@@ -85,7 +85,7 @@ export const STEPS: StepDefinition[] = [
     summary:
       "Re-read Round 1. Visit anything missed. Recreate the Round 1 directory structure under Round 2.",
     agentInstructions:
-      "Mirror Round 1 structure under Screens/round two/. Hunt for missed popups, error states, empty states, validation, and alternate buttons. Same capture → refer → MD → click loop.",
+      "Keep the same VISIBLE browser. Mirror Round 1 structure under Screens/round two/. Hunt for missed popups, error states, empty states, validation, and alternate buttons. Same capture → refer → MD → click loop. The user must still be able to watch.",
     gates: ["round2Screens", "round2References", "missedReview"],
     produces: ["Screens/round two/screenshots/", "Screens/round two/references/", "Screens/round two/plan/"],
   },
@@ -164,9 +164,10 @@ export const STEPS: StepDefinition[] = [
     key: "execute-suite",
     title: "Execute automated suite (visible GUI)",
     mode: "agent",
-    summary: "Run every generated script. Stream results to the Control Console so a human can watch.",
+    summary:
+      "Run every generated script in a VISIBLE headed browser. Stream results to the Control Console so a human can watch the window and the live runner.",
     agentInstructions:
-      "Run GUI and API suites. Do not mark complete until every script has a pass/fail/error outcome. The Control Console live runner must receive events.",
+      "Run GUI scripts in a visible headed browser (maximized, slowed). The user must watch every navigation and click — never silent/headless unless they explicitly asked. API scripts may run without a window. Do not mark complete until every script has a pass/fail/error outcome. The Control Console live runner must receive events.",
     gates: ["allScriptsRan"],
     produces: ["reports/suite-results.json", "reports/last-run.md"],
   },

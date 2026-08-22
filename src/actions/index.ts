@@ -9,6 +9,7 @@ import {
   closeBrowser,
   fillField,
   getPage,
+  headedEnabled,
   openTarget,
   writeLivingPlan,
   writeReferenceMd,
@@ -769,8 +770,15 @@ export async function runSuite(): Promise<{ results: SuiteEvent[]; status: Retur
 
   const jsonFiles = listFiles(DIRS.testCaseHuman, ".json");
   const results: SuiteEvent[] = [];
+  const watch = headedEnabled();
   const page = await getPage();
   const origin = state.project ? new URL(state.project.targetUrl).origin : "http://127.0.0.1:43181";
+  bus.emitEvent(
+    "suite:watch",
+    watch
+      ? "Visible watch mode: Chromium is on screen. Watch every GUI navigation and click."
+      : "WARNING: silent/headless suite. Visible watch mode is off (QAFUSIONX_HEADED=0).",
+  );
 
   for (const file of jsonFiles) {
     const tc = JSON.parse(fs.readFileSync(abs(path.join(DIRS.testCaseHuman, file)), "utf8")) as HumanTestCase;
@@ -783,6 +791,7 @@ export async function runSuite(): Promise<{ results: SuiteEvent[]; status: Retur
             waitUntil: "domcontentloaded",
             timeout: 20_000,
           });
+          if (watch) await page.waitForTimeout(800);
           const shotRel = path.join(DIRS.proofs, `${tc.id}-gui.png`);
           await page.screenshot({ path: abs(shotRel), fullPage: true });
           const verdict = await evaluateGuiCase(page, tc);
@@ -837,6 +846,7 @@ async function evaluateGuiCase(
     await page.goto(new URL("/sample/intermediaries/new?step=emergency", page.url()).toString(), {
       waitUntil: "domcontentloaded",
     });
+    if (headedEnabled()) await page.waitForTimeout(700);
     const text = ((await page.textContent("body")) ?? "").toLowerCase();
     const hasName = text.includes("emergency name");
     const hasRel = text.includes("relationship");
@@ -856,6 +866,7 @@ async function evaluateGuiCase(
     await page.goto(new URL("/sample/intermediaries/new?step=emergency", page.url()).toString(), {
       waitUntil: "domcontentloaded",
     });
+    if (headedEnabled()) await page.waitForTimeout(700);
     const contact = page.locator("#emergency-contact");
     if (await contact.count()) {
       await contact.fill("not-a-phone");

@@ -65,9 +65,17 @@ DIRECTORY CONTRACT
 - step-by-step/                 one file per step; a DONE tick is the only unlock
 
 ========================================
+VISIBLE BROWSER (COMPULSORY)
+========================================
+Round 1, Round 2, and GUI automated runs MUST open a real headed browser the user can watch.
+Do not use headless/silent crawl. Do not replace GUI rounds with API-only calls.
+Pause after each navigation and click. If there is no display, use the visible computer-use desktop / screen recording — still not silent.
+QAFUSIONX_HEADED defaults to 1. Do not set it to 0 unless the user asks.
+
+========================================
 CRAWL LOOP (ROUNDS 1 AND 2)
 ========================================
-You will be given a URL. Go into it. Capture every screen, including popups.
+You will be given a URL. Open it in the visible browser. Capture every screen, including popups.
 
 After EACH screenshot:
 1. Save the PNG.

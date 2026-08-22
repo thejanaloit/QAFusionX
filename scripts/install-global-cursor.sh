@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Install QAFusionX for EVERY Cursor project and chat on this machine.
-# Writes ~/.cursor/mcp.json and ~/.cursor/rules/qafusionx.mdc
+# Writes ~/.cursor/mcp.json and ~/.cursor/rules/qafusionx*.mdc
 set -euo pipefail
 
 HOME_DIR="${HOME}"
@@ -37,6 +37,7 @@ server = {
         "QAFUSIONX_HOME": "${userHome}/QAFusionX",
         "QAFUSIONX_WORKSPACE": "${userHome}/QAFusionX/artifacts",
         "QAFUSIONX_SAMPLE_ORIGIN": "http://127.0.0.1:43181",
+        "QAFUSIONX_HEADED": "1",
     },
 }
 # Prefer an absolute path on this machine so it works even if interpolation is off
@@ -47,6 +48,7 @@ server_abs = {
         "QAFUSIONX_HOME": install,
         "QAFUSIONX_WORKSPACE": os.path.join(install, "artifacts"),
         "QAFUSIONX_SAMPLE_ORIGIN": "http://127.0.0.1:43181",
+        "QAFUSIONX_HEADED": "1",
     },
 }
 data = {}
@@ -63,12 +65,12 @@ open(dest, "w", encoding="utf-8").write(json.dumps(data, indent=2) + "\n")
 print(f"Global MCP written → {dest}")
 PY
 
-RULE_SRC="$INSTALL/.cursor/rules/qafusionx.mdc"
-RULE_DST="$HOME_DIR/.cursor/rules/qafusionx.mdc"
-if [ -f "$RULE_SRC" ]; then
-  cp "$RULE_SRC" "$RULE_DST"
-  echo "Global rule written → $RULE_DST"
-fi
+for rule in qafusionx.mdc qafusionx-visible-browser.mdc; do
+  if [ -f "$INSTALL/.cursor/rules/$rule" ]; then
+    cp "$INSTALL/.cursor/rules/$rule" "$HOME_DIR/.cursor/rules/$rule"
+    echo "Global rule written → $HOME_DIR/.cursor/rules/$rule"
+  fi
+done
 
 echo
 echo "QAFusionX is now user-level (all projects, all chats) on this machine."

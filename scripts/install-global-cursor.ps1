@@ -1,5 +1,5 @@
 # Install QAFusionX for EVERY Cursor project and chat on Windows.
-# Writes %USERPROFILE%\.cursor\mcp.json and %USERPROFILE%\.cursor\rules\qafusionx.mdc
+# Writes %USERPROFILE%\.cursor\mcp.json and %USERPROFILE%\.cursor\rules\qafusionx*.mdc
 
 $ErrorActionPreference = "Stop"
 $HomeDir = $env:USERPROFILE
@@ -27,6 +27,7 @@ $mcp = @{
         QAFUSIONX_HOME           = $Install
         QAFUSIONX_WORKSPACE      = (Join-Path $Install "artifacts")
         QAFUSIONX_SAMPLE_ORIGIN  = "http://127.0.0.1:43181"
+        QAFUSIONX_HEADED         = "1"
       }
     }
   }
@@ -46,11 +47,13 @@ if (Test-Path $mcpPath) {
 ($mcp | ConvertTo-Json -Depth 8) | Set-Content -Path $mcpPath -Encoding UTF8
 Write-Host "Global MCP written → $mcpPath"
 
-$ruleSrc = Join-Path $Install ".cursor\rules\qafusionx.mdc"
-$ruleDst = Join-Path $HomeDir ".cursor\rules\qafusionx.mdc"
-if (Test-Path $ruleSrc) {
-  Copy-Item $ruleSrc $ruleDst -Force
-  Write-Host "Global rule written → $ruleDst"
+foreach ($rule in @("qafusionx.mdc", "qafusionx-visible-browser.mdc")) {
+  $ruleSrc = Join-Path $Install ".cursor\rules\$rule"
+  $ruleDst = Join-Path $HomeDir ".cursor\rules\$rule"
+  if (Test-Path $ruleSrc) {
+    Copy-Item $ruleSrc $ruleDst -Force
+    Write-Host "Global rule written → $ruleDst"
+  }
 }
 
 Write-Host ""

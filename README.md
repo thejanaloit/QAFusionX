@@ -4,6 +4,8 @@ Sequential MCP QA agent. When this server is connected in Cursor it **locks Ask 
 
 The Control Console is a live GUI for the same engine: numbered pipeline, Ask-mode banner, artifact browser, and a test-run console you can watch.
 
+**Visible watch mode is compulsory.** Round 1, Round 2, and GUI automated runs open a real Chromium window (headed, maximized, slowed). Silent/headless crawl or GUI testing is off unless you explicitly set `QAFUSIONX_HEADED=0`. Run QAFusionX on your own machine so the browser appears on your desktop.
+
 ## What it does
 
 1. **Ask — project & target** (Ask mode) — product name, what to test, live URL, screenshot.
@@ -18,7 +20,7 @@ The Control Console is a live GUI for the same engine: numbered pipeline, Ask-mo
 10. Upload those cases to Jira (or write offline payloads).
 11. Convert 1:1 to YAML in `testc2ai/`.
 12. Generate **GUI and API** Playwright scripts in `AutomatedScripts/`.
-13. Run the suite with results streamed to the GUI.
+13. Run the suite in a **visible headed browser** (you watch every click) with results also streamed to the GUI.
 14. Export failures to `reports/QAFusionX-Issues.xlsx` + `.csv` with proof.
 15. File Jira **bug** tickets: subject, precondition, steps, expected, actual, proof.
 
@@ -63,7 +65,7 @@ cd ~/QAFusionX
 bash scripts/install-global-cursor.sh
 ```
 
-That writes a **user-level** config (`~/.cursor/mcp.json`) and a **user rule** (`~/.cursor/rules/qafusionx.mdc`). Cursor merges that into every workspace and every Agent/Ask chat. Then:
+That writes a **user-level** config (`~/.cursor/mcp.json`) and **user rules** (`~/.cursor/rules/qafusionx.mdc`, `qafusionx-visible-browser.mdc`). Cursor merges that into every workspace and every Agent/Ask chat. Then:
 
 1. Command Palette → **Developer: Reload Window**
 2. Settings → **Tools & MCP** → turn **QAFusionX** on (green)
@@ -127,6 +129,13 @@ Required sections: Affects versions, Labels, Test Case Type, Priority, Parent, L
 ## Jira
 
 Set `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN`, `JIRA_PROJECT_KEY`. Without them, QAFusionX still completes the steps by writing `jira/payloads/*.json` — it never skips the node.
+
+## Visible browser (compulsory)
+
+Crawls and GUI tests must be something you can **watch**. QAFusionX launches headed Chromium (`QAFUSIONX_HEADED=1`, the default) with `slowMo` so each click is visible. Do not replace those rounds with a silent HTTP fetch.
+
+- Local Windows/macOS/Linux desktop: a real browser window opens on your screen.
+- `QAFUSIONX_HEADED=0` is only for when you explicitly ask for silent mode.
 
 ## Sinhala — මෙය කොහොමද පාවිච්චි කරන්නේ
 

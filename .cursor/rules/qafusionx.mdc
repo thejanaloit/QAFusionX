@@ -17,6 +17,8 @@ When the QAFusionX MCP is connected, you MUST switch to Ask mode before any work
 
 Never skip a step. If a tool returns BLOCKED, finish the named previous step. After every screenshot, read the PNG with a high-end reasoning model, write the reference MD, update the living plan, then click. Two crawl rounds are compulsory.
 
+Visible watch mode is compulsory for Round 1, Round 2, and GUI suite runs: open a real browser (or computer-use desktop) so the user can see every screen. Do not crawl or GUI-test headless/silently.
+
 If Question 2 was generate-from-system: after Round 2 create `GeneratedUser stories/` (`qafusionx_draft_generated_user_stories`) and base every later test case on that directory. Do not do this for zip or Jira.
 
 Human test cases must match Jira functional format. YAML in `testc2ai/`. Scripts in `AutomatedScripts/gui` and `api`. Run them, export issues with proof, file bugs.
