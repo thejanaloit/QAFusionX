@@ -13,7 +13,8 @@ function origin(): string {
   return process.env.QAFUSIONX_SAMPLE_ORIGIN ?? "http://127.0.0.1:43181";
 }
 
-export async function runGuidedDemo() {
+export async function runGuidedDemo(opts?: { source?: "zip" | "generate" }) {
+  const source = opts?.source ?? "zip";
   bus.emitEvent("demo:start", "Guided demo starting. Every workflow step will run in order.");
   actions.resetState();
   actions.begin();
@@ -33,10 +34,14 @@ export async function runGuidedDemo() {
     assignee: "Janith Bodaragama",
   });
 
-  await actions.submitUserStories({
-    source: "zip",
-    files: SEED_STORIES.map((s) => ({ name: s.name, content: s.content })),
-  });
+  await actions.submitUserStories(
+    source === "generate"
+      ? { source: "generate" }
+      : {
+          source: "zip",
+          files: SEED_STORIES.map((s) => ({ name: s.name, content: s.content })),
+        },
+  );
 
   actions.persistWorkspace();
 
@@ -116,6 +121,11 @@ export async function runGuidedDemo() {
     2,
     "Round 2 re-captured login, empty search, isolated emergency step, and a record with no emergency details. Nothing further outstanding in the sample graph.",
   );
+
+  if (actions.status().userStories?.source === "generate") {
+    actions.draftGeneratedUserStories();
+    actions.completeGeneratedUserStories();
+  }
 
   actions.saveSystemMap(SYSTEM_MAP);
 

@@ -50,10 +50,46 @@ export function loadState(): WorkflowState {
   if (!fs.existsSync(file)) return freshState();
   try {
     const parsed = JSON.parse(fs.readFileSync(file, "utf8")) as WorkflowState;
-    return parsed;
+    return migrateState(parsed);
   } catch {
     return freshState();
   }
+}
+
+function migrateState(state: WorkflowState): WorkflowState {
+  let dirty = false;
+  for (const def of STEPS) {
+    if (!state.steps[def.key]) {
+      const prev = def.id > 1 ? STEPS.find((s) => s.id === def.id - 1) : undefined;
+      const prevDone = prev ? state.steps[prev.key]?.status === "done" : false;
+      state.steps[def.key] = {
+        status: prevDone ? "available" : "locked",
+        gates: emptyGates(def),
+      };
+      dirty = true;
+    } else {
+      for (const gate of def.gates) {
+        if (state.steps[def.key].gates[gate] === undefined) {
+          state.steps[def.key].gates[gate] = false;
+          dirty = true;
+        }
+      }
+    }
+  }
+  const generated = state.steps["generate-user-stories"];
+  if (
+    generated &&
+    generated.status !== "done" &&
+    state.userStories?.source !== "generate" &&
+    (state.steps["round-2-crawl"]?.status === "done" || state.steps["system-map"]?.status === "done")
+  ) {
+    generated.status = "done";
+    generated.note = "N/A — user supplied stories via zip or Jira.";
+    for (const gate of Object.keys(generated.gates)) generated.gates[gate] = true;
+    dirty = true;
+  }
+  if (dirty) saveState(state);
+  return state;
 }
 
 export function saveState(state: WorkflowState): WorkflowState {

@@ -91,6 +91,16 @@ app.post("/api/round/complete", async (c) => {
   const body = await c.req.json();
   return c.json(await wrap(() => actions.completeRound(body.round, body.coverageNote))());
 });
+app.post("/api/generated-stories/draft", async (c) =>
+  c.json(await wrap(() => actions.draftGeneratedUserStories())()),
+);
+app.post("/api/generated-stories", async (c) => {
+  const body = await c.req.json();
+  return c.json(await wrap(() => actions.saveGeneratedUserStory(body))());
+});
+app.post("/api/generated-stories/complete", async (c) =>
+  c.json(await wrap(() => actions.completeGeneratedUserStories())()),
+);
 app.post("/api/system-map", async (c) => {
   const body = await c.req.json();
   return c.json(await wrap(() => actions.saveSystemMap(body.markdown))());
@@ -110,7 +120,11 @@ app.post("/api/scripts", async (c) => c.json(await wrap(() => actions.generateSc
 app.post("/api/suite/run", async (c) => c.json(await wrap(() => actions.runSuite())()));
 app.post("/api/issues/export", async (c) => c.json(await wrap(() => actions.exportIssues())()));
 app.post("/api/jira/bugs", async (c) => c.json(await wrap(() => actions.fileBugs())()));
-app.post("/api/demo/start", async (c) => c.json(await wrap(() => runGuidedDemo())()));
+app.post("/api/demo/start", async (c) => {
+  const body = await c.req.json().catch(() => ({}));
+  const source = body?.source === "generate" ? "generate" : "zip";
+  return c.json(await wrap(() => runGuidedDemo({ source }))());
+});
 
 serve({ fetch: app.fetch, port: PORT, hostname: "0.0.0.0" }, (info) => {
   console.log(`QAFusionX engine on http://127.0.0.1:${info.port}`);

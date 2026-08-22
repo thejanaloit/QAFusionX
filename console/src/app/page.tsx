@@ -19,14 +19,15 @@ const PIPELINE = [
   { id: 4, key: "round-1-crawl", title: "Round 1 — capture, analyze, navigate every screen", mode: "agent" },
   { id: 5, key: "round-1-plan", title: "Round 1 — living plan complete", mode: "agent" },
   { id: 6, key: "round-2-crawl", title: "Round 2 — missed screens & second pass", mode: "agent" },
-  { id: 7, key: "system-map", title: "Complete end-to-end system map", mode: "agent" },
-  { id: 8, key: "human-testcases", title: "Human-readable test cases (Jira format)", mode: "agent" },
-  { id: 9, key: "jira-upload-testcases", title: "Upload test cases to Jira", mode: "agent" },
-  { id: 10, key: "testc2ai", title: "Convert to YAML (testc2ai)", mode: "agent" },
-  { id: 11, key: "automated-scripts", title: "Generate AutomatedScripts (GUI + API)", mode: "agent" },
-  { id: 12, key: "execute-suite", title: "Execute automated suite (visible GUI)", mode: "agent" },
-  { id: 13, key: "issues-export", title: "Export issues CSV/XLSX with proof", mode: "agent" },
-  { id: 14, key: "jira-bugs", title: "File Jira bug tickets with proof", mode: "agent" },
+  { id: 7, key: "generate-user-stories", title: "Generate user stories from the crawled system", mode: "agent" },
+  { id: 8, key: "system-map", title: "Complete end-to-end system map", mode: "agent" },
+  { id: 9, key: "human-testcases", title: "Human-readable test cases (Jira format)", mode: "agent" },
+  { id: 10, key: "jira-upload-testcases", title: "Upload test cases to Jira", mode: "agent" },
+  { id: 11, key: "testc2ai", title: "Convert to YAML (testc2ai)", mode: "agent" },
+  { id: 12, key: "automated-scripts", title: "Generate AutomatedScripts (GUI + API)", mode: "agent" },
+  { id: 13, key: "execute-suite", title: "Execute automated suite (visible GUI)", mode: "agent" },
+  { id: 14, key: "issues-export", title: "Export issues CSV/XLSX with proof", mode: "agent" },
+  { id: 15, key: "jira-bugs", title: "File Jira bug tickets with proof", mode: "agent" },
 ] as const;
 
 type Todo = {
@@ -336,6 +337,7 @@ export default function ControlConsolePage() {
                   <p>
                     <Badge className="mr-2">{status?.askMode.storiesAnswered ? "done" : "open"}</Badge>
                     2. Upload user stories — zip / files, Jira link, or generate from the system.
+                    Method 3 waits until after Round 2, then writes <code>GeneratedUser stories/</code> and uses only that set for testing.
                   </p>
                   <Separator />
                   <p>

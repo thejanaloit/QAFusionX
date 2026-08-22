@@ -1,6 +1,6 @@
 # QAFusionX
 
-Sequential MCP QA agent. When this server is connected in Cursor it **locks Ask mode**, asks two compulsory questions, then walks a 14-step workflow that cannot skip. Completing step N writes a tick in `step-by-step/` — that tick is the only way step N+1 unlocks.
+Sequential MCP QA agent. When this server is connected in Cursor it **locks Ask mode**, asks two compulsory questions, then walks a 15-step workflow that cannot skip. Completing step N writes a tick in `step-by-step/` — that tick is the only way step N+1 unlocks.
 
 The Control Console is a live GUI for the same engine: numbered pipeline, Ask-mode banner, artifact browser, and a test-run console you can watch.
 
@@ -12,14 +12,15 @@ The Control Console is a live GUI for the same engine: numbered pipeline, Ask-mo
 4. **Round 1 crawl** — every screen and popup: capture → reason → reference MD → living plan → next click.
 5. Freeze Round 1 plan / todo.
 6. **Round 2 crawl** — same directory shape, hunting anything Round 1 missed.
-7. **Complete system map** — long, exhaustive markdown (short files are rejected).
-8. **Human test cases** in Jira functional format under `testCase Human/`.
-9. Upload those cases to Jira (or write offline payloads).
-10. Convert 1:1 to YAML in `testc2ai/`.
-11. Generate **GUI and API** Playwright scripts in `AutomatedScripts/`.
-12. Run the suite with results streamed to the GUI.
-13. Export failures to `reports/QAFusionX-Issues.xlsx` + `.csv` with proof.
-14. File Jira **bug** tickets: subject, precondition, steps, expected, actual, proof.
+7. **Generate user stories** — **only if Question 2 was generate-from-system**. After Round 2, create `GeneratedUser stories/` from every captured flow. Later tests use that set only. Zip/Jira runs mark this step N/A.
+8. **Complete system map** — long, exhaustive markdown (short files are rejected).
+9. **Human test cases** in Jira functional format under `testCase Human/`.
+10. Upload those cases to Jira (or write offline payloads).
+11. Convert 1:1 to YAML in `testc2ai/`.
+12. Generate **GUI and API** Playwright scripts in `AutomatedScripts/`.
+13. Run the suite with results streamed to the GUI.
+14. Export failures to `reports/QAFusionX-Issues.xlsx` + `.csv` with proof.
+15. File Jira **bug** tickets: subject, precondition, steps, expected, actual, proof.
 
 ## Run locally
 
@@ -60,14 +61,15 @@ Until both answers are stored, every later tool returns `BLOCKED`.
 | --- | --- |
 | Zip / files | `qafusionx_submit_user_stories` with `source: "zip"` and `zipPath` or `files[]` |
 | Jira | `source: "jira"` and `jiraLink` (browse URL, JQL, or issue key). Needs `JIRA_EMAIL` + `JIRA_API_TOKEN` |
-| Generate | `source: "generate"` records the choice; stories are drafted from the crawl / system map |
+| Generate | `source: "generate"` only records the choice. After Round 2, `GeneratedUser stories/` is created from the captured screens. Test cases must use that directory. |
 
 ## Artifact layout
 
 ```
 artifacts/
   step-by-step/                 ticks — the only unlock
-  User stories/
+  User stories/                 zip / Jira stories
+  GeneratedUser stories/        method 3 only, after Round 2
   General/                      01-target.md, human-qa-research.md
   Screens/
     round one/screenshots|references|plan/

@@ -15,6 +15,7 @@ export function workspaceRoot(): string {
 export const DIRS = {
   stepByStep: "step-by-step",
   userStories: "User stories",
+  generatedUserStories: "GeneratedUser stories",
   general: "General",
   screens: "Screens",
   roundOne: path.join("Screens", "round one"),
@@ -50,7 +51,8 @@ export function ensureDir(rel: string): string {
 }
 
 export function ensureLayout(): void {
-  for (const rel of Object.values(DIRS)) {
+  for (const [key, rel] of Object.entries(DIRS)) {
+    if (key === "generatedUserStories") continue;
     ensureDir(rel);
   }
 }

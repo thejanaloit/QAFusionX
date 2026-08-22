@@ -234,6 +234,57 @@ export function createQaFusionXServer(): McpServer {
   );
 
   server.registerTool(
+    "qafusionx_draft_generated_user_stories",
+    {
+      title: "Draft GeneratedUser stories from the crawl",
+      description:
+        "ONLY when Question 2 was generate-from-system. After Round 2, create GeneratedUser stories/ and draft one user story per discovered screen/flow. Later test cases must use this directory.",
+    },
+    async () => {
+      try {
+        return ok(actions.draftGeneratedUserStories());
+      } catch (err) {
+        return fail(err);
+      }
+    },
+  );
+
+  server.registerTool(
+    "qafusionx_save_generated_user_story",
+    {
+      title: "Save or refine one generated user story",
+      description: "Write one markdown user story into GeneratedUser stories/. Method 3 only.",
+      inputSchema: {
+        title: z.string(),
+        body: z.string(),
+      },
+    },
+    async (args) => {
+      try {
+        return ok(actions.saveGeneratedUserStory(args));
+      } catch (err) {
+        return fail(err);
+      }
+    },
+  );
+
+  server.registerTool(
+    "qafusionx_complete_generated_user_stories",
+    {
+      title: "Complete generated user stories step",
+      description:
+        "Gate: at least 3 stories in GeneratedUser stories/ when method 3 was chosen. Marks N/A automatically for zip/Jira.",
+    },
+    async () => {
+      try {
+        return ok(actions.completeGeneratedUserStories());
+      } catch (err) {
+        return fail(err);
+      }
+    },
+  );
+
+  server.registerTool(
     "qafusionx_save_system_map",
     {
       title: "Save complete system map",

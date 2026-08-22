@@ -13,4 +13,8 @@ When the QAFusionX MCP is connected, you MUST switch to Ask mode before any work
 6. Submit with `qafusionx_submit_user_stories`.
 7. Only then leave Ask mode and follow the numbered todo list from `qafusionx_status`.
 
-Never skip a step. If a tool returns BLOCKED, finish the named previous step. After every screenshot, read the PNG with a high-end reasoning model, write the reference MD, update the living plan, then click. Two crawl rounds are compulsory. Human test cases must match Jira functional format. YAML in `testc2ai/`. Scripts in `AutomatedScripts/gui` and `api`. Run them, export issues with proof, file bugs.
+Never skip a step. If a tool returns BLOCKED, finish the named previous step. After every screenshot, read the PNG with a high-end reasoning model, write the reference MD, update the living plan, then click. Two crawl rounds are compulsory.
+
+If Question 2 was generate-from-system: after Round 2 create `GeneratedUser stories/` (`qafusionx_draft_generated_user_stories`) and base every later test case on that directory. Do not do this for zip or Jira.
+
+Human test cases must match Jira functional format. YAML in `testc2ai/`. Scripts in `AutomatedScripts/gui` and `api`. Run them, export issues with proof, file bugs.

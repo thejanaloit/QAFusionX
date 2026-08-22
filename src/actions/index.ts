@@ -29,6 +29,12 @@ import {
   listSavedStories,
   persistJiraStories,
 } from "../stories/ingest.ts";
+import {
+  draftStoriesFromCrawl,
+  listActiveStories,
+  listGeneratedStories,
+  saveGeneratedStory,
+} from "../stories/generate.ts";
 import { formatHumanTestCase, validateHumanMarkdown, type HumanTestCase } from "../testdocs/format.ts";
 import { apiSpec, guiSpec } from "../testdocs/scripts.ts";
 import {
@@ -227,8 +233,9 @@ export async function submitUserStories(input: {
       path.join(DIRS.userStories, "000-generate-pending.md"),
       `# Generate-from-system selected
 
-User stories will be drafted from Round 1 + Round 2 captures and the complete system map.
-This placeholder records the compulsory Question 2 answer. Replace this file during Step 3 / after the crawl.
+This placeholder only records Question 2. Real stories are NOT written yet.
+
+After Round 1 and Round 2 screen capture, QAFusionX will create \`GeneratedUser stories/\` and draft one user story per discovered flow. Test cases must be based on that directory, not this file.
 `,
     );
     count = 1;
@@ -429,8 +436,131 @@ export function completeRound(round: 1 | 2, coverageNote: string) {
     state = setGate(state, "round-2-crawl", "missedReview");
     writeLivingPlan(state, 2);
     state = completeStep(state, "round-2-crawl", coverageNote);
+    state = settleGeneratedStoriesStep(state);
   }
   return publicStatus(state);
+}
+
+function settleGeneratedStoriesStep(state: ReturnType<typeof loadState>) {
+  if (state.userStories?.source === "generate") {
+    return state;
+  }
+  if (state.steps["generate-user-stories"]?.status === "done") return state;
+  state = beginStep(state, "generate-user-stories");
+  state = setGate(state, "generate-user-stories", "directoryReady");
+  state = setGate(state, "generate-user-stories", "minGeneratedStories");
+  state = setGate(state, "generate-user-stories", "storiesFromCrawl");
+  return completeStep(
+    state,
+    "generate-user-stories",
+    "N/A — user supplied stories via zip or Jira. GeneratedUser stories/ is not created.",
+  );
+}
+
+export function draftGeneratedUserStories() {
+  let state = loadState();
+  if (state.userStories?.source !== "generate") {
+    throw new WorkflowBlocked({
+      code: "VALIDATION",
+      message:
+        "GeneratedUser stories/ is only created when Question 2 was generate-from-system. Zip/Jira runs skip this step.",
+      requiredStep: "generate-user-stories",
+    });
+  }
+  state = beginStep(state, "generate-user-stories");
+  if (state.screens.length < 1) {
+    throw new WorkflowBlocked({
+      code: "VALIDATION",
+      message: "Round 1 and Round 2 must capture screens before stories can be generated from the system.",
+      requiredStep: "round-2-crawl",
+    });
+  }
+  const stories = draftStoriesFromCrawl(state);
+  if (!state.userStories) {
+    throw new WorkflowBlocked({
+      code: "VALIDATION",
+      message: "Question 2 was not recorded.",
+      requiredStep: "ask-user-stories",
+    });
+  }
+  state.userStories.count = stories.length;
+  state.userStories.generatePending = false;
+  state = setGate(state, "generate-user-stories", "directoryReady");
+  state = setGate(state, "generate-user-stories", "storiesFromCrawl");
+  if (stories.length >= 3) state = setGate(state, "generate-user-stories", "minGeneratedStories");
+  saveState(state);
+  writeFile(
+    path.join(DIRS.general, "02-generated-stories.md"),
+    `# Generated user stories
+
+- Directory: \`GeneratedUser stories/\`
+- Count: ${stories.length}
+- Downstream test cases must use this set.
+
+${stories.map((s) => `- ${s.title}`).join("\n")}
+`,
+  );
+  return {
+    ...publicStatus(state),
+    directory: DIRS.generatedUserStories,
+    stories: stories.map((s) => s.filename),
+    instruction:
+      "Review every file in GeneratedUser stories/. Use a high-end reasoning model to refine them against the screenshots, then call qafusionx_complete_generated_user_stories. Test cases will be based only on this directory.",
+  };
+}
+
+export function saveGeneratedUserStory(input: { title: string; body: string }) {
+  let state = loadState();
+  if (state.userStories?.source !== "generate") {
+    throw new WorkflowBlocked({
+      code: "VALIDATION",
+      message: "Saving into GeneratedUser stories/ is only allowed for generate-from-system runs.",
+      requiredStep: "generate-user-stories",
+    });
+  }
+  state = beginStep(state, "generate-user-stories");
+  const file = saveGeneratedStory(input.title, input.body);
+  const stories = listGeneratedStories();
+  if (stories.length >= 3) state = setGate(state, "generate-user-stories", "minGeneratedStories");
+  state = setGate(state, "generate-user-stories", "directoryReady");
+  saveState(state);
+  return { saved: file, count: stories.length };
+}
+
+export function completeGeneratedUserStories() {
+  let state = loadState();
+  if (state.userStories?.source !== "generate") {
+    state = settleGeneratedStoriesStep(state);
+    return publicStatus(state);
+  }
+  state = beginStep(state, "generate-user-stories");
+  const stories = listGeneratedStories();
+  if (stories.length < 3) {
+    throw new WorkflowBlocked({
+      code: "VALIDATION",
+      message: `GeneratedUser stories/ needs at least 3 real stories drafted from the crawl. Found ${stories.length}.`,
+      requiredStep: "generate-user-stories",
+      missingGates: ["minGeneratedStories"],
+    });
+  }
+  if (!state.userStories) {
+    throw new WorkflowBlocked({
+      code: "VALIDATION",
+      message: "Question 2 was not recorded.",
+      requiredStep: "ask-user-stories",
+    });
+  }
+  state.userStories.count = stories.length;
+  state.userStories.generatePending = false;
+  state = setGate(state, "generate-user-stories", "directoryReady");
+  state = setGate(state, "generate-user-stories", "minGeneratedStories");
+  state = setGate(state, "generate-user-stories", "storiesFromCrawl");
+  state = completeStep(
+    state,
+    "generate-user-stories",
+    `${stories.length} stories generated from the crawled system. Test cases must use GeneratedUser stories/.`,
+  );
+  return { ...publicStatus(state), stories: stories.map((s) => s.filename) };
 }
 
 export function saveSystemMap(markdown: string) {
@@ -477,6 +607,15 @@ export function saveHumanQaResearch(markdown: string) {
 export function completeHumanTestCases() {
   let state = loadState();
   state = beginStep(state, "human-testcases");
+  const active = listActiveStories(state.userStories?.source);
+  if (state.userStories?.source === "generate" && active.length < 3) {
+    throw new WorkflowBlocked({
+      code: "VALIDATION",
+      message:
+        "Generate-from-system runs must write test cases against GeneratedUser stories/. That directory is empty or incomplete.",
+      requiredStep: "generate-user-stories",
+    });
+  }
   const count = countFiles(DIRS.testCaseHuman, ".md");
   if (count < 5) {
     throw new WorkflowBlocked({

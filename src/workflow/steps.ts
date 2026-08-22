@@ -91,6 +91,18 @@ export const STEPS: StepDefinition[] = [
   },
   {
     id: 7,
+    key: "generate-user-stories",
+    title: "Generate user stories from the crawled system",
+    mode: "agent",
+    summary:
+      "Only when Question 2 was “generate from our own system”. After Round 2, write GeneratedUser stories/ from every captured screen. Later testing is based on those stories only.",
+    agentInstructions:
+      "This step runs ONLY if the user chose generate-from-system. After Round 2, create GeneratedUser stories/. Use a high-end reasoning model with every Round 1 and Round 2 screenshot + reference MD. Write one user story per capability (As a / I want / so that + acceptance). Do not start the system map or test cases until this directory has real stories. If the user uploaded zip or Jira stories, this step is marked N/A automatically — do not invent a second story set.",
+    gates: ["directoryReady", "minGeneratedStories", "storiesFromCrawl"],
+    produces: ["GeneratedUser stories/"],
+  },
+  {
+    id: 8,
     key: "system-map",
     title: "Complete end-to-end system map",
     mode: "agent",
@@ -102,19 +114,19 @@ export const STEPS: StepDefinition[] = [
     produces: ["Screens/complete-system-map.md"],
   },
   {
-    id: 8,
+    id: 9,
     key: "human-testcases",
     title: "Human-readable test cases (Jira format)",
     mode: "agent",
     summary:
       "Using the system map AND user stories, write full-system test cases a human QA can read — same shape as a Jira functional ticket.",
     agentInstructions:
-      "Compulsory: use a high-end reasoning model with BOTH the system map and every user story in context. Write one markdown file per test case under testCase Human/. Format: bracketed title, affects versions, preconditions, steps, comments, expected, actual, labels, type, priority, parent, linked items. Also write General/human-qa-research.md after checking how a human QA would approach this product.",
+      "Compulsory: use a high-end reasoning model with BOTH the system map and the active user stories. If Question 2 was generate-from-system, the active set is GeneratedUser stories/ — not the placeholder in User stories/. Otherwise use User stories/. Write one markdown file per test case under testCase Human/. Format: bracketed title, affects versions, preconditions, steps, comments, expected, actual, labels, type, priority, parent, linked items. Also write General/human-qa-research.md after checking how a human QA would approach this product.",
     gates: ["minTestcases", "formatValid", "humanQaResearch"],
     produces: ["testCase Human/", "General/human-qa-research.md"],
   },
   {
-    id: 9,
+    id: 10,
     key: "jira-upload-testcases",
     title: "Upload test cases to Jira",
     mode: "agent",
@@ -125,7 +137,7 @@ export const STEPS: StepDefinition[] = [
     produces: ["jira/testcases/", "jira/upload-log.md"],
   },
   {
-    id: 10,
+    id: 11,
     key: "testc2ai",
     title: "Convert to YAML (testc2ai)",
     mode: "agent",
@@ -137,7 +149,7 @@ export const STEPS: StepDefinition[] = [
     produces: ["testc2ai/"],
   },
   {
-    id: 11,
+    id: 12,
     key: "automated-scripts",
     title: "Generate AutomatedScripts (GUI + API)",
     mode: "agent",
@@ -148,7 +160,7 @@ export const STEPS: StepDefinition[] = [
     produces: ["AutomatedScripts/gui/", "AutomatedScripts/api/"],
   },
   {
-    id: 12,
+    id: 13,
     key: "execute-suite",
     title: "Execute automated suite (visible GUI)",
     mode: "agent",
@@ -159,7 +171,7 @@ export const STEPS: StepDefinition[] = [
     produces: ["reports/suite-results.json", "reports/last-run.md"],
   },
   {
-    id: 13,
+    id: 14,
     key: "issues-export",
     title: "Export issues CSV/XLSX with proof",
     mode: "agent",
@@ -171,7 +183,7 @@ export const STEPS: StepDefinition[] = [
     produces: ["reports/QAFusionX-Issues.xlsx", "reports/QAFusionX-Issues.csv"],
   },
   {
-    id: 14,
+    id: 15,
     key: "jira-bugs",
     title: "File Jira bug tickets with proof",
     mode: "agent",

@@ -15,7 +15,7 @@ Question 2 (compulsory — ask this AFTER Question 1 is answered, never skip it)
 Upload the user stories. Choose exactly one method:
 1) Zip file or any uploadable files (markdown, docx, csv, pdf)
 2) Connected Jira — paste the Jira filter, epic, or board URL and we will pull the stories
-3) Generate from the system — QAFusionX will draft user stories from the captured screens after the crawl (you will refine this method later)
+3) Generate from the system — do not upload stories. After Round 2 capture, QAFusionX creates GeneratedUser stories/ from every screen and all later tests are based on that set only.
 
 Until both answers are recorded via qafusionx_submit_project and qafusionx_submit_user_stories, every other mutating tool returns BLOCKED.
 `;
@@ -39,10 +39,18 @@ Whenever this MCP is used, you MUST enter Ask mode first.
 
 Never skip Question 2. Never invent user stories unless the user explicitly chose method 3.
 
+If method 3 was chosen:
+- Still run the full Round 1 + Round 2 capture first.
+- After Round 2, you MUST create GeneratedUser stories/ and draft one story per discovered flow (qafusionx_draft_generated_user_stories, then refine with a high-end model).
+- System map and test cases are blocked until that directory has real stories.
+- Do not use the placeholder in User stories/ as the test basis.
+If method 1 or 2 was chosen, skip GeneratedUser stories/ entirely (the engine marks that step N/A).
+
 ========================================
 DIRECTORY CONTRACT
 ========================================
-- User stories/                 every uploaded or fetched story
+- User stories/                 uploaded or Jira-fetched stories (methods 1–2)
+- GeneratedUser stories/        ONLY if method 3 was selected — created after Round 2, and that is the test basis
 - General/                      01-target.md (what to test + URL) and research notes
 - Screens/round one/screenshots PNGs from the first full crawl
 - Screens/round one/references  one MD per screenshot listing EVERY button and reachable screen
