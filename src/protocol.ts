@@ -65,12 +65,17 @@ DIRECTORY CONTRACT
 - step-by-step/                 one file per step; a DONE tick is the only unlock
 
 ========================================
-VISIBLE BROWSER (COMPULSORY)
+VISIBLE BROWSER (LOCKED — EVERY USER, EVERY DEVICE)
 ========================================
-Round 1, Round 2, and GUI automated runs MUST open a real headed browser the user can watch.
-Do not use headless/silent crawl. Do not replace GUI rounds with API-only calls.
-Pause after each navigation and click. If there is no display, use the visible computer-use desktop / screen recording — still not silent.
-QAFUSIONX_HEADED defaults to 1. Do not set it to 0 unless the user asks.
+This is locked. The workflow is a pipeline, but crawl and GUI tests are NEVER a silent job inside that pipeline.
+
+When ANY user runs QAFusionX on THEIR device, a SEPARATE browser window MUST open on that device and show every navigation, popup, and click.
+
+- Do not crawl or GUI-test headless.
+- Do not hide the work in the engine / console / logs.
+- Do not replace GUI rounds with API-only calls.
+- If this machine has no display, stop. Tell the user to run QAFusionX on their own computer so the window can open there.
+- QAFUSIONX_HEADED=0 is rejected. There is no silent mode.
 
 ========================================
 CRAWL LOOP (ROUNDS 1 AND 2)

@@ -1,14 +1,20 @@
 ---
-description: QAFusionX crawl and GUI tests must be visible — never silent/headless
+description: LOCKED — QAFusionX always opens a separate browser on the user's device
 alwaysApply: true
 ---
 
-When QAFusionX is crawling (Round 1, Round 2) or running GUI automated tests:
+# LOCKED RULE — visible browser on every user's device
 
-1. Open a **real, visible browser window** (headed Playwright / Chrome / Edge / computer-use browser). The user must be able to watch every navigation, click, and popup.
-2. **Do not use a silent method.** No headless crawl, no background-only HTTP fetch as a substitute for the GUI pass, no hidden webview.
-3. Slow enough to watch: pause after each goto/click/capture before the next action.
-4. If this environment has no display, say so and use the visible computer-use desktop / screen recording so the user can still see it. Do not silently continue headless.
-5. API tests may run without a window. GUI rounds and GUI scripts may not.
+This is locked. Do not interpret, weaken, or skip it.
 
-Set `QAFUSIONX_HEADED=1` (default). `QAFUSIONX_HEADED=0` is forbidden unless the user explicitly asks for silent mode.
+QAFusionX is a sequential pipeline. That does **not** mean crawl or GUI tests run silently "inside the pipeline".
+
+When **any user** runs QAFusionX on **their device**:
+
+1. Open a **separate real browser window on that device** (headed Chromium / Chrome / Edge). The work happens in that window.
+2. The user watches every navigation, popup, and click.
+3. **Never** run crawl or GUI tests as a silent/headless/background pipeline job. No hidden webview. No API-only substitute for a GUI pass.
+4. If this machine has no display, stop and tell the user to run QAFusionX on their own computer so the browser can open there. Do not continue headless.
+5. API tests may run without a window. Round 1, Round 2, and GUI scripts may not.
+
+`QAFUSIONX_HEADED=0` is rejected by the engine. There is no silent mode.

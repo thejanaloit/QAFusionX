@@ -9,12 +9,13 @@ import {
   closeBrowser,
   fillField,
   getPage,
-  headedEnabled,
+  openVisibleBrowser,
   openTarget,
   writeLivingPlan,
   writeReferenceMd,
   type InteractiveControl,
 } from "../crawler/browser.ts";
+import { VISIBLE_BROWSER_LOCK_MARKDOWN } from "../visible-lock.ts";
 import {
   bugDescription,
   createIssue,
@@ -296,8 +297,10 @@ export function persistWorkspace() {
 - Stories: ${stories.length} files in \`User stories/\`
 - Target: ${state.project.targetUrl}
 - Source: ${state.userStories?.source}
+- Visible browser: LOCKED — separate window on this user's device
 `,
   );
+  writeFile(path.join(DIRS.general, "02-visible-browser-lock.md"), VISIBLE_BROWSER_LOCK_MARKDOWN);
   state = setGate(state, "persist-workspace", "userStoriesDir");
   state = setGate(state, "persist-workspace", "generalBrief");
   if (stories.length >= 1) state = setGate(state, "persist-workspace", "storiesCount");
@@ -311,6 +314,7 @@ export async function crawlOpen() {
   if (!state.project) throw new WorkflowBlocked({ code: "VALIDATION", message: "No project URL.", requiredStep: "ask-project" });
   const opened = await openTarget(state.project.targetUrl);
   state = setGate(state, "round-1-crawl", "openedTarget");
+  state = setGate(state, "round-1-crawl", "visibleBrowserOpened");
   saveState(state);
   return { ...opened, ...publicStatus(state) };
 }
@@ -770,14 +774,13 @@ export async function runSuite(): Promise<{ results: SuiteEvent[]; status: Retur
 
   const jsonFiles = listFiles(DIRS.testCaseHuman, ".json");
   const results: SuiteEvent[] = [];
-  const watch = headedEnabled();
-  const page = await getPage();
+  const page = await openVisibleBrowser();
+  state = setGate(state, "execute-suite", "visibleBrowserOpened");
+  saveState(state);
   const origin = state.project ? new URL(state.project.targetUrl).origin : "http://127.0.0.1:43181";
   bus.emitEvent(
     "suite:watch",
-    watch
-      ? "Visible watch mode: Chromium is on screen. Watch every GUI navigation and click."
-      : "WARNING: silent/headless suite. Visible watch mode is off (QAFUSIONX_HEADED=0).",
+    "LOCKED: a separate browser window is open on this user's device. GUI tests run there — not as a silent pipeline job.",
   );
 
   for (const file of jsonFiles) {
@@ -791,7 +794,7 @@ export async function runSuite(): Promise<{ results: SuiteEvent[]; status: Retur
             waitUntil: "domcontentloaded",
             timeout: 20_000,
           });
-          if (watch) await page.waitForTimeout(800);
+          await page.waitForTimeout(800);
           const shotRel = path.join(DIRS.proofs, `${tc.id}-gui.png`);
           await page.screenshot({ path: abs(shotRel), fullPage: true });
           const verdict = await evaluateGuiCase(page, tc);
@@ -809,6 +812,9 @@ export async function runSuite(): Promise<{ results: SuiteEvent[]; status: Retur
         event.actual = err instanceof Error ? err.message : String(err);
       }
       results.push(event);
+      if (!state.suite) {
+        state.suite = { running: true, passed: 0, failed: 0, skipped: 0 };
+      }
       if (event.status === "passed") state.suite.passed += 1;
       else state.suite.failed += 1;
       state.suite.lastMessage = `${event.id} ${event.status}`;
@@ -846,7 +852,7 @@ async function evaluateGuiCase(
     await page.goto(new URL("/sample/intermediaries/new?step=emergency", page.url()).toString(), {
       waitUntil: "domcontentloaded",
     });
-    if (headedEnabled()) await page.waitForTimeout(700);
+    await page.waitForTimeout(700);
     const text = ((await page.textContent("body")) ?? "").toLowerCase();
     const hasName = text.includes("emergency name");
     const hasRel = text.includes("relationship");
@@ -866,7 +872,7 @@ async function evaluateGuiCase(
     await page.goto(new URL("/sample/intermediaries/new?step=emergency", page.url()).toString(), {
       waitUntil: "domcontentloaded",
     });
-    if (headedEnabled()) await page.waitForTimeout(700);
+    await page.waitForTimeout(700);
     const contact = page.locator("#emergency-contact");
     if (await contact.count()) {
       await contact.fill("not-a-phone");

@@ -62,6 +62,7 @@ type Status = {
   issues: { count: number } | null;
   bugs: { count: number } | null;
   rule: string;
+  visibleBrowser?: { locked: boolean; mode: string; headlessAllowed: boolean };
 };
 
 type FusionEvent = { ts: string; type: string; message: string; stepId?: number };
@@ -104,7 +105,7 @@ export default function ControlConsolePage() {
       }
     };
     es.addEventListener("event", handler);
-    ["demo:start", "demo:done", "step:start", "step:done", "suite:test", "suite:result", "crawl:capture", "ask:project"].forEach(
+    ["demo:start", "demo:done", "step:start", "step:done", "suite:test", "suite:result", "suite:watch", "crawl:capture", "browser:launch", "ask:project"].forEach(
       (name) => es.addEventListener(name, handler),
     );
     const poll = setInterval(() => refresh().catch(() => undefined), 4000);
@@ -177,9 +178,12 @@ export default function ControlConsolePage() {
       ) : null}
 
       <div className="border-b border-teal-400/25 bg-teal-400/10 px-5 py-3 text-sm text-teal-50">
-        <strong className="mr-2">VISIBLE WATCH MODE</strong>
-        Round 1, Round 2, and GUI suite open a real headed browser. You watch every navigation and click. Silent /
-        headless is off unless you set <code className="text-teal-200">QAFUSIONX_HEADED=0</code>.
+        <strong className="mr-2">LOCKED — VISIBLE BROWSER</strong>
+        This pipeline never runs crawl or GUI tests silently. On every user&apos;s device a separate browser window
+        opens and shows every navigation and click. Headless is rejected. There is no silent mode.
+        {status?.visibleBrowser?.locked ? (
+          <span className="ml-2 text-teal-200/80">({status.visibleBrowser.mode})</span>
+        ) : null}
       </div>
 
       {error ? (

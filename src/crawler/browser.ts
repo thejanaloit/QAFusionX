@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { chromium, type Browser, type BrowserContext, type Page } from "playwright";
 import { bus } from "../events.ts";
+import { assertVisibleBrowserLock, VISIBLE_LAUNCH_ARGS } from "../visible-lock.ts";
 import { abs, DIRS, ensureDir, writeFile } from "../workflow/paths.ts";
 import type { ScreenNode, WorkflowState } from "../workflow/types.ts";
 
@@ -32,38 +33,43 @@ let context: BrowserContext | null = null;
 let page: Page | null = null;
 
 export function headedEnabled(): boolean {
-  const raw = (process.env.QAFUSIONX_HEADED ?? "1").trim().toLowerCase();
-  return raw !== "0" && raw !== "false" && raw !== "silent";
+  assertVisibleBrowserLock();
+  return true;
 }
 
 export async function getPage(): Promise<Page> {
   if (page && !page.isClosed()) return page;
-  const headed = headedEnabled();
-  if (!browser) {
+  return openVisibleBrowser();
+}
+
+/** Always open a new headed window on this user's device. Never headless. */
+export async function openVisibleBrowser(): Promise<Page> {
+  assertVisibleBrowserLock();
+  await closeBrowser();
+  try {
     browser = await chromium.launch({
-      headless: !headed,
-      slowMo: headed ? 400 : 0,
-      args: headed
-        ? ["--no-sandbox", "--disable-dev-shm-usage", "--start-maximized"]
-        : ["--no-sandbox", "--disable-dev-shm-usage"],
+      headless: false,
+      slowMo: 400,
+      args: [...VISIBLE_LAUNCH_ARGS],
     });
-    bus.emitEvent(
-      "browser:launch",
-      headed
-        ? "Opened a visible browser so the user can watch crawl and GUI tests."
-        : "WARNING: silent/headless browser. Visible watch mode is off (QAFUSIONX_HEADED=0).",
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : String(err);
+    throw new Error(
+      `LOCKED RULE: could not open a separate visible browser on this device (${detail}). Run QAFusionX on the user's computer so a real window can appear. Do not fall back to headless.`,
     );
   }
+  bus.emitEvent(
+    "browser:launch",
+    "LOCKED: opened a separate visible browser window on this user's device. Watch every crawl and GUI click here — this is not a silent pipeline job.",
+  );
   const videoDir = abs(path.join("reports", "video"));
   fs.mkdirSync(videoDir, { recursive: true });
   context = await browser.newContext({
-    viewport: headed ? null : { width: 1440, height: 900 },
+    viewport: null,
     recordVideo: { dir: videoDir },
   });
   page = await context.newPage();
-  if (headed) {
-    await page.setViewportSize({ width: 1440, height: 900 }).catch(() => undefined);
-  }
+  await page.setViewportSize({ width: 1440, height: 900 }).catch(() => undefined);
   return page;
 }
 
@@ -76,9 +82,9 @@ export async function closeBrowser(): Promise<void> {
 }
 
 export async function openTarget(url: string): Promise<{ url: string; title: string }> {
-  const p = await getPage();
+  const p = await openVisibleBrowser();
   await p.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
-  await p.waitForTimeout(headedEnabled() ? 900 : 400);
+  await p.waitForTimeout(900);
   return { url: p.url(), title: await p.title() };
 }
 
@@ -229,7 +235,7 @@ export async function clickControl(index: number): Promise<{ url: string; title:
     )
     .locator("visible=true");
   await locator.nth(index).click({ timeout: 8_000 });
-  await p.waitForTimeout(headedEnabled() ? 800 : 400);
+  await p.waitForTimeout(800);
   const dialogAfter = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
   return {
     url: p.url(),

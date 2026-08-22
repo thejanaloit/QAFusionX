@@ -4,7 +4,7 @@ Sequential MCP QA agent. When this server is connected in Cursor it **locks Ask 
 
 The Control Console is a live GUI for the same engine: numbered pipeline, Ask-mode banner, artifact browser, and a test-run console you can watch.
 
-**Visible watch mode is compulsory.** Round 1, Round 2, and GUI automated runs open a real Chromium window (headed, maximized, slowed). Silent/headless crawl or GUI testing is off unless you explicitly set `QAFUSIONX_HEADED=0`. Run QAFusionX on your own machine so the browser appears on your desktop.
+**LOCKED — visible browser on every user's device.** The workflow is a pipeline, but crawl and GUI tests never run as a silent job inside it. When any user runs QAFusionX on their machine, a **separate browser window opens on that device** and shows every screen, popup, and click. Headless is rejected. There is no silent mode.
 
 ## What it does
 
@@ -130,13 +130,22 @@ Required sections: Affects versions, Labels, Test Case Type, Priority, Parent, L
 
 Set `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN`, `JIRA_PROJECT_KEY`. Without them, QAFusionX still completes the steps by writing `jira/payloads/*.json` — it never skips the node.
 
-## Visible browser (compulsory)
+## Visible browser (LOCKED)
 
-Crawls and GUI tests must be something you can **watch**. QAFusionX launches headed Chromium (`QAFUSIONX_HEADED=1`, the default) with `slowMo` so each click is visible. Do not replace those rounds with a silent HTTP fetch.
+This rule is locked in the engine, MCP protocol, and Cursor rules. You cannot turn it off.
 
-- Local Windows/macOS/Linux desktop: a real browser window opens on your screen.
-- `QAFUSIONX_HEADED=0` is only for when you explicitly ask for silent mode.
+The pipeline still runs step by step. That does **not** mean Round 1, Round 2, or GUI tests run in the background.
+
+When QAFusionX runs on a user's device:
+
+1. A **separate real browser window** opens on **that device**.
+2. Crawl and GUI tests happen in that window.
+3. The user watches every navigation and click.
+
+`QAFUSIONX_HEADED=0` is rejected. If the machine has no display, QAFusionX stops and tells you to run it on the user's own computer. It will not continue headless.
 
 ## Sinhala — මෙය කොහොමද පාවිච්චි කරන්නේ
 
 Cursor එකේ QAFusionX MCP එක connect කළාම **Ask mode** එකට යන්න. මුලින්ම project එක සහ test කරන්න ඕන දේ, URL එක, screenshot එක අහනවා. ඊට පස්සේ **අනිවාර්යයෙන්** user stories අහනවා — zip, Jira link, හෝ system එකෙන් generate. මේ දෙකම උත්තර දුන්නට පස්සේ විතරක් crawl / test generation පටන් ගන්න පුළුවන්. කිසිම step එකක් skip කරලා ඊළඟ එකට යන්න බෑ; `step-by-step/` තියෙන tick එක තමයි ඊළඟ unlock එක.
+
+මේක කිසිම සෙත්ම pipeline එකක් ඇතුළේ කරනවා වගේ කරන්න එපා. හැම user කෙනෙක්ගේමම device එකේ වෙනම browser එකක් open වෙලා ඒකෙන් පේන්න ඕන. Headless lock කරලා තියෙනවා.

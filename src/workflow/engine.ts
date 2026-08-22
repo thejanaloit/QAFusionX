@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { ASK_MODE_BANNER } from "../protocol.ts";
+import { visibleBrowserStatus } from "../visible-lock.ts";
 import { bus } from "../events.ts";
 import { STEPS, stepById, stepByKey, type StepDefinition } from "./steps.ts";
 import { abs, ensureLayout, writeFile } from "./paths.ts";
@@ -341,5 +342,6 @@ export function publicStatus(state: WorkflowState) {
     issues: state.issues ?? null,
     bugs: state.bugs ?? null,
     rule: "Completing the previous step is compulsory. You cannot skip.",
+    visibleBrowser: visibleBrowserStatus(),
   };
 }

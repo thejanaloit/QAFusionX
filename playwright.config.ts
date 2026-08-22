@@ -7,10 +7,10 @@ export default defineConfig({
   retries: 0,
   use: {
     baseURL: process.env.QAFUSIONX_SAMPLE_ORIGIN ?? "http://127.0.0.1:43181",
-    headless: process.env.QAFUSIONX_HEADED === "0" || process.env.QAFUSIONX_HEADED === "false",
+    headless: false,
     launchOptions: {
-      slowMo: process.env.QAFUSIONX_HEADED === "0" || process.env.QAFUSIONX_HEADED === "false" ? 0 : 400,
-      args: ["--start-maximized"],
+      slowMo: 400,
+      args: ["--start-maximized", "--new-window"],
     },
     trace: "on-first-retry",
     screenshot: "only-on-failure",
