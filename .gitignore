@@ -6,8 +6,8 @@ agent-tools
 *.log
 .env
 .env.local
-artifacts/runs
-artifacts/**/*.png
+artifacts/**
+!artifacts/.gitkeep
 playwright-report
 test-results
 coverage

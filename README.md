@@ -45,15 +45,31 @@ MCP-only:
 npx tsx src/index.ts
 ```
 
-## Connect in Cursor
+## Attach QAFusionX to Cursor
 
-Copy `.cursor/mcp.json.example` into your Cursor MCP config (or merge the `QAFusionX` server). On first use the agent **must**:
+This repo already ships `.cursor/mcp.json`. Open the folder in Cursor and enable the **QAFusionX** MCP server (Settings → MCP). Or merge it into your user config:
+
+```bash
+bash scripts/attach-cursor-mcp.sh
+```
+
+Then restart Cursor / reload MCP servers. On first use the agent **must**:
 
 1. Switch to **Ask** mode.
 2. Ask what the project is and what to test (URL + screenshot).
 3. Ask for user stories (zip, Jira, or generate). This second question is mandatory.
 
 Until both answers are stored, every later tool returns `BLOCKED`.
+
+## Publish to GitHub
+
+The cloud agent that built this project has no GitHub login, so it cannot create `github.com/<you>/QAFusionX` from here. The source is already on the Cursor Origin remote. On your machine, after `gh auth login`:
+
+```bash
+bash scripts/publish-github.sh QAFusionX public
+```
+
+That creates the GitHub repo, adds a `github` remote, and pushes `main`.
 
 ## User story sources
 

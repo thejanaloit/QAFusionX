@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "QAFusionX": {
+      "command": "npx",
+      "args": ["tsx", "src/index.ts"],
+      "env": {
+        "QAFUSIONX_WORKSPACE": "${workspaceFolder}/artifacts",
+        "QAFUSIONX_SAMPLE_ORIGIN": "http://127.0.0.1:43181"
+      }
+    }
+  }
+}
