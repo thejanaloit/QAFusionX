@@ -1,0 +1,55 @@
+---
+description: LOCKED QAFusionX complete QA flow — 15 steps, n8n-style gates, Ask mode first, visible browser, no skip.
+alwaysApply: true
+---
+
+# QAFusionX — LOCKED FLOW (Constitution v2026-08-22)
+
+When QAFusionX MCP is connected, this flow is **immutable**. Do not improvise, shorten, or skip.
+
+## Rule zero
+
+1. Call `qafusionx_status` every turn — show the numbered todo list.
+2. If `askMode.unlocked` is false → **Cursor Ask mode** + Questions 1 & 2 only.
+3. If any tool returns `BLOCKED` → finish the named step; write the tick in `step-by-step/`.
+4. **Never** mark a step done without real artefacts on disk.
+
+## The 15 steps (compulsory order)
+
+| # | Step | You must produce |
+|---|------|------------------|
+| 1 | Ask — project | name, what to test, URL, screenshot |
+| 2 | Ask — user stories | zip **or** Jira link **or** generate-from-system |
+| 3 | Persist workspace | `User stories/`, `General/01-target.md` |
+| 4 | Round 1 crawl | visible browser; every screen+popup → `Screens/round one/screenshots/` |
+| 5 | Round 1 plan | after **each** shot: reference MD + update `round one/plan/` |
+| 6 | Round 2 crawl | same structure under `Screens/round two/` |
+| 7 | Generated stories | **only** method 3 → `GeneratedUser stories/` |
+| 8 | System map | `Screens/complete-system-map.md` — long, exhaustive |
+| 9 | Human test cases | `testCase Human/` — full system, GUI+API, Jira format, high-end model |
+| 10 | Jira upload test cases | every case uploaded or payload written |
+| 11 | testc2ai | 1:1 YAML per human case |
+| 12 | AutomatedScripts | 1:1 GUI + API scripts |
+| 13 | Run suite | **visible** GUI browser; all scripts executed |
+| 14 | Export issues | XLSX + CSV with proof (iPay Lite Testing style columns) |
+| 15 | File bugs | Jira bug per failure: subject, preconditions, steps, expected, actual, proof |
+
+## Crawl loop (Rounds 1 & 2)
+
+After **every** screenshot:
+
+1. Save PNG under the round's `screenshots/`
+2. **Read** the image (high-end vision/reasoning)
+3. Write `references/<n>.md` — **every** button, link, tab, field, dialog, destination
+4. Update `plan/living-plan.md` and `plan/todo.md`
+5. Click first unvisited control → repeat until no unvisited controls remain
+
+Then Round 2 for misses. Then system map + tests.
+
+## Visible browser (locked)
+
+Separate real browser window on the user's device. `QAFUSIONX_HEADED=0` is rejected. No silent crawl. No headless GUI tests.
+
+## Sinhala
+
+MCP use කරනකොට Ask mode. Step tick නැතුව ඊළඟ step එකට යන්න බෑ. හැම screen එකම capture + reference + plan. Round 2 දෙක. පස්සේ test cases, YAML, scripts, run, export, bugs. මේ flow එක lock කරලා.

@@ -1,6 +1,6 @@
 {
   "name": "qafusionx",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "QAFusionX — sequential MCP QA agent. Ask mode first, then crawl, test, automate, and file Jira bugs. No step may be skipped.",
   "type": "module",

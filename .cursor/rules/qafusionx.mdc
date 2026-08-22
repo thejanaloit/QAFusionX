@@ -22,3 +22,5 @@ LOCKED: do not run crawl or GUI tests as a silent step inside the pipeline. On e
 If Question 2 was generate-from-system: after Round 2 create `GeneratedUser stories/` (`qafusionx_draft_generated_user_stories`) and base every later test case on that directory. Do not do this for zip or Jira.
 
 Human test cases must match Jira functional format. YAML in `testc2ai/`. Scripts in `AutomatedScripts/gui` and `api`. Run them, export issues with proof, file bugs.
+
+**LOCKED FLOW:** See `config/WORKFLOW-LOCK.md` and rule `qafusionx-locked-flow.mdc`. 15 steps, n8n-style gates, no skip.

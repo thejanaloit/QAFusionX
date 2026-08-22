@@ -58,6 +58,32 @@ function json(data: unknown) {
   return JSON.parse(JSON.stringify(data));
 }
 
+function activeCrawlStepKey(state: WorkflowState): "round-1-crawl" | "round-2-crawl" {
+  const r1 = state.steps["round-1-crawl"];
+  const r2 = state.steps["round-2-crawl"];
+  if (r1?.status !== "done") return "round-1-crawl";
+  if (r2 && r2.status !== "done" && r2.status !== "locked") return "round-2-crawl";
+  throw new WorkflowBlocked({
+    code: "STEP_GATE",
+    message: "No active crawl round. Finish Round 1 before Round 2.",
+    requiredStep: r1?.status !== "done" ? "round-1-crawl" : "round-2-crawl",
+  });
+}
+
+function assertNoPendingRound1(state: WorkflowState) {
+  const queued = state.crawlQueue.length;
+  const pendingOnScreens = state.screens
+    .filter((s) => s.round === 1)
+    .reduce((n, s) => n + (s.pendingControls?.length ?? 0), 0);
+  if (queued > 0 || pendingOnScreens > 0) {
+    throw new WorkflowBlocked({
+      code: "VALIDATION",
+      message: `Round 1 still has unvisited controls (queue=${queued}, pendingOnScreens=${pendingOnScreens}). Visit every screen before completing Round 1.`,
+      requiredStep: "round-1-crawl",
+    });
+  }
+}
+
 export function status() {
   ensureLayout();
   const state = loadState();
@@ -362,9 +388,11 @@ export function saveScreenReference(input: {
   pendingControls?: string[];
   visitedControls?: string[];
 }) {
-  const state = loadState();
+  let state = loadState();
   const node = state.screens.find((s) => s.id === input.screenId);
   if (!node) throw new Error(`Unknown screen ${input.screenId}`);
+  const stepKey = node.round === 2 ? "round-2-crawl" : "round-1-crawl";
+  state = beginStep(state, stepKey);
   if (input.pendingControls) node.pendingControls = input.pendingControls;
   if (input.visitedControls) node.visitedControls = input.visitedControls;
   const dummy: InteractiveControl[] = node.buttons.map((b, index) => ({
@@ -389,11 +417,17 @@ export function saveScreenReference(input: {
 }
 
 export async function crawlClick(input: { index: number; label?: string }) {
+  let state = loadState();
+  state = beginStep(state, activeCrawlStepKey(state));
+  saveState(state);
   const result = await clickControl(input.index, input.label);
   return { ...result, next: "Call qafusionx_capture_screen immediately, including if a popup opened." };
 }
 
 export async function crawlFill(input: { locator: string; value: string }) {
+  let state = loadState();
+  state = beginStep(state, activeCrawlStepKey(state));
+  saveState(state);
   await fillField(input.locator, input.value);
   return { filled: true };
 }
@@ -414,6 +448,7 @@ export function completeRound(round: 1 | 2, coverageNote: string) {
     state = setGate(state, "round-1-crawl", "atLeastOneScreen");
     state = setGate(state, "round-1-crawl", "referencesMatchScreenshots");
     state = setGate(state, "round-1-crawl", "openedTarget");
+    assertNoPendingRound1(state);
     state = setGate(state, "round-1-crawl", "noPendingQueue");
     state = completeStep(state, "round-1-crawl", coverageNote);
 
@@ -605,7 +640,11 @@ export function saveHumanTestCase(tc: HumanTestCase) {
 }
 
 export function saveHumanQaResearch(markdown: string) {
+  let state = loadState();
+  state = beginStep(state, "human-testcases");
   writeFile(path.join(DIRS.general, "human-qa-research.md"), markdown);
+  state = setGate(state, "human-testcases", "humanQaResearch");
+  saveState(state);
   return { saved: path.join(DIRS.general, "human-qa-research.md") };
 }
 

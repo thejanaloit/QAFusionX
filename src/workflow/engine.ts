@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { ASK_MODE_BANNER } from "../protocol.ts";
+import { WORKFLOW_LOCK_LAW, WORKFLOW_LOCK_VERSION } from "./constitution.ts";
 import { visibleBrowserStatus } from "../visible-lock.ts";
 import { bus } from "../events.ts";
 import { STEPS, stepById, stepByKey, type StepDefinition } from "./steps.ts";
@@ -341,7 +342,13 @@ export function publicStatus(state: WorkflowState) {
     suite: state.suite ?? null,
     issues: state.issues ?? null,
     bugs: state.bugs ?? null,
-    rule: "Completing the previous step is compulsory. You cannot skip.",
+    rule: WORKFLOW_LOCK_LAW,
+    workflowLock: {
+      version: WORKFLOW_LOCK_VERSION,
+      locked: true,
+      stepCount: STEPS.length,
+      constitution: "config/WORKFLOW-LOCK.md",
+    },
     visibleBrowser: visibleBrowserStatus(),
   };
 }

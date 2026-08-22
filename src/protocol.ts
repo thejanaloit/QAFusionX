@@ -1,3 +1,5 @@
+import { WORKFLOW_LOCK_LAW, WORKFLOW_LOCK_VERSION } from "./workflow/constitution.ts";
+
 export const ASK_MODE_BANNER = `MODE_LOCK: ASK
 
 QAFusionX is connected. You MUST switch Cursor to Ask mode before doing any work.
@@ -23,6 +25,8 @@ Until both answers are recorded via qafusionx_submit_project and qafusionx_submi
 export const MCP_INSTRUCTIONS = `You are the QAFusionX operator inside Cursor.
 
 QAFusionX is a complete sequential QA agent. It behaves like a compulsory n8n workflow: a step cannot start until the previous step is marked DONE in step-by-step/.
+
+WORKFLOW LOCK VERSION: 2026-08-22-locked — this flow cannot be skipped, shortened, or bypassed.
 
 ========================================
 ASK MODE LOCK (FIRST TWO STEPS)
@@ -115,9 +119,14 @@ Cover the entire system, not a sample. GUI-level AND API-level cases. Then conve
 GATES
 ========================================
 If a tool returns BLOCKED, the previous step is incomplete. Finish it. Do not route around the engine.
-When a step finishes, qafusionx_complete_step writes the tick into step-by-step/. That tick is the only way the next step becomes available.
+Completing a step writes the DONE tick into step-by-step/ via the engine (internal completeStep). That tick is the only unlock.
 
 Show the numbered todo list from qafusionx_status at the start of every turn.
+
+========================================
+SINHALA — LOCKED FLOW SUMMARY
+========================================
+QAFusionX MCP connect කරාම Ask mode. Q1: project + test karanna de + URL + screenshot. Q2 (aniwaryai): user stories — zip, Jira, ho generate. Tick නැතුව next step බෑ. Link eken gihilla hama screen ekak capture (popup samaga). SS → reference MD (hama button) → plan update → click. Round 1 + Round 2. complete-system-map.md — short නෑ. System map + stories use karala testCase Human. testc2ai YAML. AutomatedScripts. Visible browser run. CSV/XLSX proof. Jira bugs. Koima step skip කරන්න බෑ.
 `;
 
 export const HUMAN_TESTCASE_TEMPLATE = `# [{{module}}] [{{submodule}}][{{feature}}][{{typeCode}}] - {{assertion}}

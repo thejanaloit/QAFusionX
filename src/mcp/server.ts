@@ -348,7 +348,13 @@ export function createQaFusionXServer(): McpServer {
       description: "Required before completing human test cases. Research how a human QA would test this product.",
       inputSchema: { markdown: z.string() },
     },
-    async (args) => ok(actions.saveHumanQaResearch(args.markdown)),
+    async (args) => {
+      try {
+        return ok(actions.saveHumanQaResearch(args.markdown));
+      } catch (err) {
+        return fail(err);
+      }
+    },
   );
 
   server.registerTool(
@@ -465,6 +471,26 @@ export function createQaFusionXServer(): McpServer {
       description: "Deletes artifacts and re-engages the Ask-mode lock. Destructive.",
     },
     async () => ok(actions.resetState()),
+  );
+
+  server.registerResource(
+    "qafusionx-constitution",
+    "qafusionx://constitution",
+    {
+      title: "QAFusionX locked workflow constitution",
+      description: "Immutable 15-step sequential QA pipeline (n8n-style).",
+      mimeType: "text/markdown",
+    },
+    async () => {
+      const fs = await import("node:fs");
+      const path = await import("node:path");
+      const { fileURLToPath } = await import("node:url");
+      const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+      const text = fs.readFileSync(path.join(root, "config", "WORKFLOW-LOCK.md"), "utf8");
+      return {
+        contents: [{ uri: "qafusionx://constitution", text, mimeType: "text/markdown" }],
+      };
+    },
   );
 
   server.registerResource(

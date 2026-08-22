@@ -177,9 +177,9 @@ export const STEPS: StepDefinition[] = [
     title: "Export issues CSV/XLSX with proof",
     mode: "agent",
     summary:
-      "Every failing case becomes a row in an Excel/CSV workbook with attached proof (screenshot path, trace, log).",
+      "Every failing case becomes a row in an Excel/CSV workbook with attached proof (screenshot path, trace, log). Shape matches iPay Lite Testing.xlsx style.",
     agentInstructions:
-      "Write reports/QAFusionX-Issues.xlsx and reports/QAFusionX-Issues.csv. Columns: id, module, title, status, preconditions, steps, expected, actual, proof. Include every failure. Passes may be listed separately.",
+      "Write reports/QAFusionX-Issues.xlsx and reports/QAFusionX-Issues.csv. Columns: id, module, title, status, preconditions, steps, expected, actual, proof. Include every failure. Passes may be listed separately. Proof paths must be real files under reports/proof/.",
     gates: ["xlsxExists", "csvExists"],
     produces: ["reports/QAFusionX-Issues.xlsx", "reports/QAFusionX-Issues.csv"],
   },
