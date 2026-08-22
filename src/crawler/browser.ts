@@ -65,38 +65,25 @@ export async function openTarget(url: string): Promise<{ url: string; title: str
 }
 
 async function extractControls(p: Page): Promise<InteractiveControl[]> {
-  return p.evaluate(() => {
-    const nodes = Array.from(
-      document.querySelectorAll(
-        'button, a[href], input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [data-testid]',
-      ),
-    ) as HTMLElement[];
-
-    const visible = (el: HTMLElement) => {
+  const script = `(() => {
+    const nodes = Array.from(document.querySelectorAll(
+      'button, a[href], input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [data-testid]'
+    ));
+    const visible = (el) => {
       const style = window.getComputedStyle(el);
       const rect = el.getBoundingClientRect();
-      return (
-        style.display !== "none" &&
-        style.visibility !== "hidden" &&
-        rect.width + rect.height > 0
-      );
+      return style.display !== "none" && style.visibility !== "hidden" && rect.width + rect.height > 0;
     };
-
     return nodes.filter(visible).map((el, index) => {
       const tag = el.tagName.toLowerCase();
       const role = el.getAttribute("role");
       const type = el.getAttribute("type");
-      let kind: InteractiveControl["kind"] = "other";
-      if (tag === "button" || role === "button" || type === "submit" || type === "button") {
-        kind = "button";
-      } else if (tag === "a" || role === "link") {
-        kind = "link";
-      } else if (role === "tab") {
-        kind = "tab";
-      } else if (tag === "input" || tag === "select" || tag === "textarea") {
-        kind = "field";
-      }
-      const text = (el.innerText || el.getAttribute("value") || "").trim().replace(/\s+/g, " ").slice(0, 120);
+      let kind = "other";
+      if (tag === "button" || role === "button" || type === "submit" || type === "button") kind = "button";
+      else if (tag === "a" || role === "link") kind = "link";
+      else if (role === "tab") kind = "tab";
+      else if (tag === "input" || tag === "select" || tag === "textarea") kind = "field";
+      const text = (el.innerText || el.getAttribute("value") || "").trim().replace(/\\s+/g, " ").slice(0, 120);
       return {
         index,
         tag,
@@ -109,11 +96,12 @@ async function extractControls(p: Page): Promise<InteractiveControl[]> {
         testId: el.getAttribute("data-testid"),
         placeholder: el.getAttribute("placeholder"),
         role,
-        disabled: (el as HTMLButtonElement).disabled === true,
-        kind,
+        disabled: el.disabled === true,
+        kind
       };
     });
-  });
+  })()`;
+  return (await p.evaluate(script)) as InteractiveControl[];
 }
 
 function roundDirs(round: 1 | 2) {
@@ -217,34 +205,18 @@ export async function clickControl(index: number): Promise<{ url: string; title:
   const p = await getPage();
   const beforeUrl = p.url();
   const dialogBefore = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
-
-  const handle = await p.evaluateHandle((i) => {
-    const nodes = Array.from(
-      document.querySelectorAll(
-        'button, a[href], input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [data-testid]',
-      ),
-    ) as HTMLElement[];
-    const visible = nodes.filter((el) => {
-      const style = window.getComputedStyle(el);
-      const rect = el.getBoundingClientRect();
-      return style.display !== "none" && style.visibility !== "hidden" && rect.width + rect.height > 0;
-    });
-    return visible[i] ?? null;
-  }, index);
-
-  const element = handle.asElement();
-  if (!element) {
-    throw new Error(`No visible control at index ${index}`);
-  }
-  await element.click({ timeout: 8_000 }).catch(async () => {
-    await element.evaluate((el) => (el as HTMLElement).click());
-  });
+  const locator = p
+    .locator(
+      'button, a[href], input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [data-testid]',
+    )
+    .locator("visible=true");
+  await locator.nth(index).click({ timeout: 8_000 });
   await p.waitForTimeout(500);
   const dialogAfter = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
   return {
     url: p.url(),
     title: await p.title(),
-    popupOpened: dialogAfter > dialogBefore || p.url() === beforeUrl && dialogAfter > 0,
+    popupOpened: dialogAfter > dialogBefore || (p.url() === beforeUrl && dialogAfter > 0),
   };
 }
 
