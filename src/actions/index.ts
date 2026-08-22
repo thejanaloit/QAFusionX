@@ -389,7 +389,7 @@ export function saveScreenReference(input: {
 }
 
 export async function crawlClick(input: { index: number; label?: string }) {
-  const result = await clickControl(input.index);
+  const result = await clickControl(input.index, input.label);
   return { ...result, next: "Call qafusionx_capture_screen immediately, including if a popup opened." };
 }
 

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { abs, DIRS, writeFile } from "../workflow/paths.ts";
 import type { HumanTestCase } from "../testdocs/format.ts";
+import { getJiraToken } from "../tbb/vault.ts";
 
 export interface JiraConfig {
   baseUrl: string;
@@ -13,7 +14,12 @@ export interface JiraConfig {
 export function readJiraConfig(overrides?: Partial<JiraConfig>): JiraConfig | null {
   const baseUrl = overrides?.baseUrl || process.env.JIRA_BASE_URL || process.env.JIRA_URL;
   const email = overrides?.email || process.env.JIRA_EMAIL;
-  const token = overrides?.token || process.env.JIRA_API_TOKEN || process.env.JIRA_TOKEN;
+  const token =
+    overrides?.token ||
+    process.env.JIRA_API_TOKEN ||
+    process.env.JIRA_TOKEN ||
+    getJiraToken() ||
+    undefined;
   const projectKey = overrides?.projectKey || process.env.JIRA_PROJECT_KEY;
   if (!baseUrl || !email || !token || !projectKey) return null;
   return { baseUrl: baseUrl.replace(/\/$/, ""), email, token, projectKey };

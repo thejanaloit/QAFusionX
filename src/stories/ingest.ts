@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import AdmZip from "adm-zip";
+import { readJiraConfig } from "../jira/client.ts";
 import { abs, DIRS, ensureDir, listFiles, writeFile } from "../workflow/paths.ts";
 
 export interface StoryFile {
@@ -83,7 +84,7 @@ export async function fetchJiraStories(opts: {
   link: string;
 }): Promise<JiraStory[]> {
   const email = opts.email ?? process.env.JIRA_EMAIL;
-  const token = opts.token ?? process.env.JIRA_API_TOKEN ?? process.env.JIRA_TOKEN;
+  const token = opts.token ?? readJiraConfig()?.token;
   if (!email || !token) {
     throw new Error("JIRA_EMAIL and JIRA_API_TOKEN are required to pull stories from Jira.");
   }

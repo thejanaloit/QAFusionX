@@ -1,0 +1,73 @@
+{
+  "$schema": "./tbb-mesh.schema.json",
+  "description": "Canonical Theja mesh roots + MCP servers for QAFusionX install. Override any root with env vars before running install.",
+  "defaults": {
+    "THEJA_BACKBONE_ROOT": "E:/ThejaBackBone",
+    "THEJA_TTP_ROOT": "E:/ThejaThinkingPattern",
+    "THEJA_TCB_ROOT": "E:/ThejaCentralBrain",
+    "THEJA_ULTIMATE_ROOT": "E:/ThejaUltimate",
+    "THEGOD_ROOT": "E:/theGod-",
+    "THEJAD_REPO_ROOT": "E:/internetBanking",
+    "THEJAD_PACKAGE_ROOT": "E:/internetBanking/thejad",
+    "AITHEJA_ROOT": "E:/AITheja-browser",
+    "AITHEJA_BRAIN_ROOT": "C:/Users/ThejanaD/IdeaProjects/aitheja-brain",
+    "THEJA_COMPANY_ROOT": "E:/ThejaCompany"
+  },
+  "meshEnv": {
+    "THEJA_BACKBONE_ROOT": "${THEJA_BACKBONE_ROOT}",
+    "THEJA_TCB_ROOT": "${THEJA_TCB_ROOT}",
+    "THEGOD_ROOT": "${THEGOD_ROOT}",
+    "THEJA_ULTIMATE_ROOT": "${THEJA_ULTIMATE_ROOT}",
+    "THEJAD_PACKAGE_ROOT": "${THEJAD_PACKAGE_ROOT}",
+    "THEJAD_REPO_ROOT": "${THEJAD_REPO_ROOT}",
+    "THEJA_COMPANY_ROOT": "${THEJA_COMPANY_ROOT}",
+    "AITHEJA_ROOT": "${AITHEJA_ROOT}",
+    "AITHEJA_BRAIN_ROOT": "${AITHEJA_BRAIN_ROOT}",
+    "THEJAD_FULL_ACCESS": "1",
+    "THEJAD_AUTO_POD": "1",
+    "THEJAD_DEVICE_ROOTS": "E:\\;C:\\Users\\ThejanaD;D:\\",
+    "HYPERSPACE_GATEWAY_URL": "http://127.0.0.1:8080/v1",
+    "npm_config_update_notifier": "false"
+  },
+  "mcpServers": {
+    "ThejaThinkingPattern": {
+      "command": "node",
+      "args": ["${THEJA_TTP_ROOT}/bin/ttp.js", "mcp", "start"],
+      "envRef": "meshEnv"
+    },
+    "ThejaCentralBrain": {
+      "command": "node",
+      "args": ["${THEJA_TCB_ROOT}/bin/tcb.js", "mcp", "start"],
+      "envRef": "meshEnv"
+    },
+    "ThejaUltimate": {
+      "command": "node",
+      "args": ["${THEJA_ULTIMATE_ROOT}/bin/theja-ultimate.js", "mcp", "start"],
+      "envRef": "meshEnv"
+    },
+    "theGod": {
+      "command": "node",
+      "args": ["${THEGOD_ROOT}/bin/thegod.js", "mcp", "start"],
+      "envRef": "meshEnv"
+    },
+    "ThejaD": {
+      "command": "node",
+      "args": ["${THEJAD_PACKAGE_ROOT}/bin/thejad.js", "mcp", "start"],
+      "envRef": "meshEnv"
+    }
+  },
+  "qafusionxEnv": {
+    "QAFUSIONX_HEADED": "1",
+    "QAFUSIONX_SAMPLE_ORIGIN": "http://127.0.0.1:43181",
+    "THEJA_BACKBONE_ROOT": "${THEJA_BACKBONE_ROOT}",
+    "TBB_VAULT_DIR": "${THEJA_BACKBONE_ROOT}/.tbb/vault",
+    "TBB_SECRET_AUTO_APPROVE": "1",
+    "JIRA_BASE_URL": "https://lolcgroupdev.atlassian.net",
+    "JIRA_EMAIL": "thejanaD@lolctech.com",
+    "JIRA_PROJECT_KEY": "PF"
+  },
+  "vaultKeys": {
+    "jira": ["JIRA_API_TOKEN", "ATLASSIAN_API_TOKEN", "JIRA_TOKEN"],
+    "fusionxUat": ["FUSIONX_UAT_USER", "FUSIONX_UAT_PASSWORD", "QAFUSIONX_EMAIL", "QAFUSIONX_PASSWORD"]
+  }
+}

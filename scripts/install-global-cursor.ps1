@@ -17,44 +17,8 @@ Push-Location $Install
 if (Test-Path "package.json") { npm install --omit=dev }
 Pop-Location
 
-$mcpPath = Join-Path $HomeDir ".cursor\mcp.json"
-$mcp = @{
-  mcpServers = @{
-    QAFusionX = @{
-      command = "npx"
-      args    = @("--yes", "tsx", (Join-Path $Install "src\index.ts"))
-      env     = @{
-        QAFUSIONX_HOME           = $Install
-        QAFUSIONX_WORKSPACE      = (Join-Path $Install "artifacts")
-        QAFUSIONX_SAMPLE_ORIGIN  = "http://127.0.0.1:43181"
-        QAFUSIONX_HEADED         = "1"
-      }
-    }
-  }
-}
-
-if (Test-Path $mcpPath) {
-  try {
-    $existing = Get-Content $mcpPath -Raw | ConvertFrom-Json
-    if (-not $existing.mcpServers) { $existing | Add-Member -NotePropertyName mcpServers -NotePropertyValue (@{}) }
-    $existing.mcpServers | Add-Member -NotePropertyName QAFusionX -NotePropertyValue $mcp.mcpServers.QAFusionX -Force
-    $mcp = $existing
-  } catch {
-    # keep new file
-  }
-}
-
-($mcp | ConvertTo-Json -Depth 8) | Set-Content -Path $mcpPath -Encoding UTF8
-Write-Host "Global MCP written → $mcpPath"
-
-foreach ($rule in @("qafusionx.mdc", "qafusionx-visible-browser.mdc")) {
-  $ruleSrc = Join-Path $Install ".cursor\rules\$rule"
-  $ruleDst = Join-Path $HomeDir ".cursor\rules\$rule"
-  if (Test-Path $ruleSrc) {
-    Copy-Item $ruleSrc $ruleDst -Force
-    Write-Host "Global rule written → $ruleDst"
-  }
-}
+$env:QAFUSIONX_HOME = $Install
+& (Join-Path $Install "scripts\link-tbb-mesh.ps1") -Install $Install
 
 Write-Host ""
 Write-Host "QAFusionX is now user-level (all projects, all chats) on this Windows machine."

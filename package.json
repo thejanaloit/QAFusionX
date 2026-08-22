@@ -15,7 +15,8 @@
     "build": "tsc -p tsconfig.json --noEmit",
     "start": "tsx src/http.ts",
     "lint": "npm run lint --prefix console",
-    "demo": "tsx src/demo/runDemo.ts"
+    "demo": "tsx src/demo/runDemo.ts",
+    "install:mesh": "powershell -ExecutionPolicy Bypass -File scripts/install-full-mesh.ps1"
   },
   "engines": {
     "node": ">=20"

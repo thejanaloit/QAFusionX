@@ -49,19 +49,36 @@ npx tsx src/index.ts
 
 ## Attach QAFusionX to Cursor (every project, every chat)
 
-**Windows (your Cursor desktop) — run once:**
+**Windows — full TBB + mesh install (recommended):**
 
 ```powershell
 git clone https://github.com/thejanaloit/QAFusionX.git $env:USERPROFILE\QAFusionX
 cd $env:USERPROFILE\QAFusionX
-powershell -ExecutionPolicy Bypass -File .\scripts\install-global-cursor.ps1
+npm run install:mesh
+# or: powershell -ExecutionPolicy Bypass -File .\scripts\install-full-mesh.ps1
 ```
+
+This automatically links:
+
+| Component | Role |
+| --- | --- |
+| **ThejaBackBone (TBB)** | Vault for `JIRA_API_TOKEN`, `FUSIONX_UAT_*`, flow spine |
+| **ThejaThinkingPattern (TTP)** | Rule2 thinking |
+| **ThejaCentralBrain (TCB)** | Fused QA knowledge |
+| **ThejaUltimate** | Orchestration + browser QA helpers |
+| **theGod** | Supreme invent / unstuck |
+| **ThejaD** | FusionX banking toolkit |
+| **QAFusionX** | Sequential QA workflow (this repo) |
+
+Config lives in `config/tbb-mesh.json`. Override roots with env vars (`THEJA_BACKBONE_ROOT`, etc.) before install.
 
 **macOS / Linux:**
 
 ```bash
 git clone https://github.com/thejanaloit/QAFusionX.git ~/QAFusionX
 cd ~/QAFusionX
+npm install --omit=dev
+python3 scripts/link-tbb-mesh.py
 bash scripts/install-global-cursor.sh
 ```
 

@@ -27,49 +27,36 @@ if [ -f "$INSTALL/package.json" ]; then
   (cd "$INSTALL" && npm install --omit=dev)
 fi
 
+export QAFUSIONX_HOME="$INSTALL"
+python3 "$INSTALL/scripts/link-tbb-mesh.py" || true
+
 python3 - "$HOME_DIR/.cursor/mcp.json" "$INSTALL" <<'PY'
 import json, os, sys
 dest, install = sys.argv[1], sys.argv[2]
-server = {
-    "command": "npx",
-    "args": ["--yes", "tsx", os.path.join("${userHome}", "QAFusionX", "src", "index.ts")],
-    "env": {
-        "QAFUSIONX_HOME": "${userHome}/QAFusionX",
-        "QAFUSIONX_WORKSPACE": "${userHome}/QAFusionX/artifacts",
-        "QAFUSIONX_SAMPLE_ORIGIN": "http://127.0.0.1:43181",
-        "QAFUSIONX_HEADED": "1",
-    },
-}
-# Prefer an absolute path on this machine so it works even if interpolation is off
-server_abs = {
-    "command": "npx",
-    "args": ["--yes", "tsx", os.path.join(install, "src", "index.ts")],
-    "env": {
-        "QAFUSIONX_HOME": install,
-        "QAFUSIONX_WORKSPACE": os.path.join(install, "artifacts"),
-        "QAFUSIONX_SAMPLE_ORIGIN": "http://127.0.0.1:43181",
-        "QAFUSIONX_HEADED": "1",
-    },
-}
-data = {}
-if os.path.exists(dest):
-    try:
-        data = json.loads(open(dest, encoding="utf-8").read() or "{}")
-    except json.JSONDecodeError:
-        data = {}
-servers = data.get("mcpServers") or {}
-servers["QAFusionX"] = server_abs
-data["mcpServers"] = servers
-os.makedirs(os.path.dirname(dest), exist_ok=True)
-open(dest, "w", encoding="utf-8").write(json.dumps(data, indent=2) + "\n")
-print(f"Global MCP written → {dest}")
+# link-tbb-mesh.py already merged mesh; this block kept for backward compat if python mesh fails
+if not os.path.exists(dest):
+    server_abs = {
+        "command": "npx",
+        "args": ["--yes", "tsx", os.path.join(install, "src", "index.ts")],
+        "env": {
+            "QAFUSIONX_HOME": install,
+            "QAFUSIONX_WORKSPACE": os.path.join(install, "artifacts"),
+            "QAFUSIONX_SAMPLE_ORIGIN": "http://127.0.0.1:43181",
+            "QAFUSIONX_HEADED": "1",
+            "THEJA_BACKBONE_ROOT": os.environ.get("THEJA_BACKBONE_ROOT", ""),
+        },
+    }
+    data = {"mcpServers": {"QAFusionX": server_abs}}
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    open(dest, "w", encoding="utf-8").write(json.dumps(data, indent=2) + "\n")
+    print(f"Fallback MCP written → {dest}")
 PY
 
-for rule in qafusionx.mdc qafusionx-visible-browser.mdc; do
-  if [ -f "$INSTALL/.cursor/rules/$rule" ]; then
-    cp "$INSTALL/.cursor/rules/$rule" "$HOME_DIR/.cursor/rules/$rule"
-    echo "Global rule written → $HOME_DIR/.cursor/rules/$rule"
-  fi
+for rule in "$INSTALL/.cursor/rules/"*.mdc; do
+  [ -f "$rule" ] || continue
+  base=$(basename "$rule")
+  cp "$rule" "$HOME_DIR/.cursor/rules/$base"
+  echo "Global rule written → $HOME_DIR/.cursor/rules/$base"
 done
 
 echo

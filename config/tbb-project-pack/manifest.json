@@ -1,0 +1,87 @@
+{
+  "slug": "qafusionx",
+  "title": "QAFusionX",
+  "domain": "sequential-qa-mcp",
+  "project_root": "C:/Users/ThejanaD/QAFusionX",
+  "updated": "2026-08-22T19:00:00",
+  "tools": [
+    {
+      "id": "qafusionx.mcp",
+      "kind": "mcp",
+      "role": "Sequential QA agent — Ask mode, crawl, test cases, automation, Jira bugs",
+      "launch": "npx --yes tsx src/index.ts"
+    },
+    {
+      "id": "qafusionx.install_mesh",
+      "kind": "cli",
+      "role": "Link QAFusionX + TBB vault + Theja mesh into global Cursor",
+      "launch": "powershell -ExecutionPolicy Bypass -File scripts/install-full-mesh.ps1"
+    },
+    {
+      "id": "qafusionx.vault.jira",
+      "kind": "cli",
+      "role": "Resolve Jira token from TBB vault for REST/Xray",
+      "launch": "py scripts/resolve-jira-token.py"
+    },
+    {
+      "id": "qafusionx.vault.secret",
+      "kind": "cli",
+      "role": "Resolve any vault key (FusionX UAT creds, etc.)",
+      "launch": "py scripts/resolve-secret.py <KEY> QAFusionX"
+    },
+    {
+      "id": "qafusionx.workspace",
+      "kind": "artifact",
+      "role": "Per-project QA workspace (step-by-step gates, Screens/, testCase Human/)",
+      "launch": "${QAFUSIONX_WORKSPACE}"
+    },
+    {
+      "id": "qafusionx.headed",
+      "kind": "law",
+      "role": "Visible browser only — QAFUSIONX_HEADED=1 enforced",
+      "launch": "engine + MCP BLOCKED if headed=0"
+    }
+  ],
+  "mcp_adaptations": [
+    {
+      "mcp": "ThejaBackBone",
+      "binding": "Credential vault + flow spine for all QAFusionX runs",
+      "how": "THEJA_BACKBONE_ROOT + TBB_VAULT_DIR; resolve-secret.py / resolve-jira-token.py"
+    },
+    {
+      "mcp": "ThejaThinkingPattern",
+      "binding": "Rule2 think before marking step DONE",
+      "how": "ttp_think when unsure about crawl completeness or test coverage"
+    },
+    {
+      "mcp": "ThejaCentralBrain",
+      "binding": "Distilled QA knowledge across workspaces",
+      "how": "tcb_ingest after complete-system-map.md; tcb_think for gap analysis"
+    },
+    {
+      "mcp": "ThejaUltimate",
+      "binding": "Orchestration + browser QA helpers",
+      "how": "ultimate_browser_qa / thejad_fusionx_* when mesh aid needed"
+    },
+    {
+      "mcp": "theGod",
+      "binding": "Supreme invent when blocked (SSO, headed crawl)",
+      "how": "god_browser_unstuck / god_tbb_* for credential or navigation blocks"
+    },
+    {
+      "mcp": "ThejaD",
+      "binding": "FusionX banking context + QA smokes",
+      "how": "thejad_fusionx_* / thejad_qa_* aligned to PF-* stories"
+    },
+    {
+      "mcp": "atlassian",
+      "binding": "Jira stories + bug filing",
+      "how": "Token from TBB vault; never skip jira/ payloads if API fails"
+    },
+    {
+      "mcp": "QAFusionX",
+      "binding": "Primary sequential workflow owner",
+      "how": "qafusionx_begin → submit → crawl rounds → test → automate → bugs"
+    }
+  ]
+}

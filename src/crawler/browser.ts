@@ -225,16 +225,77 @@ Choose the first unvisited actionable control unless a user-story path must be f
   return node.referenceRel;
 }
 
-export async function clickControl(index: number): Promise<{ url: string; title: string; popupOpened: boolean }> {
+export async function clickControl(
+  index: number,
+  label?: string,
+): Promise<{ url: string; title: string; popupOpened: boolean }> {
   const p = await getPage();
   const beforeUrl = p.url();
   const dialogBefore = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
-  const locator = p
-    .locator(
-      'button, a[href], input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [data-testid]',
-    )
-    .locator("visible=true");
-  await locator.nth(index).click({ timeout: 8_000 });
+  if (label?.trim()) {
+    const text = label.trim();
+    const escaped = text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const candidates = [
+      p.getByRole("link", { name: text }),
+      p.getByRole("button", { name: text }),
+      p.locator("p, span, h3, h4, a, div").filter({ hasText: new RegExp(`^${escaped}$`, "i") }),
+      p.getByText(text, { exact: true }),
+      p.getByText(text, { exact: false }),
+      p.locator(`[title="${text}"]`),
+    ];
+    let clicked = false;
+    for (const loc of candidates) {
+      const target = loc.first();
+      if ((await target.count()) > 0) {
+        await target.click({ timeout: 8_000 });
+        await p.waitForTimeout(400);
+        if (p.url() === beforeUrl) {
+          await target.dblclick({ timeout: 8_000 }).catch(() => undefined);
+        }
+        clicked = true;
+        break;
+      }
+    }
+    if (!clicked) {
+      clicked = await p.evaluate((labelText) => {
+        const card = Array.from(document.querySelectorAll(".flip-card, [class*='module-card'], [class*='flip-card']")).find(
+          (el) => (el.textContent ?? "").includes(labelText),
+        ) as HTMLElement | undefined;
+        if (card) {
+          card.scrollIntoView({ block: "center" });
+          card.click();
+          return true;
+        }
+        const match = Array.from(document.querySelectorAll("p, span, h3, h4, div, a")).find(
+          (el) => (el.textContent ?? "").trim() === labelText,
+        ) as HTMLElement | undefined;
+        if (!match) return false;
+        let node: HTMLElement | null = match;
+        for (let i = 0; i < 6 && node; i++) {
+          node.scrollIntoView({ block: "center" });
+          const st = window.getComputedStyle(node);
+          if (st.cursor === "pointer" || node.tagName === "A" || node.classList.contains("flip-card")) {
+            node.click();
+            return true;
+          }
+          node = node.parentElement;
+        }
+        match.click();
+        return true;
+      }, text);
+    }
+    if (!clicked) {
+      throw new Error(`Could not find clickable control matching label: ${text}`);
+    }
+    await p.waitForTimeout(1200);
+  } else {
+    const locator = p
+      .locator(
+        'button, a[href], input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [data-testid]',
+      )
+      .locator("visible=true");
+    await locator.nth(index).click({ timeout: 8_000 });
+  }
   await p.waitForTimeout(800);
   const dialogAfter = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
   return {

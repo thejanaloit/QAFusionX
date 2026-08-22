@@ -4,9 +4,15 @@
       "command": "npx",
       "args": ["--yes", "tsx", "src/index.ts"],
       "env": {
-        "QAFUSIONX_WORKSPACE": "${workspaceFolder}/artifacts",
+        "QAFUSIONX_WORKSPACE": "./artifacts",
         "QAFUSIONX_SAMPLE_ORIGIN": "http://127.0.0.1:43181",
-        "QAFUSIONX_HEADED": "1"
+        "QAFUSIONX_HEADED": "1",
+        "THEJA_BACKBONE_ROOT": "E:/ThejaBackBone",
+        "TBB_VAULT_DIR": "E:/ThejaBackBone/.tbb/vault",
+        "TBB_SECRET_AUTO_APPROVE": "1",
+        "JIRA_BASE_URL": "https://lolcgroupdev.atlassian.net",
+        "JIRA_EMAIL": "thejanaD@lolctech.com",
+        "JIRA_PROJECT_KEY": "PF"
       }
     }
   }

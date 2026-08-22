@@ -1,0 +1,24 @@
+---
+description: QAFusionX requires TBB vault + Theja mesh on install; credentials never invented in chat.
+globs:
+alwaysApply: true
+---
+
+# QAFusionX ↔ TBB mesh (mandatory)
+
+When installing or running QAFusionX:
+
+1. **Run the mesh installer** (once per machine):
+   `powershell -ExecutionPolicy Bypass -File scripts/install-full-mesh.ps1`
+   This links **ThejaBackBone (TBB)**, **TTP**, **TCB**, **ThejaUltimate**, **theGod**, **ThejaD**, and **QAFusionX** in global Cursor MCP.
+
+2. **Credentials** come from **TBB vault** (`THEJA_BACKBONE_ROOT/.tbb/vault`), not from guessing:
+   - Jira: `JIRA_API_TOKEN` via `scripts/resolve-jira-token.py`
+   - FusionX UAT: `FUSIONX_UAT_USER` / `FUSIONX_UAT_PASSWORD` via `scripts/resolve-secret.py`
+   - Env overrides are allowed locally; never commit secrets.
+
+3. **Flow** is owned by QAFusionX step gates (`step-by-step/`). Mesh MCPs assist but do **not** mark steps DONE without real artefacts.
+
+4. If TBB is missing at MCP startup, tell the user to run `install-full-mesh.ps1` and store vault keys before continuing QA.
+
+5. **Visible browser** remains locked (`QAFUSIONX_HEADED=1`). TBB does not replace headed crawl.
