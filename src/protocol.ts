@@ -80,7 +80,7 @@ When ANY user runs QAFusionX on THEIR device, a SEPARATE browser window MUST ope
 ========================================
 CRAWL LOOP (ROUNDS 1 AND 2)
 ========================================
-You will be given a URL. Open it in the visible browser. Capture every screen, including popups.
+You will be given a URL. Open it in a SEPARATE visible browser window on this user's device. Capture every screen, including popups. Never do this as a silent pipeline job.
 
 After EACH screenshot:
 1. Save the PNG.
