@@ -10,7 +10,24 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
-const ENGINE = process.env.NEXT_PUBLIC_ENGINE_URL ?? "http://127.0.0.1:43180";
+const ENGINE = "/qfx";
+
+const PIPELINE = [
+  { id: 1, key: "ask-project", title: "Ask — project identity & target", mode: "ask" },
+  { id: 2, key: "ask-user-stories", title: "Ask — upload user stories", mode: "ask" },
+  { id: 3, key: "persist-workspace", title: "Persist User stories + General brief", mode: "agent" },
+  { id: 4, key: "round-1-crawl", title: "Round 1 — capture, analyze, navigate every screen", mode: "agent" },
+  { id: 5, key: "round-1-plan", title: "Round 1 — living plan complete", mode: "agent" },
+  { id: 6, key: "round-2-crawl", title: "Round 2 — missed screens & second pass", mode: "agent" },
+  { id: 7, key: "system-map", title: "Complete end-to-end system map", mode: "agent" },
+  { id: 8, key: "human-testcases", title: "Human-readable test cases (Jira format)", mode: "agent" },
+  { id: 9, key: "jira-upload-testcases", title: "Upload test cases to Jira", mode: "agent" },
+  { id: 10, key: "testc2ai", title: "Convert to YAML (testc2ai)", mode: "agent" },
+  { id: 11, key: "automated-scripts", title: "Generate AutomatedScripts (GUI + API)", mode: "agent" },
+  { id: 12, key: "execute-suite", title: "Execute automated suite (visible GUI)", mode: "agent" },
+  { id: 13, key: "issues-export", title: "Export issues CSV/XLSX with proof", mode: "agent" },
+  { id: 14, key: "jira-bugs", title: "File Jira bug tickets with proof", mode: "agent" },
+] as const;
 
 type Todo = {
   id: number;
@@ -112,9 +129,19 @@ export default function ControlConsolePage() {
     }
   }
 
-  const doneCount = status?.todos.filter((t) => t.status === "done").length ?? 0;
-
-  const askLock = status && !status.askMode.unlocked;
+  const pipeline: Todo[] =
+    status?.todos ??
+    PIPELINE.map((step, index) => ({
+      id: step.id,
+      key: step.key,
+      title: step.title,
+      mode: step.mode,
+      status: index === 0 ? "available" : "locked",
+      checkbox: `[ ] ${step.id}. ${step.title}`,
+      missingGates: [],
+    }));
+  const doneCount = pipeline.filter((t) => t.status === "done").length;
+  const askLock = !status || !status.askMode.unlocked;
 
   const current = status?.currentStep;
 
@@ -158,13 +185,13 @@ export default function ControlConsolePage() {
         <Card className="border-white/10 bg-[#101826]">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-white/80">
-              Pipeline {doneCount}/{status?.todos.length ?? 14}
+              Pipeline {doneCount}/{pipeline.length}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ScrollArea className="h-[calc(100vh-220px)] pr-2">
+            <ScrollArea className="h-[min(70vh,720px)] pr-2">
               <ol className="space-y-1">
-                {(status?.todos ?? []).map((todo) => (
+                {pipeline.map((todo) => (
                   <li
                     key={todo.key}
                     className={cn(
@@ -202,7 +229,11 @@ export default function ControlConsolePage() {
               </div>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-white/75">
-              <p className="text-lg text-white">{current ? `${current.id}. ${current.title}` : "Engine connecting…"}</p>
+              <p className="text-lg text-white">
+                {current
+                  ? `${current.id}. ${current.title}`
+                  : `${pipeline[0].id}. ${pipeline[0].title}`}
+              </p>
               <p>{current?.instructions}</p>
               {current?.missingGates.length ? (
                 <p className="text-amber-200">Missing gates: {current.missingGates.join(", ")}</p>
