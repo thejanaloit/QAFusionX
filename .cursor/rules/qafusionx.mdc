@@ -1,7 +1,9 @@
 ---
-description: QAFusionX sequential QA MCP — Ask mode first, never skip a step
+description: QAFusionX sequential QA MCP — available in every project and every chat. Ask mode first, never skip a step.
 alwaysApply: true
 ---
+
+QAFusionX is a global MCP. Use it in this chat and in any other project chat when the user is doing QA, test cases, crawls, or Jira bugs.
 
 When the QAFusionX MCP is connected, you MUST switch to Ask mode before any work.
 

@@ -45,15 +45,32 @@ MCP-only:
 npx tsx src/index.ts
 ```
 
-## Attach QAFusionX to Cursor
+## Attach QAFusionX to Cursor (every project, every chat)
 
-This repo already ships `.cursor/mcp.json`. Open the folder in Cursor and enable the **QAFusionX** MCP server (Settings → MCP). Or merge it into your user config:
+**Windows (your Cursor desktop) — run once:**
 
-```bash
-bash scripts/attach-cursor-mcp.sh
+```powershell
+git clone https://github.com/thejanaloit/QAFusionX.git $env:USERPROFILE\QAFusionX
+cd $env:USERPROFILE\QAFusionX
+powershell -ExecutionPolicy Bypass -File .\scripts\install-global-cursor.ps1
 ```
 
-Then restart Cursor / reload MCP servers. On first use the agent **must**:
+**macOS / Linux:**
+
+```bash
+git clone https://github.com/thejanaloit/QAFusionX.git ~/QAFusionX
+cd ~/QAFusionX
+bash scripts/install-global-cursor.sh
+```
+
+That writes a **user-level** config (`~/.cursor/mcp.json`) and a **user rule** (`~/.cursor/rules/qafusionx.mdc`). Cursor merges that into every workspace and every Agent/Ask chat. Then:
+
+1. Command Palette → **Developer: Reload Window**
+2. Settings → **Tools & MCP** → turn **QAFusionX** on (green)
+
+This repo also has `.cursor/mcp.json` so opening the QAFusionX folder alone is enough. The installer is what makes it global.
+
+On first use the agent **must**:
 
 1. Switch to **Ask** mode.
 2. Ask what the project is and what to test (URL + screenshot).
