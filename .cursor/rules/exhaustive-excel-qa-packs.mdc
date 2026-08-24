@@ -1,0 +1,33 @@
+---
+description: Exhaustive feature QA as iPay-Lite Excel packs (100+ meaningful cases); no Jira writes unless explicitly asked
+alwaysApply: true
+---
+
+# Exhaustive Excel QA packs (global)
+
+## Deliverable shape
+
+When the user asks for test cases / verification for a feature (or points at an `iPay Lite Testing.xlsx`-style file):
+
+1. Produce an **Excel workbook** with the same columns as iPay Lite:
+   - `Area` | `Concern` | `User story` | `Status` | `Change made?` | `Change / verification notes (English)` | `Commit / cycle`
+2. Target **100+ meaningful rows per feature** (not filler). Cover every possible way:
+   - Happy paths, negatives, empty/error states
+   - Config modes, RBAC/roles, branch/tenant scope
+   - Search/filter/sort/pagination
+   - API negatives + UI
+   - Audit, concurrency, idempotency
+   - Downstream integrations + regressions
+3. Phrase `Concern` as a concrete failure risk / assertion (same tone as iPay Lite).
+4. Put verification guidance in `Change / verification notes (English)`.
+5. Save under Downloads and the active workspace `reports/` (and repo `artifacts/` when applicable).
+
+## Jira hold
+
+- **Do not create/update/upload Jira issues, test cases, or bugs unless the user explicitly asks in that turn.**
+- Excel-only is enough when they say “don’t update Jira” / “this time only” / “only this type of document”.
+- QAFusionX pipeline Jira steps stay blocked/skipped for that request; do not invent Jira traffic.
+
+## Density rule
+
+One feature ⇒ one matrix ⇒ **≥100 real cases**. Prefer depth on one feature over thin samples across many. If a case is N/A, still keep the row and explain why in notes after execution—not before.
