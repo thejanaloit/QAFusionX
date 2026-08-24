@@ -5,6 +5,7 @@ import * as actions from "../actions/index.ts";
 import { isBlocked } from "../workflow/engine.ts";
 import { abs } from "../workflow/paths.ts";
 import { STEPS } from "../workflow/steps.ts";
+import { knowledgeRoot, searchKnowledge } from "../knowledge/confluence.ts";
 
 function ok(data: unknown) {
   return { content: [{ type: "text" as const, text: JSON.stringify(data, null, 2) }] };
@@ -422,7 +423,7 @@ export function createQaFusionXServer(): McpServer {
     {
       title: "Run the automated suite",
       description:
-        "LOCKED: opens a separate browser window on this user's device and runs GUI cases there. Not a silent pipeline job. Results also stream to the Control Console.",
+        "LOCKED: opens a separate visible browser on this user's device. Priority=PASS via real flows (Azure AD login, waits, alternate controls). Retries each case honestly up to 10 rounds (QAFUSIONX_SUITE_MAX_ROUNDS); never invents a pass; FAIL only after all rounds. FusionX uses real COB asserts + product APIs (not /api/sample/health). Results stream to the Control Console.",
     },
     async () => {
       try {
@@ -462,6 +463,25 @@ export function createQaFusionXServer(): McpServer {
         return fail(err);
       }
     },
+  );
+
+  server.registerTool(
+    "qafusionx_knowledge_search",
+    {
+      title: "Search cloned Confluence / URS knowledge",
+      description:
+        "Always-allowed. No Jira mutation. Search locally cloned Confluence/URS knowledge under QAFUSIONX_KNOWLEDGE or <repo>/knowledge/confluence for PF QA (URS, Accounts Module wiki, indexes). Returns path, title, snippet.",
+      inputSchema: {
+        query: z.string().min(1),
+        limit: z.number().int().min(1).max(100).optional(),
+      },
+    },
+    async (args) =>
+      ok({
+        root: knowledgeRoot(),
+        query: args.query,
+        hits: searchKnowledge(args.query, args.limit ?? 20),
+      }),
   );
 
   server.registerTool(

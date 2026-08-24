@@ -1,0 +1,114 @@
+[
+  {
+    "id": "17170440",
+    "title": "Accounts Module (Current Accounts & Savings Accounts)"
+  },
+  {
+    "id": "31195300",
+    "title": "CASA"
+  },
+  {
+    "id": "117735540",
+    "title": "Savings Account Detail"
+  },
+  {
+    "id": "117768373",
+    "title": "lending-account"
+  },
+  {
+    "id": "117834000",
+    "title": "Account Creation"
+  },
+  {
+    "id": "118456386",
+    "title": "Account Initiation And Activation"
+  },
+  {
+    "id": "118751313",
+    "title": "casa-account"
+  },
+  {
+    "id": "118751410",
+    "title": "casa-master-control"
+  },
+  {
+    "id": "118751440",
+    "title": "casa-tax"
+  },
+  {
+    "id": "118751471",
+    "title": "casa-transfer-in"
+  },
+  {
+    "id": "118784015",
+    "title": "casa-cheque-book-management"
+  },
+  {
+    "id": "118784068",
+    "title": "casa-transaction"
+  },
+  {
+    "id": "118784089",
+    "title": "casa-transfer-in-out"
+  },
+  {
+    "id": "118816830",
+    "title": "casa-apply-schedule"
+  },
+  {
+    "id": "118849550",
+    "title": "casa-atm"
+  },
+  {
+    "id": "118849586",
+    "title": "casa-fund-reservation"
+  },
+  {
+    "id": "118849613",
+    "title": "casa-interest-schedule"
+  },
+  {
+    "id": "118849637",
+    "title": "casa-product-bca"
+  },
+  {
+    "id": "118849662",
+    "title": "casa-transfer-out"
+  },
+  {
+    "id": "129073203",
+    "title": "Freeze / Unfreeze Loan Account"
+  },
+  {
+    "id": "129073222",
+    "title": "Account Status Manual Flagging"
+  },
+  {
+    "id": "129105931",
+    "title": "Loan Account Statement Generate"
+  },
+  {
+    "id": "129105950",
+    "title": "Account Write Off"
+  },
+  {
+    "id": "129106008",
+    "title": "Account Inquiry"
+  },
+  {
+    "id": "129138693",
+    "title": "Account Partial Pay Off"
+  },
+  {
+    "id": "129171479",
+    "title": "Loan Account Cancellation"
+  },
+  {
+    "id": "129171538",
+    "title": "Account Amendments Approval"
+  },
+  {
+    "id": "146505867",
+    "title": "Finance Sub Account"
+  }
+]

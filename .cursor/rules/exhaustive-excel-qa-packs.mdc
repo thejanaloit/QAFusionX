@@ -1,9 +1,15 @@
 ---
-description: Exhaustive feature QA as iPay-Lite Excel packs (100+ meaningful cases); no Jira writes unless explicitly asked
+description: Exhaustive feature QA as iPay-Lite Excel packs (100+ meaningful cases); train from Confluence/URS; no Jira writes unless explicitly asked
 alwaysApply: true
 ---
 
 # Exhaustive Excel QA packs (global)
+
+## Train before writing Excel
+
+1. Pull context from the local Confluence/URS knowledge clone (`knowledge/confluence`, or `QAFUSIONX_KNOWLEDGE`).
+2. Prefer MCP **`qafusionx_knowledge_search`** (query + optional limit) to find URS deltas, Accounts Module wiki, indexes, and attachment READMEs.
+3. Remap any legacy URS 1.0 test language (e.g. standalone Pending/Rejected Other Branches Opening tabs) to the current URS before asserting Concerns.
 
 ## Deliverable shape
 
@@ -27,6 +33,7 @@ When the user asks for test cases / verification for a feature (or points at an 
 - **Do not create/update/upload Jira issues, test cases, or bugs unless the user explicitly asks in that turn.**
 - Excel-only is enough when they say “don’t update Jira” / “this time only” / “only this type of document”.
 - QAFusionX pipeline Jira steps stay blocked/skipped for that request; do not invent Jira traffic.
+- `qafusionx_knowledge_search` is always allowed and performs **no Jira mutation**.
 
 ## Density rule
 

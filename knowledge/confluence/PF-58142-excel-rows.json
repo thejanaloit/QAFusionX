@@ -1,0 +1,2396 @@
+[
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "[TC_ACCT_001] Block Account Opening When Rule is 'Not Allowed' and Customer Has Existing Account at Another Branch — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Validate system blocks cross-branch account opening when rule is configured as 'Not Allowed'. Expect (URS 1.1 remapped): System displays validation message: 'Account opening cannot be processed. This customer already holds an account at another branch.' Account opening process is blocked and cannot proceed further.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "[TC_ACCT_002] Validate Exact Error Message Text When Cross-Branch Account Opening is Blocked — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify exact validation message wording displayed when rule is 'Not Allowed'. Expect (URS 1.1 remapped): Exact message displayed: 'Account opening cannot be processed. This customer already holds an account at another branch.' Message must match character-for-character including punctuation and capitalization.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "[TC_ACCT_003] Verify No Account Record is Created After Block Event — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Ensure no partial account record is persisted in the database when opening is blocked. Expect (URS 1.1 remapped): No new account record exists for <CustomerCode_03>. Account inquiry returns only the existing account at Branch A.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "[TC_ACCT_004] Audit Log Entry Captured for Blocked Cross-Branch Account Opening — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify audit log records blocking event with correct metadata. Expect (URS 1.1 remapped): Audit log entry present with: User ID = <UserID_01>, Timestamp (current date/time), Branch = Branch B, Action Type = 'BLOCKED', Customer Code = <CustomerCode_04>.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "[TC_ACCT_005] Customer with No Existing Account at Any Branch Can Open Account Without Block — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Positive test – new customer should not trigger the block rule. Expect (URS 1.1 remapped): System does not display any blocking message. Account opening proceeds normally without interruption.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Legacy TC — Positive",
+    "Concern": "[TC_ACCT_006] Account Opening Request Submitted to Approval Workflow When Rule is 'Allowed with Approval Required' — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify account opening request is routed to workflow when approval is required. Expect (URS 1.1 remapped): Account opening request is submitted successfully. Request status set to 'Pending'. Request is routed to the configured approval level (Branch A approvers). No account is activated at this stage.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Legacy TC — Positive",
+    "Concern": "[TC_ACCT_007] Pending Request Visible to Customer's Original Branch (Branch A) for Cross-Branch Opening — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=Critical. Scenario: Verify cross-branch visibility: Branch B request appears in Branch A's approval queue. Expect (URS 1.1 remapped): Request for <CustomerCode_06> appears in the Activate Account → Pending (Current Stage = Pending Other Branch Approval) tab at Branch A. All grid columns populated: Created Date/Time, Account Name, Account Number, Created User, Created Branch, Status, Action.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Multi-Level Approval",
+    "Concern": "[TC_ACCT_008] Multi-Level Approval: Request Escalates to Next Level After First Approval — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=Critical. Scenario: Verify request escalates through configured multi-level approval workflow. Expect (URS 1.1 remapped): After Level 1 approval, request status remains 'Pending' and is escalated to Level 2. Request now appears in Level 2 approver's Activate Account → Pending (Current Stage = Pending Other Branch Approval) queue. Audit log records Level 1 approval with approver ID and timestamp.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "[TC_ACCT_009] Account Activated After Final Approval Level Completed (No Special Rate) — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify account proceeds to activation after all approval levels are satisfied. Expect (URS 1.1 remapped): Account for <CustomerCode_08> proceeds to Account Activation. Account status changes to 'Active'. Audit log records final approval with metadata.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "[TC_ACCT_010] Request Rejected at Approval Level – Account Not Created — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=Critical. Scenario: Verify rejection at any approval level prevents account creation. Expect (URS 1.1 remapped): Account for <CustomerCode_09> is NOT created or activated. Request status changes to 'Rejected'. Record moves to Other Branch Approval Rejected tab. Audit log records rejection with approver ID, timestamp, and notes.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Allowed without Approval",
+    "Concern": "[TC_ACCT_011] Account Opening Proceeds Directly When Rule is 'Allowed without Approval Required' — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=High. Scenario: Verify standard activation flow is followed with no additional approval steps. Expect (URS 1.1 remapped): No approval workflow is triggered. Account opening proceeds directly through standard Account Activation flow. No request appears in Activate Account → Pending (Current Stage = Pending Other Branch Approval) tab.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "[TC_ACCT_012] Special Rate Approval Triggered After Final Workflow Approval Where Applicable — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify special rate approval step is triggered after final workflow approval when applicable. Expect (URS 1.1 remapped): Special Rate approval request is generated after final workflow approval. Request visible in Special Rate Approval queue. Account not yet activated until special rate step is completed.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Legacy TC — Positive",
+    "Concern": "[TC_ACCT_013] Pending Other Branches Opening Tab Visible Under Account Activation Sub-Menu — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=High. Scenario: Verify new tab is present and accessible in Account Activation sub-menu. Expect (URS 1.1 remapped): Tab labeled 'Activate Account → Pending (Current Stage = Pending Other Branch Approval)' is visible and accessible. Tab displays grid of pending requests assigned to logged-in user's approval level.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "[TC_ACCT_014] Pending Grid Displays All Required Columns with Correct Data — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Validate all mandatory columns are present and populated in the Pending grid. Expect (URS 1.1 remapped): Grid displays the following columns for <AccountNumber_01>: - Created Date and Time (correct timestamp) - Account Name (matches account holder) - Account Number - Created User (user who initiated opening) - Created Branch - Status = 'Pending' - Action button (Approve/Reject). Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "[TC_ACCT_015] Search by Account Number Returns Correct Record in Pending Tab — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify search functionality filters correctly by Account Number. Expect (URS 1.1 remapped): Grid filters to display only the record matching <AccountNumber_02>. All other records are hidden from view.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "[TC_ACCT_016] Search by Customer Name Returns Correct Record(s) in Pending Tab — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify search functionality filters correctly by Customer Name. Expect (URS 1.1 remapped): Grid displays only records matching <CustomerName_01>. Partial name search returns all matching records.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "[TC_ACCT_017] Search with Invalid / Non-Existent Account Number Returns Empty Result — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Medium. Scenario: Verify graceful handling of no-result search in Pending tab. Expect (URS 1.1 remapped): Grid displays no records. System shows appropriate 'No records found' or equivalent message. No error thrown.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "[TC_ACCT_018] Pending Tab Displays Only Requests Assigned to Logged-In User's Approval Level — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify user-level isolation: approver sees only their assigned level's requests. Expect (URS 1.1 remapped): Only <CustomerCode_13> (Level 2) request is visible. <CustomerCode_12> (Level 1) is not visible to Level 2 approver. No cross-level data leakage.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "[TC_ACCT_019] Grid Default Sort Order: Latest Records Displayed First — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Medium. Scenario: Verify grid is sorted by Created Date descending by default. Expect (URS 1.1 remapped): Records sorted by Created Date and Time in descending order (most recent at top). Consistent with General Guideline: 'By default, latest on Top'.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_020] Action Button Click Opens Read-Only Stepper with Three Steps — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify clicking Action opens the approval stepper with correct three-step structure. Expect (URS 1.1 remapped): Stepper opens showing exactly three steps: 1. Customer Details 2. Product Details 3. Account Details All fields are in read-only mode. No edit functionality available.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_021] Customer Details Stepper – All Mandatory Fields Displayed Correctly — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify all required fields in Customer Details stepper are present and populated. Expect (URS 1.1 remapped): Section 1 fields visible and populated: - Customer Name, Customer Code, Date of Birth, KYC Ownership, Tax Percentage. Section 2 fields visible and populated: - Nominee Name, Nominee Code, Nominee Status, Identification, Relationships, Date of Birth, Portion%. All fields read-only.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_022] Product Details Stepper – Account Type, Main Product, Sub Product Displayed — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify Product Details stepper shows all three required fields. Expect (URS 1.1 remapped): Product Details step displays: - Account Type - Main Product - Sub Product All fields populated with values from the account opening request. All fields read-only.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_023] Account Details Stepper – Section 1 (Basic Account Details) All Fields Present — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify all Basic Account Details fields are present in Account Details stepper. Expect (URS 1.1 remapped): Section 1 displays all 9 required fields: - Account Name, Account Nickname, Scheme Type, Account Number, Secondary Account Number, Anticipated Value, Anticipated Value Frequency, Account Currency, Account Description. All fields read-only.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_024] Account Details Stepper – Section 2 (Account Control) and Section 3 (Account Purpose) Displayed Correctly — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify Account Control and Account Purpose sections are present and read-only. Expect (URS 1.1 remapped): Section 2: Account Balance Restriction and Foreign Currency fields displayed, read-only. Section 3: General/Business Purpose and Remarks on Additional Account Opening displayed, read-only.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_025] Account Details Stepper – Section 4 (Source of Funds) Displayed Correctly — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify Source of Funds section is present with all required fields. Expect (URS 1.1 remapped): Section 4 displays: - Savings/Salary/Business Income - Other All fields populated and read-only.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_026] Stepper Navigation – Previous and Next Buttons Work Correctly — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify Previous/Next navigation between stepper steps functions correctly. Expect (URS 1.1 remapped): Clicking 'Next' advances to the next step in sequence. Clicking 'Previous' returns to the prior step. Step content re-loads correctly on each navigation. 'Previous' not available on Step 1; 'Next' not available on Step 3 (Confirm button shown instead).. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_027] No Edit is Possible on Any Stepper Field — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify all stepper fields are strictly read-only across all three steps. Expect (URS 1.1 remapped): All stepper fields remain read-only. No field accepts keyboard input or allows value modification. No 'Save' or 'Edit' button present in stepper.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_028] Confirm Button at End of Stepper Triggers Confirmation Pop-Up — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify Confirm button on final stepper step opens the confirmation pop-up. Expect (URS 1.1 remapped): Confirmation pop-up appears containing: - Status options: 'Approve' and 'Reject' (radio buttons or dropdown) - Notes text box (mandatory or optional) - 'Cancel' button - 'Confirm' button. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_029] Approve Action – Single Level: Account Proceeds to Activation After Confirmation — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify single-level approval results in account activation. Expect (URS 1.1 remapped): Pop-up closes. Success notification displayed. Account <AccountNumber_12> proceeds to Account Activation. Status updated to 'Active'. Audit log records: Approver ID, Timestamp, Action = 'APPROVED', Notes.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "[TC_ACCT_030] Reject Action – Account Marked as Rejected and Moved to Rejected Tab — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=Critical. Scenario: Verify rejection action marks request as Rejected and populates Rejected tab. Expect (URS 1.1 remapped): Request <AccountNumber_13> disappears from Pending tab. Record appears in Other Branch Approval Rejected tab with: - Rejection Notes = 'Customer documentation incomplete' - Rejected By = logged-in approver - Rejected Date and Time (current timestamp). No account activated.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_031] Cancel Button in Confirmation Pop-Up Dismisses Pop-Up Without Action — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify Cancel in confirmation pop-up discards action and preserves pending status. Expect (URS 1.1 remapped): Pop-up closes without any action taken. Request for <AccountNumber_14> remains in Pending status. No audit log entry for approval or rejection. Pending tab still shows <AccountNumber_14>.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Legacy TC — Validation",
+    "Concern": "[TC_ACCT_032] Notes Field Captured and Stored Correctly on Approval Action — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify approval notes are stored and visible in audit/rejection record. Expect (URS 1.1 remapped): Notes 'Verified customer identity at Branch A on <Date>' saved to audit log entry. Notes associated with the specific approval action and approver ID.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "[TC_ACCT_033] Rejected Other Branches Opening Tab Visible Under Account Activation Sub-Menu — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=High. Scenario: Verify the Rejected tab is accessible in Account Activation sub-menu. Expect (URS 1.1 remapped): Tab labeled 'Other Branch Approval Rejected' is visible and accessible. Grid shows list of rejected requests.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "[TC_ACCT_034] Rejected Tab Grid Displays All Required Columns — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Validate all mandatory columns present in Rejected grid. Expect (URS 1.1 remapped): Grid displays the following columns, all populated: - Created Date and Time - Account Number - Customer Name - Customer Code - Created Branch - Rejected By - Rejected Date and Time - Rejection Notes. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "[TC_ACCT_035] Rejected Tab is Read-Only – No Action Buttons Present — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify no actions (Approve/Reject/Edit) are available on rejected records. Expect (URS 1.1 remapped): No Action, Approve, Reject, or Edit button present. All fields in the Rejected tab grid are read-only. No mechanism to reactivate or modify a rejected record.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Allowed without Approval",
+    "Concern": "[TC_ACCT_036] User Without Approval Authorization Cannot Access Pending Other Branches Opening Tab — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=Critical. Scenario: Verify access control prevents unauthorized users from accessing approval tabs. Expect (URS 1.1 remapped): Activate Account → Pending (Current Stage = Pending Other Branch Approval) tab is either not visible or displays an 'Access Denied' / 'Unauthorized' message when accessed by <UserID_NoApproval>. No pending request data exposed.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "RBAC / Queue Visibility",
+    "Concern": "[TC_ACCT_037] Workflow Rule Configuration Access Restricted to Authorized Admin Only — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify only authorized admin can configure the cross-branch account opening workflow rule. Expect (URS 1.1 remapped): Navigation to workflow configuration is blocked for <UserID_Officer>. Configuration screen not accessible or action is denied. No change to workflow rule persisted.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "[TC_ACCT_038] Audit Log Captures All Approval Actions with User ID, Timestamp, Branch, and Notes — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify comprehensive audit logging for approval actions. Expect (URS 1.1 remapped): Audit log entry contains: - User ID = <ApproverID_Audit> - Timestamp (accurate to the minute) - Branch - Action Type = 'APPROVED' - Account Number = <AccountNumber_16> - Notes as entered.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "[TC_ACCT_039] Audit Log Captures Rejection Action with Rejection Notes — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify rejection events are fully logged with all required fields. Expect (URS 1.1 remapped): Audit log entry contains Action Type = 'REJECTED', Notes = 'Branch mismatch detected', Rejector ID, Timestamp, Branch.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "[TC_ACCT_040] Customer with Accounts at Multiple Branches Triggers Blocking Rule for Each Branch — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify rule applies correctly when customer has accounts at more than one branch. Expect (URS 1.1 remapped): System detects existing accounts at multiple other branches and still displays blocking message: 'Account opening cannot be processed. This customer already holds an account at another branch.' Account opening blocked.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Legacy TC — Boundary",
+    "Concern": "[TC_ACCT_041] Approval of Request with Empty Notes Field (If Notes Not Mandatory) — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Medium. Scenario: Verify system accepts approval with empty notes if notes are optional. Expect (URS 1.1 remapped): If notes are optional: Approval succeeds. Request moves to activation. If notes are mandatory: System displays validation error requiring notes before confirming.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_042] Rejection Without Notes – System Enforces Notes as Mandatory for Rejection — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify rejection cannot be submitted without entering rejection notes. Expect (URS 1.1 remapped): System displays validation error: 'Notes are required for rejection' (or equivalent). Rejection is not submitted. Pop-up remains open for notes entry.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Session / Concurrency",
+    "Concern": "[TC_ACCT_043] Session Timeout During Approval – Request Status Remains Unchanged — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=High. Scenario: Verify session expiry does not corrupt pending request status. Expect (URS 1.1 remapped): Session times out and user is redirected to login page. Upon re-login, <AccountNumber_20> status remains 'Pending' (unchanged). No partial approval or rejection recorded.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "[TC_ACCT_044] Pending Tab Reflects Real-Time Status Changes After Approval or Rejection — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: other-branch approvals live in Activate Account → Pending (not standalone 'Pending Other Branches Opening'). Rejected tab = 'Other Branch Approval Rejected' (after Special Rate Rejected). Action label = Proceed; Current Stage + Special Rate Status columns. Priority=High. Scenario: Verify Pending tab updates immediately after an action is taken on a request. Expect (URS 1.1 remapped): <AccountNumber_21> no longer appears in Activate Account → Pending (Current Stage = Pending Other Branch Approval) tab after approval. Record either removed or status updated in real-time.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "[TC_ACCT_045] Cross-Branch Account Opening Blocked When Workflow Rule Not Yet Configured — behaviour fails or UI still matches URS 1.0 naming",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Priority=Critical. Scenario: Verify system behavior when workflow rule is absent/unconfigured. Expect (URS 1.1 remapped): System either: a) Defaults to the most restrictive behavior (blocking the opening), OR b) Displays a configuration error message indicating the rule is not set up. In no case should the account opening proceed unchecked without a configured rule.. Verify against Activate Account Pending Current Stage / Proceed / Other Branch Approval Rejected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "URS 1.1 Consolidation",
+    "Concern": "Standalone menu/tab 'Pending Other Branches Opening' still appears after URS 1.1 deploy",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm only Activate Account → Pending hosts other-branch rows; no orphan standalone pending screen.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "URS 1.1 Consolidation",
+    "Concern": "Standalone 'Rejected Other Branches Opening' still present instead of renamed tab",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Tab must be named exactly 'Other Branch Approval Rejected' under Activate Account.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "URS 1.1 Consolidation",
+    "Concern": "Other-branch pending rows missing from Activate Account Pending grid",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "With Allowed+Approval Required, Branch B opening for Branch A customer must show on Pending with Current Stage=Pending Other Branch Approval.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "URS 1.1 Consolidation",
+    "Concern": "Pending grid mixes other-branch rows but Current Stage column absent",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Current Stage column mandatory: Pending Other Branch Approval | Pending Special Rate Approval | Ready to Activate.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "Record at stage 'Pending Other Branch Approval' shows wrong or blank Current Stage value",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Seed record at Pending Other Branch Approval; Pending grid must display exact enum string; filter/queue visibility follows workflow level.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "Proceed on 'Pending Other Branch Approval' navigates to wrong workflow surface",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Proceed opens the read-only stepper (other-branch) or the correct special-rate/activation path for Pending Other Branch Approval; never a disabled/no-op control.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "Record at stage 'Pending Special Rate Approval' shows wrong or blank Current Stage value",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Seed record at Pending Special Rate Approval; Pending grid must display exact enum string; filter/queue visibility follows workflow level.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "Proceed on 'Pending Special Rate Approval' navigates to wrong workflow surface",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Proceed opens the read-only stepper (other-branch) or the correct special-rate/activation path for Pending Special Rate Approval; never a disabled/no-op control.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "Record at stage 'Ready to Activate' shows wrong or blank Current Stage value",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Seed record at Ready to Activate; Pending grid must display exact enum string; filter/queue visibility follows workflow level.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "Proceed on 'Ready to Activate' navigates to wrong workflow surface",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Proceed opens the read-only stepper (other-branch) or the correct special-rate/activation path for Ready to Activate; never a disabled/no-op control.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "Current Stage enum uses free text / truncated labels instead of the three URS values",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Only the three documented values allowed; no synonyms like 'Other Branch Pending'.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "After final other-branch approval without special rate, Current Stage does not move to Ready to Activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Final OB approval + No Special Rate ⇒ Current Stage=Ready to Activate and remains on Pending until activation.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Current Stage Column",
+    "Concern": "After final other-branch approval with special rate, Current Stage skips Pending Special Rate Approval",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Must land on Pending Special Rate Approval before Ready to Activate.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Status Column",
+    "Concern": "Special Rate Status 'No Special Rate' not shown or incorrect beside Current Stage",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Special Rate Status column retained alongside Current Stage; values No Special Rate / Pending / Approved only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Status Column",
+    "Concern": "Special Rate Status 'Pending' not shown or incorrect beside Current Stage",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Special Rate Status column retained alongside Current Stage; values No Special Rate / Pending / Approved only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Status Column",
+    "Concern": "Special Rate Status 'Approved' not shown or incorrect beside Current Stage",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Special Rate Status column retained alongside Current Stage; values No Special Rate / Pending / Approved only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Status Column",
+    "Concern": "Special Rate Status cleared when Current Stage changes incorrectly",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Status must update only via special-rate workflow events; other-branch approve/reject must not wipe unrelated SR status.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Proceed Action",
+    "Concern": "Action column still shows Approve/Reject/View instead of common 'Proceed' label",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "All Pending stages use Action label Proceed only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Proceed Action",
+    "Concern": "Proceed button is greyed-out / disabled for records outside approver queue (UI disable pattern)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "URS 1.1: Proceed never disabled; access solely via queue visibility. Out-of-queue records must not appear.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Proceed Action",
+    "Concern": "Proceed visible on empty/placeholder row or loading skeleton",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "No actionable Proceed until real row loaded; no ghost clicks.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Proceed Action",
+    "Concern": "Double-click Proceed opens two steppers / duplicate sessions",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Idempotent navigation; single stepper instance.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "Tab order wrong: Other Branch Approval Rejected not immediately after Special Rate Rejected",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Activate Account tab strip: … Special Rate Rejected → Other Branch Approval Rejected → …",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "Rejected tab still labeled 'Rejected Other Branches Opening'",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exact label 'Other Branch Approval Rejected'.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "Rejected tab exposes Proceed / Approve / Reject / Edit actions",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Read-only: grid columns only; no further actions.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "Rejected grid missing columns Created Date/Time, Account Number, Customer Name, Customer Code, Created Branch, Rejected By, Rejected Date/Time, Rejection Notes",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "All eight columns populated for rejected OB requests.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "Rejection from mid multi-level approval does not land on Other Branch Approval Rejected",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Any-level reject moves record off Pending to rejected tab; no account created.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "Stepper shows more than Customer / Product / Account Details steps",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exactly three read-only steps; no Confirm-as-editable fourth step embedded.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "Any stepper field accepts edit / Save / draft persist",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "All fields read-only; Previous/Next only; no Save.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "Confirm does not open Approve/Reject + Notes popup",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Popup: Status Approve|Reject, Notes, Cancel, Confirm.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "Customer Details missing Name/Code/DOB/KYC/Ownership/Tax% or Nominee section fields",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Match URS sections 1–2; values from opening request; read-only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "Product Details missing Account Type / Main Product / Sub Product",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "All three displayed and read-only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "Account Details sections Basic / Control / Purpose / Source of Funds incomplete vs URS figures 5–8",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify every listed field present and read-only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "Approver can jump Confirm without visiting all three steps (if product requires full review)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Document actual rule; if free jump allowed, Confirm still available; if gated, Next required — match URS (Confirm at end).",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "Block message text differs from exact URS string (punctuation/wording)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exact message must be: Account opening cannot be processed. This customer already holds an account at another branch.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "Block message shown but user can still Continue / Save draft account",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Hard block at customer selection; no further opening steps; no draft account.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Not Allowed",
+    "Concern": "Not Allowed mode fails to detect other-branch existing account at customer select",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Detection at customer selection; message + block; audit BLOCK event.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Allowed + Approval Required",
+    "Concern": "Allowed+Approval Required does not create Pending Other Branch Approval stage row",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Request submitted; visible to original branch queue; Current Stage=Pending Other Branch Approval.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Allowed without Approval",
+    "Concern": "Allowed without Approval still routes into other-branch approval queue",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "No OB pending; standard activation/special-rate only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Configuration",
+    "Concern": "Workflow engine parameters Allowed/Not Allowed and Approval Required/Not Required not independently configurable",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Two parameters as URS Story 01; verify admin config UI/API.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Multi-Level Approval",
+    "Concern": "After Level-1 approve, request disappears instead of escalating to Level-2 queue",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Remains Pending; Current Stage still Pending Other Branch Approval; only Level-2 queue sees it.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Multi-Level Approval",
+    "Concern": "Level-2 approver sees Level-1-only requests (queue leak)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Visibility strictly by approval level / Current Stage mapping.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Multi-Level Approval",
+    "Concern": "Final-level approve with special rate skips to Ready to Activate without Pending Special Rate Approval",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Special Rate after final OB approval when applicable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Multi-Level Approval",
+    "Concern": "Reject at Level-2 leaves account partially activated",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "No account created/activated; rejected tab only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Multi-Level Approval",
+    "Concern": "Configurable N levels (1 and 3+) not honoured",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Test single-level and multi-level configs independently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "Audit entry missing or wrong 'User ID' on other-branch approve/reject/block/activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Every OB action logs User ID, Timestamp, Branch, Action Type, Notes — verify User ID specifically.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "Audit entry missing or wrong 'Timestamp' on other-branch approve/reject/block/activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Every OB action logs User ID, Timestamp, Branch, Action Type, Notes — verify Timestamp specifically.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "Audit entry missing or wrong 'Branch' on other-branch approve/reject/block/activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Every OB action logs User ID, Timestamp, Branch, Action Type, Notes — verify Branch specifically.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "Audit entry missing or wrong 'Action Type' on other-branch approve/reject/block/activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Every OB action logs User ID, Timestamp, Branch, Action Type, Notes — verify Action Type specifically.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "Audit entry missing or wrong 'Notes' on other-branch approve/reject/block/activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Every OB action logs User ID, Timestamp, Branch, Action Type, Notes — verify Notes specifically.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Search by Account Number fails (exact/partial)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Search Account Number returns matching rows only; no error toast.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Search by Customer Name fails (exact/partial/case)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Customer Name search supports partial matches per general guidelines.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Default sort is not latest-first on Created Date and Time",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Default Order By latest on top.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Column filter on Current Stage / Special Rate Status / Created Branch broken",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Filterable fields work; combined filter+search consistent.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Cross-Branch Visibility",
+    "Concern": "Branch A users cannot see Branch B opening for Branch A customer on Pending",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Example: Branch A customer opens at Branch B → Branch A approvers see Pending Other Branch Approval row.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Cross-Branch Visibility",
+    "Concern": "Branch B opening for Branch A customer incorrectly visible only to Branch B approvers",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Original-branch visibility required; document if creator branch also sees (should not steal A queue).",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Cross-Branch Visibility",
+    "Concern": "Wrong-branch officers see foreign customers' OB pending rows",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "No cross-tenant leak; only original branch + entitled approval level.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Customer Select",
+    "Concern": "Customer search returns inactive/closed customer and still triggers cross-branch rule incorrectly",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Rule applies to customers with active account at another branch; clarify inactive account behaviour and verify.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Customer Select",
+    "Concern": "Selecting customer via code vs name vs ID picker yields inconsistent block/approval behaviour",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "All selection entry points must hit same detection service.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Customer Select",
+    "Concern": "Clearing customer after block leaves stale error banner and blocks a different customer",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Error clears; new customer evaluated independently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Mandatory Fields",
+    "Concern": "Mandatory opening fields bypassable after Allowed+Approval path starts",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Server-side validation still enforces mandatories before submit to workflow.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Mandatory Fields",
+    "Concern": "Cancel mid-form after customer select still creates Pending Other Branch Approval row",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Cancel/discard must not enqueue approval; no orphan pending.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Cancel",
+    "Concern": "Browser refresh mid-opening duplicates pending request",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Idempotent submit; at most one pending per opening attempt.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Duplicate Pending",
+    "Concern": "Second concurrent opening for same customer at third branch creates conflicting pendings",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Document policy: allow queue both / block second; verify no double activation.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Concurrency",
+    "Concern": "Two officers open same customer other-branch simultaneously under Allowed+Approval",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Both blocked appropriately or both queued uniquely; no shared account number collision.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Concurrency",
+    "Concern": "Optimistic UI shows success while API returns validation block",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "UI must show exact block message; no false success toast.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Product/Account Details",
+    "Concern": "Remarks on Additional Account Opening not persisted into stepper read-only view",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Purpose remarks visible to approver in Account Details section.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Product/Account Details",
+    "Concern": "Source of Funds / Control & Restrictions diverge between opening capture and approval stepper",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Parity check field-by-field.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Same Branch",
+    "Concern": "Same-branch subsequent account incorrectly enters other-branch approval",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Rule only for different branch; same-branch subsequent opening unaffected.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — First Account",
+    "Concern": "First-ever account for customer incorrectly blocked as other-branch",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "No existing account ⇒ no block; proceeds normally.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "OB reject after Special Rate already Pending leaves orphan SR pending",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Reject OB before SR should never create SR; if SR exists, document cleanup — expect no activation.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "Special Rate Rejected tab confusion with Other Branch Approval Rejected tab",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Distinct tabs; rejection reasons/columns differ; record lands on correct tab.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "SR Approved but Current Stage stuck on Pending Special Rate Approval",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "After SR approve ⇒ Ready to Activate.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "Ready to Activate Proceed path differs for OB-origin vs same-branch origin accounts",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Activation behaviour consistent once Ready to Activate; OB history audited.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "No Special Rate path still shows Special Rate Status=Pending",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Must be No Special Rate when not applicable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "Filter Pending grid by Special Rate Status=Pending hides OB-only rows incorrectly",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Filter semantics must not drop unrelated Current Stage values unexpectedly — verify matrix.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "User with only Special Rate queue sees Pending Other Branch Approval rows",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Queue visibility by stage/level only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Special Rate Interplay",
+    "Concern": "User with only OB approval level can Proceed on Pending Special Rate Approval row",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Must not see / not act; Proceed never shown via visibility.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Empty",
+    "Concern": "Empty queue shows broken table / spinner forever instead of empty state",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Friendly empty message; columns headers remain.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Pagination",
+    "Concern": "Pagination loses Current Stage filter when changing page",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Filters persist across pages; total count accurate.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Pagination",
+    "Concern": "Page size change reshuffles sort away from latest-first",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Sort stable across page size.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Performance",
+    "Concern": "Pending grid with large mixed-stage volume (>1k) times out or freezes browser",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Load < documented SLA; virtualisation/paging; no full dump.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Performance",
+    "Concern": "Search latency unacceptable on large queue",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Server-side search; debounce; no client-only scan freeze.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Session / Concurrency",
+    "Concern": "Session timeout on Confirm popup still applies Approve after re-login with stale token",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Must re-auth; pending unchanged until fresh Confirm.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Session / Concurrency",
+    "Concern": "Two approvers Confirm Approve concurrently on same Level-1 request",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "One wins; other gets conflict; no double escalation / duplicate audit Approve.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Session / Concurrency",
+    "Concern": "Approver A Rejects while Approver B has stepper open — B can still Approve",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Stale stepper must fail with refresh message; status consistent.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API Negatives",
+    "Concern": "Approve API accepts request ID not in caller's queue (IDOR)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "403/404; no state change; security audit.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API Negatives",
+    "Concern": "Reject API without notes when notes mandatory still succeeds",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "400 + UI validation; parity API/UI.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API Negatives",
+    "Concern": "Direct POST to create OB pending bypassing Opening Account UI",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "AuthZ + business rule enforcement server-side.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API Negatives",
+    "Concern": "Tampered Current Stage in client payload moves record to Ready to Activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Server owns stage transitions only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API Negatives",
+    "Concern": "Unauthenticated GET pending list returns data",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "401; no leak.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "RBAC / Queue Visibility",
+    "Concern": "User without Activate Account menu still deep-links to Pending stepper URL",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Denied; audited.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "RBAC / Queue Visibility",
+    "Concern": "Workflow admin role alone can Approve OB requests",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Config admin ≠ approver unless also granted; least privilege.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "RBAC / Queue Visibility",
+    "Concern": "Maker of Branch B opening can self-approve at Branch A queue",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "SoD: maker ≠ checker if policy requires; verify bank rule.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "RBAC / Queue Visibility",
+    "Concern": "Read-only auditor role can Confirm Approve",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "View-only: no Confirm success.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Regression — Same Branch",
+    "Concern": "Same-branch subsequent opening now blocked after feature flag on",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Unaffected; proceeds without OB stage.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Regression — First Account",
+    "Concern": "First account opening path regressions (product/scheme/KYC)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Smoke full first-account happy path post-deploy.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Regression — COB",
+    "Concern": "Customer Onboarding (COB) account creation path incorrectly invokes other-branch rule",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "COB out of scope / unaffected; verify COB still creates first account.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Regression — Standard Activation",
+    "Concern": "Non-OB Ready to Activate accounts missing from Pending after consolidation",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Existing activation queue still lists standard pendings with correct Current Stage.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Regression — Special Rate Only",
+    "Concern": "Special-rate-only accounts (no OB) broken by Current Stage column changes",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "SR flow intact; Status + Stage coherent.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Regression — Audit Downstream",
+    "Concern": "Existing audit report consumers break on new Action Types for OB",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "New types documented; reports still render.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Regression — Notifications",
+    "Concern": "Approval notifications still point to removed standalone OB pending URL",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Links open Activate Account Pending / correct record.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Prototype / Figma Parity",
+    "Concern": "Pending grid column order differs from URS Figure 2 / prototype HTML",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Compare Account_Opening_in_Other_Branches_Prototype.html + URS fig 2; file UI deltas.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Prototype / Figma Parity",
+    "Concern": "Confirmation popup layout missing Cancel or Notes vs Figure 9",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Parity Approve/Reject/Notes/Cancel/Confirm.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Prototype / Figma Parity",
+    "Concern": "Rejected tab columns differ from Figure 10",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Match URS rejected columns exactly.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Accounts Module Wiki",
+    "Concern": "Activate Account submenu naming diverges from Confluence Accounts Module wiki",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Cross-check 17170440 Accounts Module + Account Initiation/Activation pages for menu labels.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Accounts Module Wiki",
+    "Concern": "Opening Account navigation path in wiki vs URS Story 01 path mismatch",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Home → Account Management → Opening Account; document any product rename.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Created Date and Time' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Created Date and Time' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Account Name' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Account Name' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Account Number' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Account Number' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Created User' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Created User' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Created Branch' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Created Branch' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Special Rate Status' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Special Rate Status' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Current Stage' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Current Stage' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Status' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Status' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid",
+    "Concern": "Pending grid column 'Action' missing, mislabeled, or unbound to wrong field",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify column 'Action' present, labeled per URS, correct data binding for OB and non-OB rows.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Confirm Popup",
+    "Concern": "Approve selected but Confirm clicked with empty notes when notes optional — must succeed",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exercise confirmation popup edge case; audit + UI state consistent with URS.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Confirm Popup",
+    "Concern": "Reject selected with whitespace-only notes — must fail if notes mandatory",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exercise confirmation popup edge case; audit + UI state consistent with URS.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Confirm Popup",
+    "Concern": "Switching from Reject to Approve clears notes unexpectedly",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exercise confirmation popup edge case; audit + UI state consistent with URS.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Confirm Popup",
+    "Concern": "Popup Confirm keyboard Enter submits wrong status",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exercise confirmation popup edge case; audit + UI state consistent with URS.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Confirm Popup",
+    "Concern": "Popup Escape/Cancel restores Pending without audit noise",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exercise confirmation popup edge case; audit + UI state consistent with URS.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Confirm Popup",
+    "Concern": "Very long notes (>max) truncate or reject with clear error",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exercise confirmation popup edge case; audit + UI state consistent with URS.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Confirm Popup",
+    "Concern": "XSS/script in notes stored and reflected unsafely in rejected grid",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exercise confirmation popup edge case; audit + UI state consistent with URS.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Confirm Popup",
+    "Concern": "Unicode/Sinhala notes round-trip in audit and rejected grid",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Exercise confirmation popup edge case; audit + UI state consistent with URS.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Configuration Transitions",
+    "Concern": "Config change Not Allowed → Allowed+Approval mishandles in-flight openings",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Document transition policy; verify no silent auto-approve/activate; new openings follow new rule.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Configuration Transitions",
+    "Concern": "Config change Allowed+Approval → Not Allowed mishandles already-pending OB rows",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Document transition policy; verify no silent auto-approve/activate; new openings follow new rule.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Configuration Transitions",
+    "Concern": "Config change Allowed+Approval → Allowed without Approval mishandles queued rows",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Document transition policy; verify no silent auto-approve/activate; new openings follow new rule.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Configuration Transitions",
+    "Concern": "Config change Allowed without Approval → Allowed+Approval mishandles new openings only",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Document transition policy; verify no silent auto-approve/activate; new openings follow new rule.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Configuration Transitions",
+    "Concern": "Config change Allowed without Approval → Not Allowed mishandles same-day openings",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Document transition policy; verify no silent auto-approve/activate; new openings follow new rule.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Detection Edge Cases",
+    "Concern": "Customer with joint ownership across branches triggers false negative on detection",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm detection service rules with product; assert message/block/approval consistently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Detection Edge Cases",
+    "Concern": "Customer migrated branch (old Branch A → new Branch C) detection uses stale home branch",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm detection service rules with product; assert message/block/approval consistently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Detection Edge Cases",
+    "Concern": "Closed account at other branch still blocks when rule should ignore closed",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm detection service rules with product; assert message/block/approval consistently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Detection Edge Cases",
+    "Concern": "Dormant account at other branch treatment undocumented — verify actual vs expected",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm detection service rules with product; assert message/block/approval consistently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Detection Edge Cases",
+    "Concern": "Foreign currency account at other branch still detected",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm detection service rules with product; assert message/block/approval consistently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Detection Edge Cases",
+    "Concern": "TD/Savings mix: only CASA in scope — TD at other branch should not block if out of scope",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm detection service rules with product; assert message/block/approval consistently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Detection Edge Cases",
+    "Concern": "Virtual account / sub-account presence falsely counted as other-branch CASA",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm detection service rules with product; assert message/block/approval consistently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Detection Edge Cases",
+    "Concern": "Customer code vs CIF mismatch causes miss on detection",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Confirm detection service rules with product; assert message/block/approval consistently.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Customer Name' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Customer Name' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Customer Code' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Customer Code' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Date of Birth' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Date of Birth' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'KYC' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'KYC' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Ownership' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Ownership' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Tax Percentage' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Tax Percentage' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Nominee Name' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Nominee Name' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Nominee Code' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Nominee Code' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Account Type' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Account Type' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Main Product' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Main Product' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Sub Product' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Sub Product' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Account Nickname' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Account Nickname' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Scheme Type' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Scheme Type' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Anticipated Value' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Anticipated Value' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Account Currency' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Account Currency' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Account Balance Restriction' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Account Balance Restriction' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Foreign Currency' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Foreign Currency' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'General/Business Purpose' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'General/Business Purpose' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Remarks on Additional Account Opening' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Remarks on Additional Account Opening' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper Fields",
+    "Concern": "Read-only stepper field 'Source of Funds — Other' blank, editable, or wrong vs opening payload",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Open Proceed on OB pending; verify 'Source of Funds — Other' displayed correctly and non-editable.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API / Integration",
+    "Concern": "Pending list API omits currentStage / specialRateStatus fields",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Validate BFF/API contract against URS data dictionary expectations; no Jira write.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API / Integration",
+    "Concern": "Rejected list API returns actionable links contrary to read-only UI",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Validate BFF/API contract against URS data dictionary expectations; no Jira write.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API / Integration",
+    "Concern": "Search API ignores branch scope of caller",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Validate BFF/API contract against URS data dictionary expectations; no Jira write.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API / Integration",
+    "Concern": "Sort API parameter ignored — client re-sort only",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Validate BFF/API contract against URS data dictionary expectations; no Jira write.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API / Integration",
+    "Concern": "Filter by currentStage returns mixed stages",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Validate BFF/API contract against URS data dictionary expectations; no Jira write.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API / Integration",
+    "Concern": "Approve then list still returns old stage due to cache",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Validate BFF/API contract against URS data dictionary expectations; no Jira write.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API / Integration",
+    "Concern": "Idempotency-Key on Approve double-submit creates two audit rows with different outcomes",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Validate BFF/API contract against URS data dictionary expectations; no Jira write.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "API / Integration",
+    "Concern": "Clock skew shows future Created Date breaking latest-first sort",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Validate BFF/API contract against URS data dictionary expectations; no Jira write.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "UX / Accessibility",
+    "Concern": "Proceed control not keyboard accessible",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Manual UX check on Activate Account Pending/Rejected; log defects with screenshot.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "UX / Accessibility",
+    "Concern": "Confirm popup focus trap broken — background still clickable changing state",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Manual UX check on Activate Account Pending/Rejected; log defects with screenshot.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "UX / Accessibility",
+    "Concern": "Screen reader does not announce Current Stage",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Manual UX check on Activate Account Pending/Rejected; log defects with screenshot.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "UX / Accessibility",
+    "Concern": "Truncated Current Stage in narrow layout without tooltip",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Manual UX check on Activate Account Pending/Rejected; log defects with screenshot.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "UX / Accessibility",
+    "Concern": "Tab strip overflow hides Other Branch Approval Rejected on smaller screens",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Manual UX check on Activate Account Pending/Rejected; log defects with screenshot.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "UX / Accessibility",
+    "Concern": "Print/export of Pending grid drops Current Stage column",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Manual UX check on Activate Account Pending/Rejected; log defects with screenshot.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Security",
+    "Concern": "CSRF on Approve/Reject endpoints",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Authorized white-hat checks only on UAT; no production exploit; evidence in reports/.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Security",
+    "Concern": "Mass assignment of rejectedBy via client",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Authorized white-hat checks only on UAT; no production exploit; evidence in reports/.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Security",
+    "Concern": "Export Pending CSV includes customers outside branch entitlement",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Authorized white-hat checks only on UAT; no production exploit; evidence in reports/.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Security",
+    "Concern": "Audit log PII over-exposure in UI for unauthorized viewer",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Authorized white-hat checks only on UAT; no production exploit; evidence in reports/.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Security",
+    "Concern": "Replay captured Approve JWT after role revocation",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Authorized white-hat checks only on UAT; no production exploit; evidence in reports/.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E Not Allowed: Branch B select Branch A customer → exact message → audit BLOCK → no pending",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Full manual path with evidence screenshots; Status remains Not Started until executed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E Allowed+Approval single-level no SR: open → Pending OB → Proceed → Approve → Ready to Activate → Activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Full manual path with evidence screenshots; Status remains Not Started until executed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E Allowed+Approval multi-level with SR: L1→L2→SR Pending→SR Approve→Ready→Activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Full manual path with evidence screenshots; Status remains Not Started until executed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E Reject at L1: Pending removed → Other Branch Approval Rejected populated → no account",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Full manual path with evidence screenshots; Status remains Not Started until executed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E Allowed without Approval with SR: no OB stage → SR path only → Activate",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Full manual path with evidence screenshots; Status remains Not Started until executed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E Branch visibility: create at B, approve at A, activate entitlement correct branch ownership",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Full manual path with evidence screenshots; Status remains Not Started until executed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E Cancel popup then later Reject with notes — single reject audit",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Full manual path with evidence screenshots; Status remains Not Started until executed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E Search Account Number then Proceed preserves context",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Full manual path with evidence screenshots; Status remains Not Started until executed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Operational / Go-Live",
+    "Concern": "Training gap: officers look for removed standalone OB pending menu",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Include in 40h manual pack; confirm with BA if product decision needed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Operational / Go-Live",
+    "Concern": "Workflow rule not configured at go-live defaults incorrectly to allow",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Include in 40h manual pack; confirm with BA if product decision needed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Operational / Go-Live",
+    "Concern": "Holiday/weekend pending aging not visible to supervisors",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Include in 40h manual pack; confirm with BA if product decision needed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Operational / Go-Live",
+    "Concern": "Bulk no-op: selecting multiple Pending rows (if multi-select exists) and Proceed undefined",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Include in 40h manual pack; confirm with BA if product decision needed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Operational / Go-Live",
+    "Concern": "Browser back from rejected tab loses Activate Account tab state",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Include in 40h manual pack; confirm with BA if product decision needed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Operational / Go-Live",
+    "Concern": "Language pack: Sinhala/Tamil labels for Current Stage enums wrong",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Include in 40h manual pack; confirm with BA if product decision needed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Operational / Go-Live",
+    "Concern": "Time zone: Created Date shown in user TZ vs branch TZ mismatch",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Include in 40h manual pack; confirm with BA if product decision needed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Operational / Go-Live",
+    "Concern": "Account Number masking inconsistent between Pending and Rejected",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Include in 40h manual pack; confirm with BA if product decision needed.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Filter",
+    "Concern": "Filter by Created Branch returns rows from other branches contrary to selection",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Branch filter must match Created Branch exactly; clear filter restores full entitled queue.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Filter",
+    "Concern": "Combined Current Stage + Special Rate Status filter yields empty when data exists",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Matrix-test all stage×SR status combos present in seed data.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Filter",
+    "Concern": "Clear-all filters does not reset search box",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Search and filters clear independently or via documented Reset; no sticky hidden predicate.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Sort",
+    "Concern": "Manual sort by Account Number then refresh resets without user consent mid-review",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Preserve user sort until leaving screen; document if always latest-first on reload.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Activate Account Pending Grid — Sort",
+    "Concern": "Sorting by Current Stage uses alpha order that groups stages illogically for ops",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Acceptable if documented; otherwise provide stage priority sort option.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Notifications",
+    "Concern": "No in-app/email alert when OB request enters Branch A Level-1 queue",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "If product promises alerts, verify delivery; else note gap for BA.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Notifications",
+    "Concern": "Rejection notification still references old Rejected Other Branches Opening deep link",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Link opens Other Branch Approval Rejected with record context.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Data Integrity",
+    "Concern": "Account number allocated at Branch B before final OB approval and never released on reject",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "On reject, number recycling / reservation policy must match bank standards; no orphan active numbers.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Data Integrity",
+    "Concern": "Customer inquiry shows 'pending account' at Branch B after OB reject",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Rejected openings must not appear as open/pending accounts in inquiry.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Data Integrity",
+    "Concern": "CBS/core sync creates account on OB submit rather than on final activation",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "No core account until activation per URS (rejected ⇒ no account).",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Negative",
+    "Concern": "Not Allowed mode still allows Save as Draft that later converts under Allowed config",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Drafts must re-evaluate rule at submit time; no bypass.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Negative",
+    "Concern": "Bypassing UI via browser console to skip customer-select validation",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Server enforces detection; client-only checks insufficient.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Opening Account — Negative",
+    "Concern": "Selecting customer then switching branch context mid-session confuses home-branch detection",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Branch context stable; detection uses customer's account branch vs opening branch.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Multi-Level Approval",
+    "Concern": "Reassign / delegate Level-2 while request in flight drops visibility for both users",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Delegation policy: request remains visible to entitled role; no stuck Pending.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Multi-Level Approval",
+    "Concern": "Approver at wrong level can open stepper via shared URL from chat",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Deep link must re-check queue entitlement; deny if not in queue.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "BLOCK event missing Branch of opening officer (shows customer home branch only)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Audit Branch = acting user's branch; also record customer home branch if available.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Audit Logging",
+    "Concern": "Activate after Ready to Activate not linked to prior OB approval chain in audit trail",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Traceability from block/submit → each approve → activate.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "Search on Rejected tab (if present) broken or absent vs Pending",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "If search supported, Account Number + Customer Name; else document N/A.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Other Branch Approval Rejected Tab",
+    "Concern": "Rejected Date/Time uses opening Created Date instead of reject timestamp",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Rejected Date/Time = actual reject Confirm time.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Prototype / Figma Parity",
+    "Concern": "Prototype HTML still shows standalone Pending Other Branches Opening — UAT build must not",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Treat prototype as historical; assert URS 1.1 consolidated UI in UAT.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E: Not Allowed after prior Allowed+Approval pending still in queue — pending retains old path",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Config flip must not auto-kill or auto-approve existing pendings without policy.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E: Pagination page 2 Proceed opens correct account not page-1 row",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Row action binds to correct ID under virtualisation.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "E2E Narratives (40h)",
+    "Concern": "E2E: Special Rate Rejected then verify OB Approved history still auditable",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "SR reject after OB approve: account not active; audits show both actions.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Regression — COB",
+    "Concern": "COB → Opening Account handoff customer with existing other-branch account hits wrong mode",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "If COB creates customer only, first account path; if account already exists elsewhere, rule applies.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Security",
+    "Concern": "Pending list response includes full KYC/PII beyond grid columns",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Minimise payload; stepper fetch authorized separately.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "UX / Accessibility",
+    "Concern": "Current Stage colour coding (if any) fails WCAG contrast",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Text enums remain readable without colour-only meaning.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Allowed + Approval Required",
+    "Concern": "Opening officer sees success but Branch A never receives queue item (routing miss)",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Verify workflow assignee mapping to customer's original branch approval group.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Workflow Mode — Allowed without Approval",
+    "Concern": "Audit still writes APPROVAL_REQUIRED events under without-approval mode",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "No spurious OB approval audits; only standard activation/SR events.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Cross-Branch Visibility",
+    "Concern": "Headquarters super-user sees all branches' OB pendings contrary to workflow queue rules",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "If HQ override exists, document; else must follow level visibility only.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  },
+  {
+    "Area": "Approval Stepper",
+    "Concern": "Previous on first step exits stepper without confirm discard",
+    "User story": "PF-58142",
+    "Status": "Not Started",
+    "Change made?": "No",
+    "Change / verification notes (English)": "Safe navigation; Pending unchanged.",
+    "Commit / cycle": "PF-58142-URS1.1-40h"
+  }
+]

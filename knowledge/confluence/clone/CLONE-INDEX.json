@@ -1,0 +1,4142 @@
+[
+  {
+    "space": "FusionX",
+    "id": "17170440",
+    "title": "Accounts Module (Current Accounts & Savings Accounts)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\17170440__Accounts_Module_Current_Accounts_Savings_Accounts.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "31195300",
+    "title": "CASA",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\31195300__CASA.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117735540",
+    "title": "Savings Account Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117735540__Savings_Account_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117768373",
+    "title": "lending-account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117768373__lending-account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117834000",
+    "title": "Account Creation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117834000__Account_Creation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118456386",
+    "title": "Account Initiation And Activation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118456386__Account_Initiation_And_Activation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751313",
+    "title": "casa-account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751313__casa-account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751410",
+    "title": "casa-master-control",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751410__casa-master-control.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751440",
+    "title": "casa-tax",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751440__casa-tax.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751471",
+    "title": "casa-transfer-in",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751471__casa-transfer-in.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784015",
+    "title": "casa-cheque-book-management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784015__casa-cheque-book-management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784068",
+    "title": "casa-transaction",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784068__casa-transaction.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784089",
+    "title": "casa-transfer-in-out",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784089__casa-transfer-in-out.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118816830",
+    "title": "casa-apply-schedule",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118816830__casa-apply-schedule.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849550",
+    "title": "casa-atm",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849550__casa-atm.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849586",
+    "title": "casa-fund-reservation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849586__casa-fund-reservation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849613",
+    "title": "casa-interest-schedule",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849613__casa-interest-schedule.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849637",
+    "title": "casa-product-bca",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849637__casa-product-bca.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849662",
+    "title": "casa-transfer-out",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849662__casa-transfer-out.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129073203",
+    "title": "Freeze / Unfreeze Loan Account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129073203__Freeze_Unfreeze_Loan_Account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129073222",
+    "title": "Account Status Manual Flagging",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129073222__Account_Status_Manual_Flagging.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129105931",
+    "title": "Loan Account Statement Generate",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129105931__Loan_Account_Statement_Generate.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129105950",
+    "title": "Account Write Off",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129105950__Account_Write_Off.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129106008",
+    "title": "Account Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129106008__Account_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129138693",
+    "title": "Account Partial Pay Off",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129138693__Account_Partial_Pay_Off.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129171479",
+    "title": "Loan Account Cancellation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129171479__Loan_Account_Cancellation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129171538",
+    "title": "Account Amendments Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129171538__Account_Amendments_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146505867",
+    "title": "Finance Sub Account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146505867__Finance_Sub_Account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146538631",
+    "title": "Finance Account Mapping",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146538631__Finance_Account_Mapping.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146636894",
+    "title": "Finance Account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146636894__Finance_Account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146636913",
+    "title": "Finance Account Category",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146636913__Finance_Account_Category.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "147193898",
+    "title": "TD Finance Account Mapping",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\147193898__TD_Finance_Account_Mapping.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "147193918",
+    "title": "Lending Finance Account Mapping",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\147193918__Lending_Finance_Account_Mapping.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "147226688",
+    "title": "Cash Finance Account Mapping",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\147226688__Cash_Finance_Account_Mapping.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149323807",
+    "title": "Finance Sub Account Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149323807__Finance_Sub_Account_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149356608",
+    "title": "Finance Account Category Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149356608__Finance_Account_Category_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149487665",
+    "title": "Finance Account Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149487665__Finance_Account_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "150307053",
+    "title": "Account Dormant Process",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\150307053__Account_Dormant_Process.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "150372490",
+    "title": "Casa Account Statement Generate",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\150372490__Casa_Account_Statement_Generate.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "152731738",
+    "title": "user temporary branch management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\152731738__user_temporary_branch_management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "152764620",
+    "title": "users branch management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\152764620__users_branch_management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "152830026",
+    "title": "user restricted account management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\152830026__user_restricted_account_management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156172409",
+    "title": "AccountManualRenewal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156172409__AccountManualRenewal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165544181",
+    "title": "Account Common List",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165544181__Account_Common_List.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165544225",
+    "title": "Automated Saving Account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165544225__Automated_Saving_Account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165576900",
+    "title": "Close Account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165576900__Close_Account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165576975",
+    "title": "Automated Current Account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165576975__Automated_Current_Account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165609512",
+    "title": "Account Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165609512__Account_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167346205",
+    "title": "Virtual Account",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167346205__Virtual_Account.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167378965",
+    "title": "Virtual Account Level",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167378965__Virtual_Account_Level.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167444625",
+    "title": "Account Sweep",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167444625__Account_Sweep.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295326",
+    "title": "Td Account Tax Log",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295326__Td_Account_Tax_Log.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328074",
+    "title": "Account Charges Log",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328074__Account_Charges_Log.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170360878",
+    "title": "Account Common List Function",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170360878__Account_Common_List_Function.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170393764",
+    "title": "Td Account Information",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170393764__Td_Account_Information.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650636",
+    "title": "CASA Fund Transfer|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650636__CASA_Fund_Transfer_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236683363",
+    "title": "CASA Deposits (Cash / Cheque)|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236683363__CASA_Deposits_Cash_Cheque_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236683384",
+    "title": "Lease / Loan Account Deposits|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236683384__Lease_Loan_Account_Deposits_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236716115",
+    "title": "CASA Withdrawals (Cash / Cheque)|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236716115__CASA_Withdrawals_Cash_Cheque_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236781671",
+    "title": "Daily Branch Cash Summary Report|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236781671__Daily_Branch_Cash_Summary_Report_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814359",
+    "title": "Inter Branch Cash Transfer Request|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814359__Inter_Branch_Cash_Transfer_Request_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236847151",
+    "title": "Branch Cash Allocation|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236847151__Branch_Cash_Allocation_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236847223",
+    "title": "Lease / Loan Account Withdrawals|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236847223__Lease_Loan_Account_Withdrawals_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236847251",
+    "title": "CASA Reward Payment|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236847251__CASA_Reward_Payment_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912734",
+    "title": "Branch Wise Cash Summary Report|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912734__Branch_Wise_Cash_Summary_Report_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912804",
+    "title": "Branch Teller Currencies|Teller Definitions|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912804__Branch_Teller_Currencies_Teller_Definitions_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978225",
+    "title": "Branch Main Teller Float In|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978225__Branch_Main_Teller_Float_In_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237240409",
+    "title": "Statement of accounts (Generate/Confirm)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237240409__Statement_of_accounts_Generate_Confirm.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237305857",
+    "title": "Bank Account|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237305857__Bank_Account_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237436930",
+    "title": "Branch Parameters|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237436930__Branch_Parameters_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "238845956",
+    "title": "Transaction Reversal Confirmation|Cash and Transaction Management| Branch Teller Other Operations",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\238845956__Transaction_Reversal_Confirmation_Cash_and_Transaction_Management_Branch_Teller_Other_Operations.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266502162",
+    "title": "Col-Collateral Branch Acknoledgement",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266502162__Col-Collateral_Branch_Acknoledgement.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "3473414",
+    "title": "FusionX Governance Model",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\3473414__FusionX_Governance_Model.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "3703016",
+    "title": "FusionX Wiki (Project Overview)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\3703016__FusionX_Wiki_Project_Overview.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "6291458",
+    "title": "System KTs and Demos",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\6291458__System_KTs_and_Demos.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "6291468",
+    "title": "Modules",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\6291468__Modules.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "6291499",
+    "title": "Releases",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\6291499__Releases.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "6291509",
+    "title": "Common Guidelines",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\6291509__Common_Guidelines.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "6291519",
+    "title": "Architecture Overview",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\6291519__Architecture_Overview.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "6324263",
+    "title": "Scrum Teams",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\6324263__Scrum_Teams.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "6422546",
+    "title": "Technology",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\6422546__Technology.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "16089161",
+    "title": "Frontend Wiki",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\16089161__Frontend_Wiki.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "16515113",
+    "title": "Guidelines",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\16515113__Guidelines.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "16515123",
+    "title": "Design System | Style Guides",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\16515123__Design_System_Style_Guides.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "16547873",
+    "title": "Development Guidelines",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\16547873__Development_Guidelines.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "16547910",
+    "title": "Standard React Component",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\16547910__Standard_React_Component.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "16613377",
+    "title": "Backend Space",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\16613377__Backend_Space.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20513023",
+    "title": "Customer Onboarding Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20513023__Customer_Onboarding_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20513044",
+    "title": "Loan Origination and Loan Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20513044__Loan_Origination_and_Loan_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20513065",
+    "title": "Legal Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20513065__Legal_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20513086",
+    "title": "Supplier Management Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20513086__Supplier_Management_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20709401",
+    "title": "Design Starndaization",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20709401__Design_Starndaization.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20709428",
+    "title": "Yard Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20709428__Yard_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20709449",
+    "title": "Cash & Teller Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20709449__Cash_Teller_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20709470",
+    "title": "Authorization Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20709470__Authorization_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20709491",
+    "title": "Common Settings Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20709491__Common_Settings_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20742146",
+    "title": "Term Deposit Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20742146__Term_Deposit_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "20742206",
+    "title": "Collateral Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\20742206__Collateral_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23298091",
+    "title": "Feature flags",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23298091__Feature_flags.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23330851",
+    "title": "Token too large issue | Re: Azure Migration",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23330851__Token_too_large_issue_Re_Azure_Migration.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23363615",
+    "title": "Style Migration Plan from CASH to other modules",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23363615__Style_Migration_Plan_from_CASH_to_other_modules.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23363636",
+    "title": "Dynamic letter rendering",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23363636__Dynamic_letter_rendering.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23363657",
+    "title": "API Discussion",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23363657__API_Discussion.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23363678",
+    "title": "Power up the digital-signature module for development",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23363678__Power_up_the_digital-signature_module_for_development.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23396383",
+    "title": "Push Notification Implementation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23396383__Push_Notification_Implementation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23396404",
+    "title": "Permissions checking automation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23396404__Permissions_checking_automation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23396425",
+    "title": "Implement Sonarqube for FE projects",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23396425__Implement_Sonarqube_for_FE_projects.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23396446",
+    "title": "Graph drawing for Sub Products",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23396446__Graph_drawing_for_Sub_Products.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23396467",
+    "title": "Cross site cookies pahse out",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23396467__Cross_site_cookies_pahse_out.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23396488",
+    "title": "Direct Print from FusionX apps",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23396488__Direct_Print_from_FusionX_apps.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23527425",
+    "title": "AuthNex Integration",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23527425__AuthNex_Integration.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23527446",
+    "title": "Find a ways to minimized loading time",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23527446__Find_a_ways_to_minimized_loading_time.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23560193",
+    "title": "Version Upgrade of FE projects",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23560193__Version_Upgrade_of_FE_projects.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "23560214",
+    "title": "Power BI embed Integration",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\23560214__Power_BI_embed_Integration.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "27623426",
+    "title": "Permission Implementation Guide",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\27623426__Permission_Implementation_Guide.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "30933004",
+    "title": "Charts in Fx Apps",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\30933004__Charts_in_Fx_Apps.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "31227930",
+    "title": "Version_19 Release",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\31227930__Version_19_Release.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "31359091",
+    "title": "Dynamic fields handling/Custom Fields",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\31359091__Dynamic_fields_handling_Custom_Fields.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "31981615",
+    "title": "DigiTech",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\31981615__DigiTech.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "31981625",
+    "title": "HatchPhoton",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\31981625__HatchPhoton.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "31981639",
+    "title": "BaWizards",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\31981639__BaWizards.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32014395",
+    "title": "CodeCrafters",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32014395__CodeCrafters.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32014405",
+    "title": "NexTech",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32014405__NexTech.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32014419",
+    "title": "GateKeepers",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32014419__GateKeepers.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32014429",
+    "title": "Shielders",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32014429__Shielders.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32014439",
+    "title": "AppInventiv",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32014439__AppInventiv.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32014457",
+    "title": "AutoBots",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32014457__AutoBots.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32014475",
+    "title": "DataWarriors",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32014475__DataWarriors.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32014492",
+    "title": "InoTech",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32014492__InoTech.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32047132",
+    "title": "MetaWave",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32047132__MetaWave.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32047184",
+    "title": "AnalytiX",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32047184__AnalytiX.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32047202",
+    "title": "DesignDemons",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32047202__DesignDemons.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32112657",
+    "title": "TechTitans",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32112657__TechTitans.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32112669",
+    "title": "InnoWave",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32112669__InnoWave.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32112699",
+    "title": "DevopsDynamos",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32112699__DevopsDynamos.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32374789",
+    "title": "QA Common Guideline",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32374789__QA_Common_Guideline.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32440324",
+    "title": "Version_21 Release",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32440324__Version_21_Release.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32440342",
+    "title": "FE Common Guideline",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32440342__FE_Common_Guideline.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32440353",
+    "title": "BA Common Guideline",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32440353__BA_Common_Guideline.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "32636941",
+    "title": "BE Common Guideline",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\32636941__BE_Common_Guideline.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "43319300",
+    "title": "ui-components",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\43319300__ui-components.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "43352067",
+    "title": "Libraries (react-commons)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\43352067__Libraries_react-commons.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "45121539",
+    "title": "Component Development Process",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\45121539__Component_Development_Process.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "45481989",
+    "title": "Meeting Summary",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\45481989__Meeting_Summary.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "45613057",
+    "title": "FusionX Oasys Integration",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\45613057__FusionX_Oasys_Integration.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "64290817",
+    "title": "Version_23 Release",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\64290817__Version_23_Release.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "64356353",
+    "title": "Version_26 Release",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\64356353__Version_26_Release.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "79855618",
+    "title": "Authorization Guidelines",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\79855618__Authorization_Guidelines.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "82575384",
+    "title": "FxTopBar",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\82575384__FxTopBar.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "93815345",
+    "title": "API Manager Automation - Endpoint wise permission enforcement",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\93815345__API_Manager_Automation_-_Endpoint_wise_permission_enforcement.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "93847565",
+    "title": "External VM logs integration to Grafana with Loki",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\93847565__External_VM_logs_integration_to_Grafana_with_Loki.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "93880331",
+    "title": "API Manager Automation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\93880331__API_Manager_Automation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "94863364",
+    "title": "Database Access granting process",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\94863364__Database_Access_granting_process.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "95977493",
+    "title": "Jasper Report Automation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\95977493__Jasper_Report_Automation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "97189940",
+    "title": "Chatbot AI agent k8s deployment",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\97189940__Chatbot_AI_agent_k8s_deployment.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "106102787",
+    "title": "Managing Users and Groups in JBPM",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\106102787__Managing_Users_and_Groups_in_JBPM.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "109379593",
+    "title": "\ud83d\udce6 React 16 -> React 17 Migration Guide",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\109379593__React_16_-_React_17_Migration_Guide.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "110166017",
+    "title": "Prometheus Metrics Reset After Pod Restart (All AKS Clusters)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\110166017__Prometheus_Metrics_Reset_After_Pod_Restart_All_AKS_Clusters.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "115867651",
+    "title": "lending-origination",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\115867651__lending-origination.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "116260895",
+    "title": "Income and Expense Analysis",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\116260895__Income_and_Expense_Analysis.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117047298",
+    "title": "Basic Testing Guideline",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117047298__Basic_Testing_Guideline.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117211822",
+    "title": "Database Clone Tenant Automation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117211822__Database_Clone_Tenant_Automation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117211832",
+    "title": "Database Restore Tenant Automation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117211832__Database_Restore_Tenant_Automation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117735498",
+    "title": "Internal CRIB Verifications",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117735498__Internal_CRIB_Verifications.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117735519",
+    "title": "Exteranl CRIB Verification",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117735519__Exteranl_CRIB_Verification.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117735582",
+    "title": "Visit Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117735582__Visit_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117735603",
+    "title": "Collateral Portion Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117735603__Collateral_Portion_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117768288",
+    "title": "Working Capital Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117768288__Working_Capital_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117768309",
+    "title": "Disburstment Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117768309__Disburstment_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117768330",
+    "title": "Verification Checklist",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117768330__Verification_Checklist.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117768642",
+    "title": "Mendix",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117768642__Mendix.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117801049",
+    "title": "Financial Statement",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117801049__Financial_Statement.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117801070",
+    "title": "Lead Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117801070__Lead_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117801091",
+    "title": "Over Draft Request Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117801091__Over_Draft_Request_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117801112",
+    "title": "Reference Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117801112__Reference_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117801133",
+    "title": "Bank Statement Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117801133__Bank_Statement_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117801181",
+    "title": "lending-product",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117801181__lending-product.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117833792",
+    "title": "Credit Risk Score Calculation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117833792__Credit_Risk_Score_Calculation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117833832",
+    "title": "Collateral Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117833832__Collateral_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117833859",
+    "title": "Exception Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117833859__Exception_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117833880",
+    "title": "CRIB Verification",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117833880__CRIB_Verification.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117833904",
+    "title": "Approval Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117833904__Approval_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "117833975",
+    "title": "micro-origination",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\117833975__micro-origination.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118390854",
+    "title": "comn-customer",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118390854__comn-customer.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118423573",
+    "title": "test",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118423573__test.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118456482",
+    "title": "comn-alert-management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118456482__comn-alert-management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118489204",
+    "title": "comn-authnex",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118489204__comn-authnex.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118489225",
+    "title": "comn-common",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118489225__comn-common.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751237",
+    "title": "comn-document-upload",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751237__comn-document-upload.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751263",
+    "title": "comn-supplies-entities",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751263__comn-supplies-entities.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751291",
+    "title": "comn-user",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751291__comn-user.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751342",
+    "title": "common-crypto",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751342__common-crypto.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751365",
+    "title": "comn-gl-transaction",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751365__comn-gl-transaction.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751388",
+    "title": "financial-settings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751388__financial-settings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118751512",
+    "title": "term-deposit",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118751512__term-deposit.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784116",
+    "title": "central-cash-management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784116__central-cash-management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784148",
+    "title": "yard-management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784148__yard-management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784169",
+    "title": "lending-transaction",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784169__lending-transaction.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784200",
+    "title": "td-interest-schedule",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784200__td-interest-schedule.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784229",
+    "title": "td-transaction",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784229__td-transaction.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784259",
+    "title": "comn-calculation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784259__comn-calculation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118784280",
+    "title": "fusionx-bot",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118784280__fusionx-bot.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118816778",
+    "title": "comn-pam-support",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118816778__comn-pam-support.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118816801",
+    "title": "comn-person",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118816801__comn-person.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118816867",
+    "title": "comn-external",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118816867__comn-external.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118816935",
+    "title": "comn-digitalsignature",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118816935__comn-digitalsignature.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849686",
+    "title": "leg-legal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849686__leg-legal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849715",
+    "title": "col-collateral",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849715__col-collateral.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849745",
+    "title": "td-transfer-out",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849745__td-transfer-out.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849769",
+    "title": "td-transfer-in-out",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849769__td-transfer-in-out.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "118849790",
+    "title": "td-apply-schedule",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\118849790__td-apply-schedule.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "120586268",
+    "title": "Customer Onboarding",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\120586268__Customer_Onboarding.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "122912886",
+    "title": "Customer Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\122912886__Customer_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "122912912",
+    "title": "Customer PEP Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\122912912__Customer_PEP_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "123011167",
+    "title": "PEP Approvals for Other Party",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\123011167__PEP_Approvals_for_Other_Party.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "123043866",
+    "title": "Customer Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\123043866__Customer_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "123535413",
+    "title": "MF Group Members Attendance Capturing",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\123535413__MF_Group_Members_Attendance_Capturing.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "123535469",
+    "title": "Character Assessment",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\123535469__Character_Assessment.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "123535494",
+    "title": "Customer",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\123535494__Customer.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "123568143",
+    "title": "Settings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\123568143__Settings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "123633736",
+    "title": "Customer Group and Customer Mapping",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\123633736__Customer_Group_and_Customer_Mapping.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "123633782",
+    "title": "Social Assessment",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\123633782__Social_Assessment.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "124387681",
+    "title": "td-transfer-in",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\124387681__td-transfer-in.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "124551173",
+    "title": "Incentive Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\124551173__Incentive_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "124911617",
+    "title": "Release Notes - Product FusionX - May 2025 - Jun 03 22:25",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\124911617__Release_Notes_-_Product_FusionX_-_May_2025_-_Jun_03_22_25.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "125108279",
+    "title": "Remove Assignee",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\125108279__Remove_Assignee.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126288049",
+    "title": "Loan Module Common Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126288049__Loan_Module_Common_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126288172",
+    "title": "Product Common Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126288172__Product_Common_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126288231",
+    "title": "Product Feature Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126288231__Product_Feature_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126353872",
+    "title": "Product Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126353872__Product_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126354047",
+    "title": "Micro Finance Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126354047__Micro_Finance_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126354140",
+    "title": "Product Eligibility Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126354140__Product_Eligibility_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126484679",
+    "title": "Lending Module Controls",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126484679__Lending_Module_Controls.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126484725",
+    "title": "comn-reports",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126484725__comn-reports.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126484756",
+    "title": "Person Blacklist Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126484756__Person_Blacklist_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126484841",
+    "title": "Product Interest Template",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126484841__Product_Interest_Template.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126648322",
+    "title": "Blacklist Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126648322__Blacklist_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126943236",
+    "title": "Product and Sub Product Definition",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126943236__Product_and_Sub_Product_Definition.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "126976017",
+    "title": "Product Common",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\126976017__Product_Common.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "127008799",
+    "title": "Product Fee & Charges Template Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\127008799__Product_Fee_Charges_Template_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "127991893",
+    "title": "Transaction System Operation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\127991893__Transaction_System_Operation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "127991940",
+    "title": "Lending Credit Appraisal Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\127991940__Lending_Credit_Appraisal_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128155683",
+    "title": "Transaction Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128155683__Transaction_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128155747",
+    "title": "Lending Common Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128155747__Lending_Common_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128188472",
+    "title": "Transaction Tax Configuration",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128188472__Transaction_Tax_Configuration.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128352294",
+    "title": "Product Interest Template Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128352294__Product_Interest_Template_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128352882",
+    "title": "Manage Pending Person Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128352882__Manage_Pending_Person_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128417847",
+    "title": "Guarantor Income and Net Worth",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128417847__Guarantor_Income_and_Net_Worth.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128418119",
+    "title": "Person common definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128418119__Person_common_definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128418180",
+    "title": "Manage Person Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128418180__Manage_Person_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128450594",
+    "title": "Lending Credit Appraisal Approval Definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128450594__Lending_Credit_Appraisal_Approval_Definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "128451153",
+    "title": "Common definitions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\128451153__Common_definitions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129073184",
+    "title": "Pledging Release for Ongoing Loan",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129073184__Pledging_Release_for_Ongoing_Loan.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129073250",
+    "title": "Portfolio Assign",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129073250__Portfolio_Assign.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129073347",
+    "title": "Customer Approval Related",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129073347__Customer_Approval_Related.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129105970",
+    "title": "Loan Restructure",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129105970__Loan_Restructure.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129105989",
+    "title": "Loan Rescheduling",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129105989__Loan_Rescheduling.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129106037",
+    "title": "Subsequent Loan Disbursement",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129106037__Subsequent_Loan_Disbursement.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129138712",
+    "title": "Blocking / Unbloacking Disbursement",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129138712__Blocking_Unbloacking_Disbursement.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129138732",
+    "title": "Fund Reservation and Release",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129138732__Fund_Reservation_and_Release.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129138765",
+    "title": "Tax Rate Change",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129138765__Tax_Rate_Change.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129138789",
+    "title": "Penal Interest Rate Change",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129138789__Penal_Interest_Rate_Change.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129138885",
+    "title": "Document upload and download",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129138885__Document_upload_and_download.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129171460",
+    "title": "Pre Termination",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129171460__Pre_Termination.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129171499",
+    "title": "Final Settlement",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129171499__Final_Settlement.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129171519",
+    "title": "Facility Amendments",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129171519__Facility_Amendments.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129171560",
+    "title": "Due Date Change",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129171560__Due_Date_Change.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129171647",
+    "title": "Customer Reports",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129171647__Customer_Reports.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "129171697",
+    "title": "COB Reports",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\129171697__COB_Reports.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "131400141",
+    "title": "td",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\131400141__td.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132677653",
+    "title": "kiosk",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132677653__kiosk.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132677672",
+    "title": "comn-react-module-cob",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132677672__comn-react-module-cob.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132677691",
+    "title": "home",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132677691__home.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132677710",
+    "title": "react-commons",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132677710__react-commons.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132710447",
+    "title": "lending",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132710447__lending.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132710466",
+    "title": "collateral",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132710466__collateral.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132710485",
+    "title": "comn-react-module-auth",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132710485__comn-react-module-auth.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132743203",
+    "title": "cash",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132743203__cash.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132743223",
+    "title": "comn-settings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132743223__comn-settings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132743243",
+    "title": "supplier",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132743243__supplier.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132743262",
+    "title": "yard",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132743262__yard.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132743282",
+    "title": "comn-react-module-digitalsignature",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132743282__comn-react-module-digitalsignature.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132775973",
+    "title": "legal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132775973__legal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "132775997",
+    "title": "trial-cal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\132775997__trial-cal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "134381597",
+    "title": "Guarrantor details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\134381597__Guarrantor_details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "136183815",
+    "title": "Permission remapping task paln",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\136183815__Permission_remapping_task_paln.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "137068677",
+    "title": "Permission Responsibility",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\137068677__Permission_Responsibility.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "139100443",
+    "title": "Evaluation Report: Integration of Oasys Form Builder Forms into FusionX",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\139100443__Evaluation_Report_Integration_of_Oasys_Form_Builder_Forms_into_FusionX.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "140673049",
+    "title": "Decision log",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\140673049__Decision_log.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "142246178",
+    "title": "reward",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\142246178__reward.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146505803",
+    "title": "GL Transaction details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146505803__GL_Transaction_details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146505822",
+    "title": "Sync-GL",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146505822__Sync-GL.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146538556",
+    "title": "GL Type",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146538556__GL_Type.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146538575",
+    "title": "Manual GL Proccess",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146538575__Manual_GL_Proccess.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146538594",
+    "title": "Unlock GL Schedulers",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146538594__Unlock_GL_Schedulers.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "146636841",
+    "title": "Lending Gl",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\146636841__Lending_Gl.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "147685377",
+    "title": "Release Notes - Product FusionX - July 2025 - Jul 23 22:15",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\147685377__Release_Notes_-_Product_FusionX_-_July_2025_-_Jul_23_22_15.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "148963444",
+    "title": "KT Session for Developer Domain Gaps",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\148963444__KT_Session_for_Developer_Domain_Gaps.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149323880",
+    "title": "Approved Fund Reservation priority update",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149323880__Approved_Fund_Reservation_priority_update.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149356676",
+    "title": "Fund Reservation Creation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149356676__Fund_Reservation_Creation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149356695",
+    "title": "Update Pending Fund Reservation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149356695__Update_Pending_Fund_Reservation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149356714",
+    "title": "Release Approved Fund Reservation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149356714__Release_Approved_Fund_Reservation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149487723",
+    "title": "Confirm Pending Fund Reservation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149487723__Confirm_Pending_Fund_Reservation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149520416",
+    "title": "GL Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149520416__GL_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149520469",
+    "title": "Fund Transfer In",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149520469__Fund_Transfer_In.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149520488",
+    "title": "Fund Transfer Out",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149520488__Fund_Transfer_Out.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "149520580",
+    "title": "Fund Reservation Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\149520580__Fund_Reservation_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "150307002",
+    "title": "Balance Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\150307002__Balance_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "150339828",
+    "title": "Passbook",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\150339828__Passbook.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "150372584",
+    "title": "Transaction Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\150372584__Transaction_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "150405190",
+    "title": "Transactions Settings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\150405190__Transactions_Settings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151814197",
+    "title": "Card Issuance",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151814197__Card_Issuance.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151814216",
+    "title": "Manual Transactions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151814216__Manual_Transactions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151814255",
+    "title": "Request Cheque Book",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151814255__Request_Cheque_Book.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151814274",
+    "title": "Cheque Book Collection Acknowledgement",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151814274__Cheque_Book_Collection_Acknowledgement.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151814293",
+    "title": "Status Update",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151814293__Status_Update.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151814312",
+    "title": "Status Update Confirmation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151814312__Status_Update_Confirmation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151814331",
+    "title": "Cheque Book Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151814331__Cheque_Book_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151847060",
+    "title": "Cheque Book Issuance",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151847060__Cheque_Book_Issuance.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "151879767",
+    "title": "Pending Cheque Book",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\151879767__Pending_Cheque_Book.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "152698981",
+    "title": "user profile management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\152698981__user_profile_management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "152731899",
+    "title": "user access hyrachy management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\152731899__user_access_hyrachy_management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "152830006",
+    "title": "user group management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\152830006__user_group_management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154271754",
+    "title": "Signature Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154271754__Signature_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154304690",
+    "title": "Fund Transfer",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154304690__Fund_Transfer.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154337451",
+    "title": "Deposit",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154337451__Deposit.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154337546",
+    "title": "Miscellaneous Charges",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154337546__Miscellaneous_Charges.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154370168",
+    "title": "In-House Cheque Deposit",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154370168__In-House_Cheque_Deposit.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154370208",
+    "title": "Withdrawal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154370208__Withdrawal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154894531",
+    "title": "Cheque Book Type",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154894531__Cheque_Book_Type.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154894605",
+    "title": "Standing Order",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154894605__Standing_Order.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154894651",
+    "title": "Alert Limit",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154894651__Alert_Limit.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154894822",
+    "title": "Encrypted Card Information.",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154894822__Encrypted_Card_Information.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154959995",
+    "title": "Card Type",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154959995__Card_Type.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154992753",
+    "title": "Card Crypto Functions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154992753__Card_Crypto_Functions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154992828",
+    "title": "Manage Interest Logs",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154992828__Manage_Interest_Logs.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "154992928",
+    "title": "Alert Type",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\154992928__Alert_Type.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "155025562",
+    "title": "Card Product",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\155025562__Card_Product.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "155025722",
+    "title": "Schedule Payment",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\155025722__Schedule_Payment.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "155025753",
+    "title": "Alert Event",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\155025753__Alert_Event.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "155025811",
+    "title": "Manage Suppliers",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\155025811__Manage_Suppliers.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "155025895",
+    "title": "ATM Data Retrieval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\155025895__ATM_Data_Retrieval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "155713605",
+    "title": "AddTransactionEvent",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\155713605__AddTransactionEvent.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156041322",
+    "title": "PreMatureDetails",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156041322__PreMatureDetails.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156172290",
+    "title": "BankTransactionCode",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156172290__BankTransactionCode.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156172351",
+    "title": "BankTransactionSubCode",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156172351__BankTransactionSubCode.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156172386",
+    "title": "AddTdTransEventBlacklistRule",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156172386__AddTdTransEventBlacklistRule.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156172430",
+    "title": "MatureDetails",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156172430__MatureDetails.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156172460",
+    "title": "ScheduleEventCreation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156172460__ScheduleEventCreation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156696583",
+    "title": "Customer Detail",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156696583__Customer_Detail.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156696710",
+    "title": "TransferTaxes",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156696710__TransferTaxes.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156729443",
+    "title": "Transaction",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156729443__Transaction.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156729463",
+    "title": "TdGlActionPointLog",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156729463__TdGlActionPointLog.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156729596",
+    "title": "Analyst and Exceptional Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156729596__Analyst_and_Exceptional_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156762197",
+    "title": "ProcessScheduleSetup",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156762197__ProcessScheduleSetup.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156762256",
+    "title": "TransactionInquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156762256__TransactionInquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156762418",
+    "title": "Internal Exposure and Financial Commitment Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156762418__Internal_Exposure_and_Financial_Commitment_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156795015",
+    "title": "PaymentDetails",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156795015__PaymentDetails.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "156795104",
+    "title": "Marketing Executive and Business Introducer Mapping",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\156795104__Marketing_Executive_and_Business_Introducer_Mapping.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157220910",
+    "title": "Yard Module | Update Yard-In Asset Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157220910__Yard_Module_Update_Yard-In_Asset_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157220936",
+    "title": "Yard Module | Asset Yard Transfers",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157220936__Yard_Module_Asset_Yard_Transfers.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157220955",
+    "title": "Yard Module | Post Yard Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157220955__Yard_Module_Post_Yard_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157220974",
+    "title": "Yard Module | Asset Yard Release",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157220974__Yard_Module_Asset_Yard_Release.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157221000",
+    "title": "Entity Creation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157221000__Entity_Creation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157221019",
+    "title": "Pending Entity Confirmation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157221019__Pending_Entity_Confirmation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157253672",
+    "title": "Yard Module | Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157253672__Yard_Module_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157253691",
+    "title": "Yard Module | Mark Seized / Handover Vehicles",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157253691__Yard_Module_Mark_Seized_Handover_Vehicles.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157253717",
+    "title": "Yard Module | Reports and Enquires",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157253717__Yard_Module_Reports_and_Enquires.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157319197",
+    "title": "Yard Module | Mark Seized / Handover Cancellation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157319197__Yard_Module_Mark_Seized_Handover_Cancellation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157319223",
+    "title": "Yard Module | Fee Charges",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157319223__Yard_Module_Fee_Charges.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157319242",
+    "title": "Yard Module | Master Definition",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157319242__Yard_Module_Master_Definition.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157319275",
+    "title": "Supplier Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157319275__Supplier_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "157712385",
+    "title": "Document Checklist",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\157712385__Document_Checklist.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "158531602",
+    "title": "fgh",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\158531602__fgh.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159088644",
+    "title": "Document Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159088644__Document_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159088671",
+    "title": "Signature Mapping Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159088671__Signature_Mapping_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159088690",
+    "title": "Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159088690__Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159121430",
+    "title": "Document Managements",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159121430__Document_Managements.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159809606",
+    "title": "MatureCapitalTransferProcess",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159809606__MatureCapitalTransferProcess.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159809635",
+    "title": "ExternalPayments",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159809635__ExternalPayments.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159809684",
+    "title": "CreditInterestApplyScheduleLog",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159809684__CreditInterestApplyScheduleLog.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159809717",
+    "title": "VoucherTransactions",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159809717__VoucherTransactions.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159842340",
+    "title": "CreditInterestApplyProcess",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159842340__CreditInterestApplyProcess.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159842436",
+    "title": "ReceiptCreationBulk",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159842436__ReceiptCreationBulk.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159842489",
+    "title": "ScheduleLog",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159842489__ScheduleLog.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "159842509",
+    "title": "VoucherCreation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\159842509__VoucherCreation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162234450",
+    "title": "Service Provider",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162234450__Service_Provider.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162234621",
+    "title": "Customer common settings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162234621__Customer_common_settings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162267268",
+    "title": "BenefitCalculation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162267268__BenefitCalculation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162267330",
+    "title": "BalloonPayment",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162267330__BalloonPayment.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162267371",
+    "title": "Quotation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162267371__Quotation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162267392",
+    "title": "SkippedPaymentCalculation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162267392__SkippedPaymentCalculation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162267421",
+    "title": "set of books",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162267421__set_of_books.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162300210",
+    "title": "Entity Mappings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162300210__Entity_Mappings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162300257",
+    "title": "Structuerd",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162300257__Structuerd.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162300333",
+    "title": "Alert Template",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162300333__Alert_Template.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162333039",
+    "title": "Alert Mask",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162333039__Alert_Mask.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162333127",
+    "title": "BasicTcCalculator",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162333127__BasicTcCalculator.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162333192",
+    "title": "EMI",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162333192__EMI.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162333212",
+    "title": "PrematureCalculation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162333212__PrematureCalculation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "162758699",
+    "title": "common-settings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\162758699__common-settings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "163315724",
+    "title": "CounterCashDeposit",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\163315724__CounterCashDeposit.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "164397070",
+    "title": "CounterCashWithdrawal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\164397070__CounterCashWithdrawal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165511387",
+    "title": "Third party cokies pahseout",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165511387__Third_party_cokies_pahseout.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165511517",
+    "title": "Documents",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165511517__Documents.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165511551",
+    "title": "Interest Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165511551__Interest_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165511587",
+    "title": "Module Limit",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165511587__Module_Limit.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165544150",
+    "title": "Risk Registry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165544150__Risk_Registry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165544264",
+    "title": "Business Introducer",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165544264__Business_Introducer.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165576943",
+    "title": "ATM",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165576943__ATM.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165577023",
+    "title": "Document Check List",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165577023__Document_Check_List.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "165609798",
+    "title": "Nominee Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\165609798__Nominee_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "166920194",
+    "title": "Request Over Draft",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\166920194__Request_Over_Draft.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "166952968",
+    "title": "Over Draft Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\166952968__Over_Draft_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167346186",
+    "title": "Recovery Stage Mapping",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167346186__Recovery_Stage_Mapping.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167346276",
+    "title": "Statement status Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167346276__Statement_status_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167378946",
+    "title": "Sweep Type",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167378946__Sweep_Type.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167379025",
+    "title": "Purpose",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167379025__Purpose.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167379090",
+    "title": "Feature Benefit Item Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167379090__Feature_Benefit_Item_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167444483",
+    "title": "Over Draft Request Cancellation And Confirmation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167444483__Over_Draft_Request_Cancellation_And_Confirmation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167444645",
+    "title": "Feature Benefit Eligibility Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167444645__Feature_Benefit_Eligibility_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167444664",
+    "title": "Features Benefits Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167444664__Features_Benefits_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167903258",
+    "title": "Authentication Flow",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167903258__Authentication_Flow.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167903299",
+    "title": "Interest Apply Processes",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167903299__Interest_Apply_Processes.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167903318",
+    "title": "Schedule Od Charge Apply Process",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167903318__Schedule_Od_Charge_Apply_Process.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167936120",
+    "title": "Schedule Charge Apply Process",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167936120__Schedule_Charge_Apply_Process.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167968846",
+    "title": "Interest Apply Schedule Logs",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167968846__Interest_Apply_Schedule_Logs.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167968866",
+    "title": "Schedule Charges Apply Log",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167968866__Schedule_Charges_Apply_Log.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "167968885",
+    "title": "Schedule Log",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\167968885__Schedule_Log.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "168296450",
+    "title": "Design studio new architecture",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\168296450__Design_studio_new_architecture.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "169050113",
+    "title": "fx-design-studio",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\169050113__fx-design-studio.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295345",
+    "title": "Auto renewal Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295345__Auto_renewal_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295383",
+    "title": "Cerificate Details Re-issue",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295383__Cerificate_Details_Re-issue.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295402",
+    "title": "Interest Adjustment",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295402__Interest_Adjustment.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295423",
+    "title": "Source Of Funds",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295423__Source_Of_Funds.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295449",
+    "title": "Td Reports",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295449__Td_Reports.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295468",
+    "title": "Term Deposit",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295468__Term_Deposit.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295487",
+    "title": "Voucher Header",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295487__Voucher_Header.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170295513",
+    "title": "Voucher Transaction",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170295513__Voucher_Transaction.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328111",
+    "title": "Auto Renewal Schedule",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328111__Auto_Renewal_Schedule.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328131",
+    "title": "Benifit Calculations",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328131__Benifit_Calculations.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328157",
+    "title": "Certificate Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328157__Certificate_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328187",
+    "title": "Fund Transfer Collection",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328187__Fund_Transfer_Collection.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328216",
+    "title": "OwnershipTransfer",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328216__OwnershipTransfer.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328242",
+    "title": "Slip Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328242__Slip_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328261",
+    "title": "Td Credit Interests",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328261__Td_Credit_Interests.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170328287",
+    "title": "Td gl Action Point Log",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170328287__Td_gl_Action_Point_Log.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170360899",
+    "title": "Business Introducer Function",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170360899__Business_Introducer_Function.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170360918",
+    "title": "Closure Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170360918__Closure_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170360937",
+    "title": "Collection Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170360937__Collection_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170360957",
+    "title": "Special Rate Approval Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170360957__Special_Rate_Approval_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170393624",
+    "title": "Documents Function",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170393624__Documents_Function.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170393643",
+    "title": "Fund Transfer Payment",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170393643__Fund_Transfer_Payment.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170393662",
+    "title": "Interest Details Function",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170393662__Interest_Details_Function.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170393681",
+    "title": "Nominee Details Function",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170393681__Nominee_Details_Function.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170393707",
+    "title": "Notification Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170393707__Notification_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170393726",
+    "title": "Operation Instruction Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170393726__Operation_Instruction_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "170393745",
+    "title": "Partial Auto Renewal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\170393745__Partial_Auto_Renewal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171049080",
+    "title": "Alert Event User Mapping",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171049080__Alert_Event_User_Mapping.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171049107",
+    "title": "Error Alert",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171049107__Error_Alert.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171049128",
+    "title": "Service Provider Charges",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171049128__Service_Provider_Charges.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171049148",
+    "title": "Service Provider Contact",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171049148__Service_Provider_Contact.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171049168",
+    "title": "SMS Alert",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171049168__SMS_Alert.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171049190",
+    "title": "Zambia SMS Sender",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171049190__Zambia_SMS_Sender.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171081944",
+    "title": "Common Alert",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171081944__Common_Alert.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171081964",
+    "title": "Period",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171081964__Period.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171081991",
+    "title": "Transaction Event",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171081991__Transaction_Event.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171114634",
+    "title": "Alert Execution",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171114634__Alert_Execution.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171114654",
+    "title": "Alert Log",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171114654__Alert_Log.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171114705",
+    "title": "Template",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171114705__Template.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "171638816",
+    "title": "QA Process",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\171638816__QA_Process.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "177504265",
+    "title": "COB Revamp",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\177504265__COB_Revamp.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "179765258",
+    "title": "PAM Upgrade from RedHat Version 7.8.1 to IBM 8.0.6 Reference Document",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\179765258__PAM_Upgrade_from_RedHat_Version_7_8_1_to_IBM_8_0_6_Reference_Document.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "179765268",
+    "title": "curl-runner-user-guide",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\179765268__curl-runner-user-guide.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "180846622",
+    "title": "OCR Reader",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\180846622__OCR_Reader.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "182648837",
+    "title": "Copilot Studio Integration",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\182648837__Copilot_Studio_Integration.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "190775307",
+    "title": "New Frontend Architecture Guidelines",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\190775307__New_Frontend_Architecture_Guidelines.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "219906051",
+    "title": "What Happened so far",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\219906051__What_Happened_so_far.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "225673222",
+    "title": "First Approch - Plate.js (Open Source)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\225673222__First_Approch_-_Plate_js_Open_Source.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "225902593",
+    "title": "Document Template Rendering \u2013 Developer Documentation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\225902593__Document_Template_Rendering_Developer_Documentation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "231211055",
+    "title": "Dynamic Document Editor and Renderer",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\231211055__Dynamic_Document_Editor_and_Renderer.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236552194",
+    "title": "Cash and Transaction Management | Main Teller Operations|leg legal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236552194__Cash_and_Transaction_Management_Main_Teller_Operations_leg_legal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236552212",
+    "title": "Agreeing The Vault Balance",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236552212__Agreeing_The_Vault_Balance.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650524",
+    "title": "Bank Deposit Reversal|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650524__Bank_Deposit_Reversal_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650545",
+    "title": "Forceful Till Transfer|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650545__Forceful_Till_Transfer_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650566",
+    "title": "Authorize Fund Transfer|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650566__Authorize_Fund_Transfer_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650594",
+    "title": "Checker Action|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650594__Checker_Action_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650615",
+    "title": "Transfer Cash/Cheque Till to Vault|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650615__Transfer_Cash_Cheque_Till_to_Vault_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650665",
+    "title": "Cash Coins / Notes Exchange|Teller TransactionCash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650665__Cash_Coins_Notes_Exchange_Teller_TransactionCash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650694",
+    "title": "Cash Deposit Inquiry|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650694__Cash_Deposit_Inquiry_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236650715",
+    "title": "Transaction Inquiry|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236650715__Transaction_Inquiry_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236683270",
+    "title": "Cash and Transaction Management | Main Teller Operations",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236683270__Cash_and_Transaction_Management_Main_Teller_Operations.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236683314",
+    "title": "Treasury Cash receive|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236683314__Treasury_Cash_receive_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236683342",
+    "title": "Savings Passbook Printing|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236683342__Savings_Passbook_Printing_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236683419",
+    "title": "Multiple Currency and Cross Currency|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236683419__Multiple_Currency_and_Cross_Currency_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236683440",
+    "title": "Daily Teller Transaction Report|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236683440__Daily_Teller_Transaction_Report_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236716051",
+    "title": "Requesting Funds From Central Cash|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236716051__Requesting_Funds_From_Central_Cash_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236716086",
+    "title": "Accept Teller Cash/Cheque Transfer|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236716086__Accept_Teller_Cash_Cheque_Transfer_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236716137",
+    "title": "Collect Service Charges|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236716137__Collect_Service_Charges_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236716160",
+    "title": "Cash Withdrawal Inquiry|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236716160__Cash_Withdrawal_Inquiry_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236748828",
+    "title": "Request Cash From Central Cash Confirmation|Central Cash Confirmation|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236748828__Request_Cash_From_Central_Cash_Confirmation_Central_Cash_Confirmation_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236748849",
+    "title": "Authorize Teller to Teller Transfer|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236748849__Authorize_Teller_to_Teller_Transfer_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236748879",
+    "title": "Other - Withdrawal|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236748879__Other_-_Withdrawal_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236781584",
+    "title": "Bank Deposit|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236781584__Bank_Deposit_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236781605",
+    "title": "Slips/Receipts Re-Print|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236781605__Slips_Receipts_Re-Print_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236781626",
+    "title": "TD Cash Deposit|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236781626__TD_Cash_Deposit_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236781650",
+    "title": "Request Cash From Vault|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236781650__Request_Cash_From_Vault_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236781692",
+    "title": "Cash Courier Report|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236781692__Cash_Courier_Report_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236781714",
+    "title": "Coin Bag And Note Bundle|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236781714__Coin_Bag_And_Note_Bundle_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814380",
+    "title": "Rounding Off Entries|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814380__Rounding_Off_Entries_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814424",
+    "title": "Other - Deposit|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814424__Other_-_Deposit_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814452",
+    "title": "General Cash Voucher Payments|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814452__General_Cash_Voucher_Payments_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814485",
+    "title": "Teller Wise Cash Balance Report|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814485__Teller_Wise_Cash_Balance_Report_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814528",
+    "title": "Transaction Sub Code|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814528__Transaction_Sub_Code_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814549",
+    "title": "GL Product|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814549__GL_Product_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814570",
+    "title": "Feature & Benefit Item|Product Feature & Benefit|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814570__Feature_Benefit_Item_Product_Feature_Benefit_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814601",
+    "title": "Pending Legal contracts (Accept/Re-assign/Reject)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814601__Pending_Legal_contracts_Accept_Re-assign_Reject.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814618",
+    "title": "Reject Reasons Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814618__Reject_Reasons_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236814635",
+    "title": "Court Definition Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236814635__Court_Definition_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236847112",
+    "title": "Cash Transfer to Teller",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236847112__Cash_Transfer_to_Teller.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236847130",
+    "title": "Excess Cash|Excess Cash",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236847130__Excess_Cash_Excess_Cash.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236847181",
+    "title": "Cash Courier|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236847181__Cash_Courier_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236847202",
+    "title": "Transaction Reversal|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236847202__Transaction_Reversal_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236847272",
+    "title": "Lending Reward Payment|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236847272__Lending_Reward_Payment_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912663",
+    "title": "Balancing Transaction At Day End|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912663__Balancing_Transaction_At_Day_End_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912684",
+    "title": "Open / Close  Vault / Tills|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912684__Open_Close_Vault_Tills_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912712",
+    "title": "General Direct Payments|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912712__General_Direct_Payments_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912758",
+    "title": "Manual Charge Type|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912758__Manual_Charge_Type_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912781",
+    "title": "Institutional Payment Transaction|Institutional Payment Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912781__Institutional_Payment_Transaction_Institutional_Payment_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912825",
+    "title": "Assign Tellers To Teller Counter|Teller Definitions|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912825__Assign_Tellers_To_Teller_Counter_Teller_Definitions_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912863",
+    "title": "Writ",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912863__Writ.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236912880",
+    "title": "Notification Process Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236912880__Notification_Process_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236945423",
+    "title": "Rounding Off Entries Approval|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236945423__Rounding_Off_Entries_Approval_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236945447",
+    "title": "TD Cash Withdrawals|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236945447__TD_Cash_Withdrawals_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236945475",
+    "title": "Transaction exception inquiry|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236945475__Transaction_exception_inquiry_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978197",
+    "title": "Cash Transfer to Teller|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978197__Cash_Transfer_to_Teller_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978246",
+    "title": "Teller Limit Controller Approval|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978246__Teller_Limit_Controller_Approval_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978282",
+    "title": "Utility Bill Payment|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978282__Utility_Bill_Payment_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978304",
+    "title": "General Cash Direct Payments|Teller Transaction|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978304__General_Cash_Direct_Payments_Teller_Transaction_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978325",
+    "title": "Inter Teller Transfer|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978325__Inter_Teller_Transfer_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978360",
+    "title": "M-PESA Report Details Report|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978360__M-PESA_Report_Details_Report_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978381",
+    "title": "Cheque In Hand Report|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978381__Cheque_In_Hand_Report_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "236978402",
+    "title": "Bank Deposit Report|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\236978402__Bank_Deposit_Report_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237043713",
+    "title": "Transfer Transaction Inquiry|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237043713__Transfer_Transaction_Inquiry_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237043734",
+    "title": "Teller Balancing Sheet|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237043734__Teller_Balancing_Sheet_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237207554",
+    "title": "Cash Delivery Method|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237207554__Cash_Delivery_Method_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237207604",
+    "title": "Feature & Benefit Eligibility Type|Product Feature & Benefit|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237207604__Feature_Benefit_Eligibility_Type_Product_Feature_Benefit_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237207625",
+    "title": "Assign Currencies to Tills|Vault Master|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237207625__Assign_Currencies_to_Tills_Vault_Master_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237207646",
+    "title": "Assign Teller To Tills|Teller Definitions|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237207646__Assign_Teller_To_Tills_Teller_Definitions_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237207667",
+    "title": "Create Teller Counter|Teller Definitions|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237207667__Create_Teller_Counter_Teller_Definitions_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237207693",
+    "title": "Case Filing",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237207693__Case_Filing.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237207710",
+    "title": "Case filing update Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237207710__Case_filing_update_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237207727",
+    "title": "Notification Groups Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237207727__Notification_Groups_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237240329",
+    "title": "Utility Bill Payment Template|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237240329__Utility_Bill_Payment_Template_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237240350",
+    "title": "Transaction Event|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237240350__Transaction_Event_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237240426",
+    "title": "Legal Contract Report",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237240426__Legal_Contract_Report.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273090",
+    "title": "Payment Type|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273090__Payment_Type_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273111",
+    "title": "Payment Category|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273111__Payment_Category_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273132",
+    "title": "Transaction Code|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273132__Transaction_Code_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273153",
+    "title": "Feature & Benefit Item Type|Product Feature & Benefit|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273153__Feature_Benefit_Item_Type_Product_Feature_Benefit_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273174",
+    "title": "Feature & Benefit Eligibility Criteria|Product Feature & Benefit|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273174__Feature_Benefit_Eligibility_Criteria_Product_Feature_Benefit_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273195",
+    "title": "Till List|Teller Master|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273195__Till_List_Teller_Master_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273216",
+    "title": "Schedule Event|Common Module Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273216__Schedule_Event_Common_Module_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273260",
+    "title": "Decree",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273260__Decree.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237273277",
+    "title": "Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237273277__Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237305880",
+    "title": "Teller Limit Controller|Teller Definitions|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237305880__Teller_Limit_Controller_Teller_Definitions_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237305917",
+    "title": "General Comments",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237305917__General_Comments.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237305934",
+    "title": "Legal Steps Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237305934__Legal_Steps_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237305982",
+    "title": "Agreeing The Vault Balance|Cash and Transaction Management | Main Teller Operations",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237305982__Agreeing_The_Vault_Balance_Cash_and_Transaction_Management_Main_Teller_Operations.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237338632",
+    "title": "Teller Transaction GL Mapping|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237338632__Teller_Transaction_GL_Mapping_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237338653",
+    "title": "Vault List|Vault Master|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237338653__Vault_List_Vault_Master_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237338674",
+    "title": "Legal Firm Assigning",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237338674__Legal_Firm_Assigning.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237338699",
+    "title": "Investigation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237338699__Investigation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237338723",
+    "title": "Counselor & Legal Officer Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237338723__Counselor_Legal_Officer_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237371396",
+    "title": "Denomination Details|Central Cash Management Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237371396__Denomination_Details_Central_Cash_Management_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237371432",
+    "title": "Teller Creation|Teller Definitions|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237371432__Teller_Creation_Teller_Definitions_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237371453",
+    "title": "Case Proceedings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237371453__Case_Proceedings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237371470",
+    "title": "Case Proceedings bulk entry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237371470__Case_Proceedings_bulk_entry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237371487",
+    "title": "Settlement Status Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237371487__Settlement_Status_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237404185",
+    "title": "Weekly List Report",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237404185__Weekly_List_Report.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237436952",
+    "title": "Assign Main Teller To Vault|Teller Definitions|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237436952__Assign_Main_Teller_To_Vault_Teller_Definitions_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237436973",
+    "title": "Process Schedule Setup|Common Module Settings|Cash and Payment Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237436973__Process_Schedule_Setup_Common_Module_Settings_Cash_and_Payment_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237437010",
+    "title": "Letter of Demand  (Generate/Confirm)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237437010__Letter_of_Demand_Generate_Confirm.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237437027",
+    "title": "Case History Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237437027__Case_History_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237437044",
+    "title": "Legal Rejected List Report",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237437044__Legal_Rejected_List_Report.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237469706",
+    "title": "Accepted Legal contracts (Update Mediation status)",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237469706__Accepted_Legal_contracts_Update_Mediation_status.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237469723",
+    "title": "Assign Officers",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237469723__Assign_Officers.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237469740",
+    "title": "Update case filing",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237469740__Update_case_filing.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237469757",
+    "title": "Month End Report",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237469757__Month_End_Report.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237469774",
+    "title": "CBSL Audit and ILR Report",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237469774__CBSL_Audit_and_ILR_Report.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237469791",
+    "title": "Notification User Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237469791__Notification_User_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "237666337",
+    "title": "Fund Withdrawals From Banks|Cash and Transaction Management",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\237666337__Fund_Withdrawals_From_Banks_Cash_and_Transaction_Management.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "240123913",
+    "title": "COB | Tenant Specific logics documentation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\240123913__COB_Tenant_Specific_logics_documentation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "240320517",
+    "title": "Zambia Implementation Lessons Learnt",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\240320517__Zambia_Implementation_Lessons_Learnt.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "244776961",
+    "title": "ToDo / Pending Tasks of FE COE",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\244776961__ToDo_Pending_Tasks_of_FE_COE.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "251068417",
+    "title": "FE Project setup guideline",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\251068417__FE_Project_setup_guideline.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "256901121",
+    "title": "MicroFinance Module",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\256901121__MicroFinance_Module.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "263225348",
+    "title": "LOFIN Implementation Lessons Learnt",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\263225348__LOFIN_Implementation_Lessons_Learnt.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265715714",
+    "title": "Collateral final approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265715714__Collateral_final_approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265715731",
+    "title": "Asset Whitelist Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265715731__Asset_Whitelist_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265715748",
+    "title": "File Transfer Process",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265715748__File_Transfer_Process.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265715773",
+    "title": "Fee Charges- Calculation Frequency Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265715773__Fee_Charges-_Calculation_Frequency_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265748483",
+    "title": "Re-valuation Dashboard",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265748483__Re-valuation_Dashboard.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265748500",
+    "title": "Insurance Definitions- \tInsurance Cover Type Maintenance Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265748500__Insurance_Definitions-_Insurance_Cover_Type_Maintenance_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265781251",
+    "title": "Asset Detail Inquiry",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265781251__Asset_Detail_Inquiry.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265781268",
+    "title": "Asset Whitelist",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265781268__Asset_Whitelist.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265781287",
+    "title": "Asset Creation- Asset Make Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265781287__Asset_Creation-_Asset_Make_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265781305",
+    "title": "Asset Creation- Fuel Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265781305__Asset_Creation-_Fuel_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265781322",
+    "title": "Document Management- Document Management Level Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265781322__Document_Management-_Document_Management_Level_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265846793",
+    "title": "Fee Charges- Fee Charge Details Mapping Settings",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265846793__Fee_Charges-_Fee_Charge_Details_Mapping_Settings.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265846810",
+    "title": "Risk Calculation- Risk Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265846810__Risk_Calculation-_Risk_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265912330",
+    "title": "ROD Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265912330__ROD_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265912348",
+    "title": "Asset Creation- Asset Model Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265912348__Asset_Creation-_Asset_Model_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "265945090",
+    "title": "Asset Creation- Sub Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\265945090__Asset_Creation-_Sub_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266043411",
+    "title": "Temporary Block Reversal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266043411__Temporary_Block_Reversal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266076162",
+    "title": "Document Management- Document Checklist Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266076162__Document_Management-_Document_Checklist_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266108936",
+    "title": "Re-valuation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266108936__Re-valuation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266108953",
+    "title": "Cancel Deletion Letter",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266108953__Cancel_Deletion_Letter.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266174467",
+    "title": "Asset Creation- Asset Ownership Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266174467__Asset_Creation-_Asset_Ownership_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266174484",
+    "title": "Release Definitions- Release Request Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266174484__Release_Definitions-_Release_Request_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266207233",
+    "title": "Col-Collateral Asset Creation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266207233__Col-Collateral_Asset_Creation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266207250",
+    "title": "FusionX Database Entry Overview",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266207250__FusionX_Database_Entry_Overview.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266207267",
+    "title": "Module Master Controls- Master Module Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266207267__Module_Master_Controls-_Master_Module_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266240001",
+    "title": "Inspection & Valuation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266240001__Inspection_Valuation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266272769",
+    "title": "Legal Opinion",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266272769__Legal_Opinion.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266272786",
+    "title": "Asset Cancellation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266272786__Asset_Cancellation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266305537",
+    "title": "Legal Confirmation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266305537__Legal_Confirmation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266305554",
+    "title": "Asset Creation- Asset Class Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266305554__Asset_Creation-_Asset_Class_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266338305",
+    "title": "insurance Details- manual insurance creation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266338305__insurance_Details-_manual_insurance_creation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266371073",
+    "title": "Col-Collateral Insuarnce Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266371073__Col-Collateral_Insuarnce_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266371090",
+    "title": "Insurance Definitions- Insurance Type Maintenance Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266371090__Insurance_Definitions-_Insurance_Type_Maintenance_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266371107",
+    "title": "Document Management- Document Management Team Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266371107__Document_Management-_Document_Management_Team_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266403841",
+    "title": "Document Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266403841__Document_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266403858",
+    "title": "ROD Request",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266403858__ROD_Request.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266436609",
+    "title": "Document Details Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266436609__Document_Details_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266469385",
+    "title": "Asset Creation- Asset Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266469385__Asset_Creation-_Asset_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266502145",
+    "title": "Risk Calculation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266502145__Risk_Calculation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266502186",
+    "title": "Asset Creation- Asset Part Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266502186__Asset_Creation-_Asset_Part_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266534913",
+    "title": "Pledging Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266534913__Pledging_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266567681",
+    "title": "Charges Details",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266567681__Charges_Details.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266567698",
+    "title": "Asset Creation- Valuation Condition Category Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266567698__Asset_Creation-_Valuation_Condition_Category_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266600449",
+    "title": "Re-valuation approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266600449__Re-valuation_approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266600473",
+    "title": "Asset Creation- Asset Condition Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266600473__Asset_Creation-_Asset_Condition_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266633217",
+    "title": "Asset Blacklist",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266633217__Asset_Blacklist.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266665985",
+    "title": "Asset Blacklist Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266665985__Asset_Blacklist_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266666002",
+    "title": "Fee Charges- Fee Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266666002__Fee_Charges-_Fee_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266698753",
+    "title": "Block or Freeze",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266698753__Block_or_Freeze.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266698771",
+    "title": "Fee Charges- Fee Charge Cap Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266698771__Fee_Charges-_Fee_Charge_Cap_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266764290",
+    "title": "Module Master Controls- LTV Ratio Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266764290__Module_Master_Controls-_LTV_Ratio_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266797057",
+    "title": "Block or Freeze Approval",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266797057__Block_or_Freeze_Approval.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266797074",
+    "title": "Document Release Cancellation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266797074__Document_Release_Cancellation.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266797091",
+    "title": "Asset Creation- Common List Item Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266797091__Asset_Creation-_Common_List_Item_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266829825",
+    "title": "Outstanding Insurance Premium Payment",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266829825__Outstanding_Insurance_Premium_Payment.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266829842",
+    "title": "Document Management- Location Level Maintenance Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266829842__Document_Management-_Location_Level_Maintenance_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266829859",
+    "title": "Document Management- Location Creation Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266829859__Document_Management-_Location_Creation_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266862593",
+    "title": "Document Release",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266862593__Document_Release.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266862610",
+    "title": "Fee Charges- Fee Charge Details Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266862610__Fee_Charges-_Fee_Charge_Details_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266895361",
+    "title": "Print Deletion Letter",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266895361__Print_Deletion_Letter.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266928129",
+    "title": "Temporary Released Document Status",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266928129__Temporary_Released_Document_Status.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266928146",
+    "title": "Asset Creation- Asset Class Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266928146__Asset_Creation-_Asset_Class_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266960897",
+    "title": "Module Master Controls",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266960897__Module_Master_Controls.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "266993665",
+    "title": "Module Master Controls- Feature Benefit Item Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\266993665__Module_Master_Controls-_Feature_Benefit_Item_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267026433",
+    "title": "Module Master Controls- Feature Benefit Item Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267026433__Module_Master_Controls-_Feature_Benefit_Item_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267026450",
+    "title": "Fee Charges- Application Frequency Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267026450__Fee_Charges-_Application_Frequency_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267091969",
+    "title": "Module Master Controls- Feature Eligibility Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267091969__Module_Master_Controls-_Feature_Eligibility_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267091986",
+    "title": "Fee Charges- Fee Rate Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267091986__Fee_Charges-_Fee_Rate_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267092003",
+    "title": "Asset Creation- Engine Capacity Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267092003__Asset_Creation-_Engine_Capacity_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267124737",
+    "title": "Module Master Controls- Feature Eligibility Criteria Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267124737__Module_Master_Controls-_Feature_Eligibility_Criteria_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267157505",
+    "title": "Module Master Controls- Term Deposit Loan Exposure Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267157505__Module_Master_Controls-_Term_Deposit_Loan_Exposure_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267190273",
+    "title": "Fee Charges- Fee Category Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267190273__Fee_Charges-_Fee_Category_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267190291",
+    "title": "Asset Creation- Asset Options Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267190291__Asset_Creation-_Asset_Options_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267223041",
+    "title": "Fee Charges- Asset Tracking Fee Charges",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267223041__Fee_Charges-_Asset_Tracking_Fee_Charges.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267288577",
+    "title": "Asset Creation- Revaluation Notification Period Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267288577__Asset_Creation-_Revaluation_Notification_Period_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267321345",
+    "title": "Asset Creation- Asset Sub Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267321345__Asset_Creation-_Asset_Sub_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267321362",
+    "title": "Asset Creation- Bond Type Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267321362__Asset_Creation-_Bond_Type_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "267321379",
+    "title": "Risk Calculation- Risk Type Mapping Setting",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\267321379__Risk_Calculation-_Risk_Type_Mapping_Setting.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "268730403",
+    "title": "Insurance Details- Renew with CSV file",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\268730403__Insurance_Details-_Renew_with_CSV_file.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "269484058",
+    "title": "Insurance Details- Search for Upcoming Renewals",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\269484058__Insurance_Details-_Search_for_Upcoming_Renewals.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "276561921",
+    "title": "ADW",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\276561921__ADW.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "318636033",
+    "title": "Implementation Lessons Learnt",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\318636033__Implementation_Lessons_Learnt.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "326238209",
+    "title": "FusionX Service Renewal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\326238209__FusionX_Service_Renewal.md"
+  },
+  {
+    "space": "FusionX",
+    "id": "348127234",
+    "title": "FX Service Renewal",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\FusionX\\348127234__FX_Service_Renewal.md"
+  },
+  {
+    "space": "KB",
+    "id": "81365",
+    "title": "Knowledge base",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\KB\\81365__Knowledge_base.md"
+  },
+  {
+    "space": "KB",
+    "id": "81377",
+    "title": "Template - How-to guide",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\KB\\81377__Template_-_How-to_guide.md"
+  },
+  {
+    "space": "KB",
+    "id": "81391",
+    "title": "Template - Troubleshooting article",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\KB\\81391__Template_-_Troubleshooting_article.md"
+  },
+  {
+    "space": "SD",
+    "id": "131326",
+    "title": "Software Development",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\SD\\131326__Software_Development.md"
+  },
+  {
+    "space": "SD",
+    "id": "131365",
+    "title": "Template - Product requirements",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\SD\\131365__Template_-_Product_requirements.md"
+  },
+  {
+    "space": "SD",
+    "id": "131379",
+    "title": "Template - Meeting notes",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\SD\\131379__Template_-_Meeting_notes.md"
+  },
+  {
+    "space": "SD",
+    "id": "131393",
+    "title": "Template - Decision documentation",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\SD\\131393__Template_-_Decision_documentation.md"
+  },
+  {
+    "space": "SD",
+    "id": "131407",
+    "title": "Get the most out of your software project space",
+    "path": "E:\\QAFusionX\\workspaces\\PF-57868\\knowledge\\confluence\\clone\\SD\\131407__Get_the_most_out_of_your_software_project_space.md"
+  }
+]
