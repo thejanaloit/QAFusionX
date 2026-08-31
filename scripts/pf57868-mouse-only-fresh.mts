@@ -67,44 +67,87 @@ async function loadEntryOnce(page: Page) {
 }
 
 async function azureLogin(page: Page, email: string, password: string) {
-  for (let i = 0; i < 40; i++) {
+  const local = email.split("@")[0];
+  for (let i = 0; i < 100; i++) {
     const t = await body(page);
     const u = page.url();
     if (
       /Duruma|Ask FxMind|Core Banking Modules/i.test(t) &&
-      !/Sign in|Continue with AzureAd|Enter a valid email|Enter password|Approve sign in/i.test(t)
+      !/Sign in|Continue with AzureAd|Enter a valid email|Enter password|Approve sign in|Pick an account/i.test(t)
     ) {
       return true;
     }
     if (/Continue with AzureAd/i.test(t)) {
       await page.getByText(/Continue with AzureAd/i).first().click({ force: true });
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(2500);
       continue;
     }
     if (/Use my password|Use your password instead/i.test(t)) {
       await page.getByText(/Use my password|Use your password instead/i).first().click({ force: true });
-      await page.waitForTimeout(1500);
+      await page.waitForTimeout(2000);
+      continue;
+    }
+    if (/Approve sign in|Authenticator app|Choose a way to sign in|Enter code/i.test(t)) {
+      await shot(page, `mfa-${i}`);
+      const link = page.getByText(/Use my password|Use your password instead/i).first();
+      if (await link.isVisible().catch(() => false)) {
+        await link.click({ force: true });
+        await page.waitForTimeout(2000);
+      } else {
+        await page.waitForTimeout(2000);
+      }
+      continue;
+    }
+    if (/Pick an account|Use another account/i.test(t)) {
+      const tile = page.getByText(new RegExp(email.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i")).first();
+      if (await tile.count()) {
+        await tile.click({ force: true });
+      } else {
+        const tile2 = page.getByText(new RegExp(local, "i")).first();
+        if (await tile2.count()) await tile2.click({ force: true });
+        else await page.getByText(/Use another account/i).first().click({ force: true }).catch(() => undefined);
+      }
+      await page.waitForTimeout(2000);
       continue;
     }
     if (await page.locator("#i0116").count()) {
       await setInputValue(page, "#i0116", email);
-      await page.locator("#idSIButton9").click().catch(() => undefined);
-      await page.waitForTimeout(2000);
+      await page.locator("#idSIButton9").click({ force: true }).catch(() => undefined);
+      await page.waitForTimeout(2500);
       continue;
     }
     if (await page.locator("#i0118").count()) {
       await setInputValue(page, "#i0118", password);
-      await page.locator("#idSIButton9").click().catch(() => undefined);
-      await page.waitForTimeout(2500);
-      continue;
-    }
-    if (/Yes/i.test(t) && /Stay signed in/i.test(t)) {
-      await page.getByRole("button", { name: /^Yes$/i }).click().catch(() => undefined);
+      await page.locator("#idSIButton9").click({ force: true }).catch(() => undefined);
       await page.waitForTimeout(3000);
       continue;
     }
-    console.log("login-wait", i, u.slice(0, 80));
-    await page.waitForTimeout(1500);
+    if (/Stay signed in/i.test(t)) {
+      await page.locator("#idSIButton9").click({ force: true }).catch(() => undefined);
+      await page.getByRole("button", { name: /^Yes$/i }).click({ force: true }).catch(() => undefined);
+      await page.waitForTimeout(3000);
+      continue;
+    }
+    // Fallback: any visible email input
+    const emailInput = page.locator('input[type="email"], input[name="loginfmt"]').first();
+    if (await emailInput.count()) {
+      await emailInput.fill(email).catch(() => undefined);
+      await page.keyboard.press("Enter");
+      await page.waitForTimeout(2000);
+      continue;
+    }
+    const passInput = page.locator('input[type="password"], input[name="passwd"]').first();
+    if (await passInput.count()) {
+      await passInput.fill(password).catch(() => undefined);
+      await page.keyboard.press("Enter");
+      await page.waitForTimeout(2500);
+      continue;
+    }
+    if (i % 5 === 0) {
+      console.log("login-wait", i, u.slice(0, 100), t.slice(0, 120).replace(/\s+/g, " "));
+      await shot(page, `login-dbg-${i}`).catch(() => undefined);
+    }
+    await page.waitForTimeout(1000);
   }
   return false;
 }
