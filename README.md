@@ -6,6 +6,8 @@ The Control Console is a live GUI for the same engine: numbered pipeline, Ask-mo
 
 **LOCKED — visible browser on every user's device.** The workflow is a pipeline, but crawl and GUI tests never run as a silent job inside it. When any user runs QAFusionX on their machine, a **separate browser window opens on that device** and shows every screen, popup, and click. Headless is rejected. There is no silent mode.
 
+**LOCKED — unbreakable one-browser session.** Open one window and keep it open for Round 1 → Round 2 → all stories → maker → checker → suite. Never close mid-flow. Never reopen a second browser for the next story. Logout/login stays in the same window. Close only at end-of-flow.
+
 ## What it does
 
 1. **Ask — project & target** (Ask mode) — product name, what to test, live URL, screenshot.

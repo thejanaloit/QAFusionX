@@ -154,7 +154,7 @@ QAFusionX encodes that same artefact shape so a human can still execute the case
   const suite = await actions.runSuite();
   const issues = await actions.exportIssues();
   const bugs = await actions.fileBugs();
-  await closeBrowser();
+  await closeBrowser({ reason: "end-of-flow", force: true });
 
   bus.emitEvent("demo:done", "Guided demo finished every compulsory step.");
   return {

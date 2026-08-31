@@ -9,8 +9,9 @@ export const VISIBLE_BROWSER_LOCK = {
   locked: true as const,
   headlessAllowed: false as const,
   mode: "separate-window-on-user-device" as const,
+  unbreakableSession: true as const,
   rule:
-    "LOCKED. The pipeline still runs in order, but Round 1, Round 2, and GUI tests never run silently inside it. When any user runs QAFusionX on their device, a separate browser window must open on that device and show every screen, popup, and click.",
+    "LOCKED. The pipeline still runs in order, but Round 1, Round 2, and GUI tests never run silently inside it. When any user runs QAFusionX on their device, a separate browser window must open on that device and show every screen, popup, and click. ONE window only — never close/reopen mid-flow; navigate in the same session through Round 1 → Round 2 → suite → maker/checker.",
 };
 
 export function visibleBrowserStatus() {
@@ -51,9 +52,10 @@ QAFusionX is a sequential pipeline. That does **not** mean crawl or GUI tests ru
 When QAFusionX runs on a user's machine:
 
 1. A **separate real browser window** opens on **that user's device**.
-2. Round 1, Round 2, and GUI suite execution happen **inside that window**.
+2. Round 1, Round 2, and GUI suite execution happen **inside that same window**.
 3. The user watches every navigation, popup, and click.
 4. Headless / silent / hidden webview / API-only substitutes are **forbidden**.
+5. **UNBREAKABLE SESSION:** do not close the browser between stories, rounds, or maker→checker. Keep one window open; navigate inside it. Close only at end-of-flow.
 
 \`QAFUSIONX_HEADED=0\` is rejected. There is no silent mode.
 `;

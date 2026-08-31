@@ -1,9 +1,9 @@
 ---
-description: LOCKED — QAFusionX always opens a separate browser on the user's device
+description: LOCKED — QAFusionX always opens a separate browser on the user's device; one unbreakable session
 alwaysApply: true
 ---
 
-# LOCKED RULE — visible browser on every user's device
+# LOCKED RULE — visible browser + unbreakable one-browser session
 
 This is locked. Do not interpret, weaken, or skip it.
 
@@ -17,4 +17,14 @@ When **any user** runs QAFusionX on **their device**:
 4. If this machine has no display, stop and tell the user to run QAFusionX on their own computer so the browser can open there. Do not continue headless.
 5. API tests may run without a window. Round 1, Round 2, and GUI scripts may not.
 
+## UNBREAKABLE SESSION (mandatory)
+
+6. **One browser only.** Open once at the start of GUI work. Keep it open for Round 1 → Round 2 → all stories → maker → checker → suite.
+7. **Never close mid-flow.** Do not close between stories, screens, rounds, or maker→checker. Do not open a second Chromium "for the next story".
+8. Logout/login (maker → checker) stays **inside the same window**.
+9. `closeBrowser` is **end-of-flow only** (workflow reset or user ends the full QA run).
+10. Engine must **reuse** the live page (`openVisibleBrowser` / `getPage`); `openTarget` only navigates.
+
 `QAFUSIONX_HEADED=0` is rejected by the engine. There is no silent mode.
+
+Sinhala: එක browser එකක් open කරලා digatama යන්න. අතරේ close කරලා අලුතෙන් open කරන්න එපා.

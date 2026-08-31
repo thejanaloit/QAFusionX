@@ -50,6 +50,10 @@ Then Round 2 for misses. Then system map + tests.
 
 Separate real browser window on the user's device. `QAFUSIONX_HEADED=0` is rejected. No silent crawl. No headless GUI tests.
 
+**UNBREAKABLE ONE-BROWSER SESSION:** open once; keep the same window for Round 1 → Round 2 → all stories → maker → checker → suite. Never close mid-flow. Never reopen a second browser for the next story. Logout/login happens inside the same window. Close only at end-of-flow.
+
 ## Sinhala
 
 MCP use කරනකොට Ask mode. Step tick නැතුව ඊළඟ step එකට යන්න බෑ. හැම screen එකම capture + reference + plan. Round 2 දෙක. පස්සේ test cases, YAML, scripts, run, export, bugs. මේ flow එක lock කරලා.
+
+Browser: එක window එකක් open කරලා digatama යන්න. Story/round අතරේ close කරන්න එපා.

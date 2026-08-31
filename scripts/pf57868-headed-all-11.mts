@@ -6,8 +6,8 @@ const makerEmail = process.env.QAFUSIONX_EMAIL!;
 const makerPassword = process.env.QAFUSIONX_PASSWORD!;
 const checkerEmail = process.env.CHECKER_EMAIL || "MethmiB@lolctech.com";
 const checkerPassword = process.env.CHECKER_PASSWORD!;
-const proof = "C:/Users/ThejanaD/QAFusionX/proof-full-all-11-aug31";
-const mirror = "E:/QAFusionX/workspaces/PF-57868/reports/proof/full-all-11-aug31";
+const proof = "C:/Users/ThejanaD/QAFusionX/proof-full-all-11-r2-aug31";
+const mirror = "E:/QAFusionX/workspaces/PF-57868/reports/proof/full-all-11-r2-aug31";
 fs.mkdirSync(proof, { recursive: true });
 fs.mkdirSync(mirror, { recursive: true });
 const storage = path.join(proof, "_storage.json");
@@ -464,12 +464,21 @@ const storagePrev = [
     });
     await ctx.storageState({ path: storage });
     rec("all-done", { issueCount: issues.length, ok: true });
-    // Keep browser visible briefly so operator sees final state
-    await page.waitForTimeout(8000);
+    const closeAtEnd = (process.env.QAFUSIONX_CLOSE_BROWSER ?? "0").trim() === "1";
+    if (!closeAtEnd) {
+      rec("browser-kept-open", { rule: "unbreakable-one-browser-session" });
+      console.log(
+        "LOCKED: same browser kept open (unbreakable session). Set QAFUSIONX_CLOSE_BROWSER=1 only for end-of-flow close.",
+      );
+      // Keep Node alive so Playwright does not tear down Chromium on process exit
+      await new Promise((r) => setTimeout(r, 3_600_000));
+    }
   } catch (e: any) {
     rec("fatal", { error: String(e).slice(0, 500), shot: await shot(page, "fatal") });
     flag("GEN", `Fatal QA error: ${String(e).slice(0, 200)}`, "fatal.png");
   } finally {
-    await browser.close();
+    if ((process.env.QAFUSIONX_CLOSE_BROWSER ?? "0").trim() === "1") {
+      await browser.close();
+    }
   }
 })();

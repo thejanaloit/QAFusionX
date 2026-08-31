@@ -122,7 +122,7 @@ export function createQaFusionXServer(): McpServer {
     {
       title: "Open the target URL",
       description:
-        "LOCKED: opens the recorded URL in a SEPARATE visible browser window on this user's device. Never a silent pipeline job. Never headless. Round 1.",
+        "LOCKED: opens the recorded URL in a SEPARATE visible browser window on this user's device (reuses the same window if already open — never close/reopen mid-flow). Never a silent pipeline job. Never headless. Round 1.",
     },
     async () => {
       try {
@@ -183,7 +183,7 @@ export function createQaFusionXServer(): McpServer {
     {
       title: "Click a control by index",
       description:
-        "Click the control in the separate visible browser window on this user's device. Then immediately capture the next screen or popup so they can watch the transition.",
+        "Click the control in the SAME visible browser window already open on this user's device (do not close/reopen). Then immediately capture the next screen or popup so they can watch the transition.",
       inputSchema: {
         index: z.number().int().nonnegative(),
         label: z.string().optional(),
@@ -423,7 +423,7 @@ export function createQaFusionXServer(): McpServer {
     {
       title: "Run the automated suite",
       description:
-        "LOCKED: opens a separate visible browser on this user's device. Priority=PASS via real flows (Azure AD login, waits, alternate controls). Retries each case honestly up to 10 rounds (QAFUSIONX_SUITE_MAX_ROUNDS); never invents a pass; FAIL only after all rounds. FusionX uses real COB asserts + product APIs (not /api/sample/health). Results stream to the Control Console.",
+        "LOCKED: reuses ONE separate visible browser on this user's device for the whole suite (never close between cases). Priority=PASS via real flows (Azure AD login, waits, alternate controls). Retries each case honestly up to 10 rounds (QAFUSIONX_SUITE_MAX_ROUNDS); never invents a pass; FAIL only after all rounds. FusionX uses real COB asserts + product APIs (not /api/sample/health). Results stream to the Control Console.",
     },
     async () => {
       try {
@@ -523,9 +523,13 @@ export function createQaFusionXServer(): McpServer {
     "qafusionx_reset",
     {
       title: "Reset workflow",
-      description: "Deletes artifacts and re-engages the Ask-mode lock. Destructive.",
+      description:
+        "Deletes artifacts and re-engages the Ask-mode lock. Destructive. Closes the visible browser only because this is end-of-flow / workflow-reset (unbreakable session ends).",
     },
-    async () => ok(actions.resetState()),
+    async () => {
+      await actions.closeBrowser({ reason: "workflow-reset", force: true });
+      return ok(actions.resetState());
+    },
   );
 
   server.registerResource(

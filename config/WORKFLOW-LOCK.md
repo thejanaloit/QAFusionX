@@ -95,10 +95,11 @@ Until both are submitted via MCP, every mutating tool returns `BLOCKED`.
 
 - `QAFUSIONX_HEADED=0` rejected  
 - Crawl + GUI tests open a **separate window** on the user's device  
-- Never headless, never silent pipeline
+- Never headless, never silent pipeline  
+- **UNBREAKABLE SESSION:** one browser for Round 1 → Round 2 → stories → maker → checker → suite. Never close/reopen mid-flow. Navigate in the same window. `closeBrowser` = end-of-flow only.
 
 ---
 
 ## Sinhala — මූලික නීතිය
 
-QAFusionX MCP use කරන වෙලාවේ **Ask mode** එකට යන්න. මුලින් project + URL + screenshot, ඊට පස්සේ **අනිවාර්යයෙන්** user stories (zip / Jira / generate). ඊට පස්සේ step-by-step tick එකක් නැතුව ඊළඟ step එකට යන්න බෑ. හැම screen එකම capture → reference MD → plan update → click. Round 1 + Round 2 දෙකම. ඊට පස්සේ system map, test cases, YAML, scripts, run, export, Jira bugs. Headless බෑ.
+QAFusionX MCP use කරන වෙලාවේ **Ask mode** එකට යන්න. මුලින් project + URL + screenshot, ඊට පස්සේ **අනිවාර්යයෙන්** user stories (zip / Jira / generate). ඊට පස්සේ step-by-step tick එකක් නැතුව ඊළඟ step එකට යන්න බෑ. හැම screen එකම capture → reference MD → plan update → click. Round 1 + Round 2 දෙකම. ඊට පස්සේ system map, test cases, YAML, scripts, run, export, Jira bugs. Headless බෑ. **එකම browser window එකේ digatama යන්න — අතරේ close කරන්න එපා.**

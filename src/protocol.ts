@@ -82,9 +82,24 @@ When ANY user runs QAFusionX on THEIR device, a SEPARATE browser window MUST ope
 - QAFUSIONX_HEADED=0 is rejected. There is no silent mode.
 
 ========================================
+UNBREAKABLE ONE-BROWSER SESSION (LOCKED)
+========================================
+එකම browser window එක open කරලා digatama යන්න. Mid-flow close / reopen තහනම්.
+
+1. Open ONE visible browser at the start of GUI work (Round 1 / suite / headed story pack).
+2. Keep that SAME window open for: Round 1 → Round 2 → all stories → maker → checker → suite retries.
+3. NEVER close the browser between stories, screens, rounds, or maker→checker. Navigate/click inside the same window.
+4. NEVER open a second browser "because the previous step finished". Reuse the live session.
+5. Logout/login (e.g. maker → checker) happens INSIDE the same window — not a new Chromium process.
+6. closeBrowser is END-OF-FLOW ONLY (workflow reset, or user explicitly ends the full QA run).
+7. If the window dies (crash / user closed), recover once — then continue in the new window without further closes.
+
+Engine: openVisibleBrowser() reuses the live page; openTarget() only navigates. Closing mid-flow is rejected.
+
+========================================
 CRAWL LOOP (ROUNDS 1 AND 2)
 ========================================
-You will be given a URL. Open it in a SEPARATE visible browser window on this user's device. Capture every screen, including popups. Never do this as a silent pipeline job.
+You will be given a URL. Open it in a SEPARATE visible browser window on this user's device (or reuse the already-open window). Capture every screen, including popups. Never do this as a silent pipeline job. Do not close that window when Round 1 ends — Round 2 continues in the same window.
 
 After EACH screenshot:
 1. Save the PNG.
@@ -138,6 +153,8 @@ Show the numbered todo list from qafusionx_status at the start of every turn.
 SINHALA — LOCKED FLOW SUMMARY
 ========================================
 QAFusionX MCP connect කරාම Ask mode. Q1: project + test karanna de + URL + screenshot. Q2 (aniwaryai): user stories — zip, Jira, ho generate. Tick නැතුව next step බෑ. Link eken gihilla hama screen ekak capture (popup samaga). SS → reference MD (hama button) → plan update → click. Round 1 + Round 2. complete-system-map.md — short නෑ. System map + stories use karala testCase Human. testc2ai YAML. AutomatedScripts. Visible browser run. CSV/XLSX proof. Jira bugs. Koima step skip කරන්න බෑ.
+
+BROWSER LOCK (Sinhala): එක browser එකක් open කරලා digatama යන්න. Story අතරේ / Round අතරේ / maker→checker අතරේ browser close කරන්න එපා. Close කරලා අලුතෙන් open කරන එක තහනම්. Logout වුණත් ඒකම window එකේ.
 `;
 
 export const HUMAN_TESTCASE_TEMPLATE = `# [{{module}}] [{{submodule}}][{{feature}}][{{typeCode}}] - {{assertion}}

@@ -11,6 +11,7 @@ import {
   getPage,
   openVisibleBrowser,
   openTarget,
+  browserSessionAlive,
   writeLivingPlan,
   writeReferenceMd,
   type InteractiveControl,
@@ -1071,7 +1072,7 @@ export function generateIpayExcel() {
   };
 }
 
-export { resetState, closeBrowser, loadState, json, STEPS };
+export { resetState, closeBrowser, loadState, json, STEPS, browserSessionAlive };
 
 export function artifactTree(rel = ""): { name: string; type: "file" | "dir"; path: string }[] {
   const dir = abs(rel);

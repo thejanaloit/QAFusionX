@@ -38,8 +38,13 @@ export function headedEnabled(): boolean {
   return true;
 }
 
+/** True when the same headed window is still alive (unbreakable session). */
+export function browserSessionAlive(): boolean {
+  return Boolean(browser?.isConnected() && page && !page.isClosed());
+}
+
 export async function getPage(): Promise<Page> {
-  if (page && !page.isClosed()) return page;
+  if (browserSessionAlive()) return page!;
   return openVisibleBrowser();
 }
 
@@ -51,10 +56,24 @@ export async function getContextCookies(): Promise<
   return context.cookies();
 }
 
-/** Always open a new headed window on this user's device. Never headless. */
+/**
+ * LOCKED — unbreakable one-browser session.
+ * Reuses the existing headed window if still open. Never closes mid-flow
+ * just to "open again". Launch only when no live session exists.
+ */
 export async function openVisibleBrowser(): Promise<Page> {
   assertVisibleBrowserLock();
-  await closeBrowser();
+  if (browserSessionAlive()) {
+    bus.emitEvent(
+      "browser:reuse",
+      "LOCKED: reusing the same visible browser window — do not close/reopen mid-flow.",
+    );
+    return page!;
+  }
+  // Stale handles (window crashed / user closed) — clear without treating as mid-flow close
+  if (browser || context || page) {
+    await closeBrowser({ reason: "stale-session-recovery" });
+  }
   try {
     browser = await chromium.launch({
       headless: false,
@@ -69,7 +88,7 @@ export async function openVisibleBrowser(): Promise<Page> {
   }
   bus.emitEvent(
     "browser:launch",
-    "LOCKED: opened a separate visible browser window on this user's device. Watch every crawl and GUI click here — this is not a silent pipeline job.",
+    "LOCKED: opened ONE separate visible browser window on this user's device. Keep this window open for Round 1 → Round 2 → suite → checker. Never close mid-flow.",
   );
   const videoDir = abs(path.join("reports", "video"));
   fs.mkdirSync(videoDir, { recursive: true });
@@ -82,7 +101,20 @@ export async function openVisibleBrowser(): Promise<Page> {
   return page;
 }
 
-export async function closeBrowser(): Promise<void> {
+/**
+ * END-OF-FLOW ONLY. Do not call between stories, rounds, or maker→checker.
+ * Mid-flow close breaks the unbreakable one-browser rule.
+ */
+export async function closeBrowser(opts?: { reason?: string; force?: boolean }): Promise<void> {
+  const reason = opts?.reason ?? "end-of-flow";
+  if (!opts?.force && reason !== "end-of-flow" && reason !== "stale-session-recovery" && reason !== "workflow-reset") {
+    bus.emitEvent(
+      "browser:close-blocked",
+      `LOCKED: refused browser close (${reason}). Keep the same window open until the full QA flow finishes.`,
+    );
+    return;
+  }
+  bus.emitEvent("browser:close", `Closing visible browser (${reason}).`);
   if (context) await context.close().catch(() => undefined);
   if (browser) await browser.close().catch(() => undefined);
   browser = null;
@@ -90,8 +122,9 @@ export async function closeBrowser(): Promise<void> {
   page = null;
 }
 
+/** Navigate in the SAME open window — never relaunch. */
 export async function openTarget(url: string): Promise<{ url: string; title: string }> {
-  const p = await openVisibleBrowser();
+  const p = await getPage();
   await p.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
   await p.waitForTimeout(900);
   return { url: p.url(), title: await p.title() };
