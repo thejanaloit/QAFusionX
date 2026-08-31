@@ -36,9 +36,13 @@ async function shot(page: Page, name: string) {
   seq += 1;
   const file = `${String(seq).padStart(3, "0")}-${name}.png`;
   const abs = path.join(proofRoot, file);
-  await page.screenshot({ path: abs, fullPage: false });
-  fs.copyFileSync(abs, path.join(mirror, file));
-  console.log("SHOT", file);
+  try {
+    await page.screenshot({ path: abs, fullPage: false, timeout: 15_000 });
+    fs.copyFileSync(abs, path.join(mirror, file));
+    console.log("SHOT", file);
+  } catch (e) {
+    console.log("SHOT_FAIL", file, e instanceof Error ? e.message : e);
+  }
   return file;
 }
 
@@ -185,20 +189,35 @@ async function azureLogin(page: Page, email: string, password: string) {
 }
 
 async function returnHomeMouse(page: Page) {
-  // Sidebar home (first icon area) then Core Banking text
-  const side = page.locator("aside button, [class*='side'] button, nav button").first();
-  if (await side.count()) {
-    const box = await side.boundingBox();
-    if (box) {
-      await mouseClickAt(page, box.x + box.width / 2, box.y + box.height / 2, "sidebar-home");
-      if (/Core Banking Modules/i.test(await body(page))) return true;
+  const t = await body(page);
+  // Already on Flip-grid home — do not click anything that can kill the session.
+  if (/Core Banking Modules/i.test(t) && /Loan Origination and Management|Account Management/i.test(t)) {
+    await shot(page, "already-home");
+    return true;
+  }
+  // Prefer Duruma branch / home chrome text only — never blind top-left or off-grid sidebar.
+  if (await mouseClickText(page, /Duruma Road Branch/i, "branch-chip")) {
+    await page.waitForTimeout(1000);
+  }
+  if (/Core Banking Modules/i.test(await body(page))) {
+    await shot(page, "home-ok");
+    return true;
+  }
+  // Left rail: click first icon only if its box is left strip (x < 80)
+  const icons = page.locator("aside button, [class*='sidebar'] button, [class*='side-nav'] button");
+  const n = Math.min(await icons.count(), 6);
+  for (let i = 0; i < n; i++) {
+    const box = await icons.nth(i).boundingBox();
+    if (!box || box.x > 90 || box.y > 400) continue;
+    await mouseClickAt(page, box.x + box.width / 2, box.y + box.height / 2, `rail-${i}`);
+    await page.waitForTimeout(1200);
+    if (/Core Banking Modules/i.test(await body(page))) {
+      await shot(page, "home-via-rail");
+      return true;
     }
   }
-  if (await mouseClickText(page, /Core Banking Modules/i, "core-banking-label")) return true;
-  // Click near FusionX logo / top-left
-  await mouseClickAt(page, 48, 28, "top-left-logo");
-  await page.waitForTimeout(1200);
-  return /Core Banking Modules|Account Management/i.test(await body(page));
+  await shot(page, "home-miss");
+  return false;
 }
 
 const TILES: Array<{ story: string; text: string; label: string; deep: string[] }> = [
@@ -277,9 +296,24 @@ async function main() {
     return;
   }
 
+  // Wait until flip-grid tiles are visible before any module mouse work
+  for (let w = 0; w < 40; w++) {
+    const t = await body(page);
+    if (/Loan Origination and Management/i.test(t) && /Core Banking Modules/i.test(t)) break;
+    if (/personalization is in progress/i.test(t)) await page.waitForTimeout(3000);
+    else await page.waitForTimeout(1000);
+  }
+  await shot(page, "01b-home-tiles-ready");
+
   const log: Array<{ story: string; label: string; url: string; note: string }> = [];
 
   for (const tile of TILES) {
+    // Abort module loop if session died into MS error
+    if (/AADSTS|trouble signing you in|microsoftonline\.com\/undefined/i.test(page.url() + (await body(page)))) {
+      console.log("SESSION_DEAD — stop module loop (no URL restart mid-flow)");
+      await shot(page, "session-dead");
+      break;
+    }
     await returnHomeMouse(page);
     await page.waitForTimeout(800);
     // Prefer exact tile text; double-open with mouse
