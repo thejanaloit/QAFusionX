@@ -73,7 +73,7 @@ async function loadEntryOnce(page: Page) {
 
 async function azureLogin(page: Page, email: string, password: string) {
   const local = email.split("@")[0];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 150; i++) {
     let t = "";
     let u = "";
     try {
@@ -90,7 +90,8 @@ async function azureLogin(page: Page, email: string, password: string) {
       return true;
     }
     if (/personalization is in progress|Please wait/i.test(t)) {
-      await page.waitForTimeout(2500);
+      console.log("splash-wait", i);
+      await page.waitForTimeout(4000);
       continue;
     }
     if (/Continue with AzureAd/i.test(t)) {
