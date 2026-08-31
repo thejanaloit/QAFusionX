@@ -33,10 +33,23 @@ export function assertMouseClickOnlyNav(action: string): void {
   );
 }
 
+/**
+ * LOCKED — wait until screen is analyzable after every click.
+ * Cannot be skipped to "go faster".
+ */
+export const WAIT_UNTIL_ANALYZABLE_LOCK = {
+  locked: true as const,
+  minQuietMs: 1200,
+  maxWaitMs: 90_000,
+  rule:
+    "LOCKED. After every mouse click, wait until the screen is analyzable: splash/personalization gone, chrome/dialog readable, multi-wave loads settled. Never click the next control while the page is still loading. Sinhala: click → wait → analyze → next click.",
+};
+
 export function visibleBrowserStatus() {
   return {
     ...VISIBLE_BROWSER_LOCK,
     mouseClickOnlyNav: MOUSE_CLICK_ONLY_NAV_LOCK,
+    waitUntilAnalyzable: WAIT_UNTIL_ANALYZABLE_LOCK,
     headed: true,
     envForcedHeaded: true,
   };
@@ -77,6 +90,7 @@ When QAFusionX runs on a user's machine:
 4. Headless / silent / hidden webview / API-only substitutes are **forbidden**.
 5. **UNBREAKABLE SESSION:** do not close the browser between stories, rounds, or maker→checker. Keep one window open; navigate inside it. Close only at end-of-flow.
 6. **MOUSE-CLICK-ONLY NAV (LOCKED):** load the entry URL **once**. After that, **never** \`page.goto\` / address-bar URL / deep-link reload. Full QA must move only by **mouse clicks** through the UI.
+7. **WAIT UNTIL ANALYZABLE (LOCKED):** after every click, wait until splash/personalization is gone and the screen is readable (IBAF/GBAF modal, TD/Account dashboards). Never rush the next click.
 
 \`QAFUSIONX_HEADED=0\` is rejected. There is no silent mode.
 `;

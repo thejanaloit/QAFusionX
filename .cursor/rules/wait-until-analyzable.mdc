@@ -1,0 +1,23 @@
+---
+description: LOCKED — after every click/navigation, wait until the screen is stable and analyzable before acting
+alwaysApply: true
+---
+
+# LOCKED RULE — wait until screen is analyzable
+
+This is locked. Do not rush clicks. Do not skip settle waits.
+
+When running QAFusionX / Kenya UAT / PF-57868 / any headed FusionX QA:
+
+1. After **every** mouse click (or any navigation that changes the UI), **wait**.
+2. Wait until the screen is **analyzable**:
+   - splash / “Please wait” / “personalization” gone
+   - main chrome visible (sidebar, title, or dialog content)
+   - charts/placeholders finished settling OR clearly empty (grey box is OK if chrome is ready)
+   - modals fully painted (e.g. IBAF/GBAF “Select Banking & Finance Type”)
+3. Default settle: poll body text + URL up to **45–90s**; screenshot only when stable enough to read.
+4. **Never** click the next control while personalization/splash/blank shell is still up.
+5. Some FusionX screens load in waves — wait through 2–3 quiet intervals (no DOM churn) before analyzing.
+6. Works with mouse-click-only + one-browser locks: wait happens **in the same window**, not via URL reload.
+
+Sinhala (locked): Click කළාට පස්සේ screen එක load වෙනකල් / analyze කරන්න පුළුවන් වෙනකල් **wait** කරන්න. Splash තියෙද්දී next click එපා.

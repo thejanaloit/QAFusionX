@@ -94,6 +94,7 @@ UNBREAKABLE ONE-BROWSER SESSION (LOCKED)
 6. closeBrowser is END-OF-FLOW ONLY (workflow reset, or user explicitly ends the full QA run).
 7. If the window dies (crash / user closed), recover once — then continue in the new window without further closes.
 8. MOUSE-CLICK-ONLY NAV (LOCKED): load the entry URL ONCE via openTarget/gotoEntryUrlOnce. After that, NEVER page.goto / address-bar URL / deep-link reload. Reach every screen by mouse clicks only. Fresh URL restarts are forbidden.
+9. WAIT UNTIL ANALYZABLE (LOCKED): after EVERY click, wait until splash/personalization is gone and the screen (including IBAF/GBAF modal, TD/Account dashboards) is readable. Multi-wave loads: wait quiet intervals before analyzing. Never rush the next click.
 
 Engine: openVisibleBrowser() reuses the live page; openTarget() loads entry URL once then blocks further gotos. Closing mid-flow is rejected.
 
@@ -162,6 +163,8 @@ QAFusionX MCP connect කරාම Ask mode. Q1: project + test karanna de + URL
 BROWSER LOCK (Sinhala): එක browser එකක් open කරලා digatama යන්න. Story අතරේ / Round අතරේ / maker→checker අතරේ browser close කරන්න එපා. Close කරලා අලුතෙන් open කරන එක තහනම්. Logout වුණත් ඒකම window එකේ.
 
 MOUSE-CLICK-ONLY (Sinhala LOCKED): Entry URL එකක් වරක් load කරන්න. ඊට පස්සේ URL වලින් ආයෙ load / page.goto / deep-link තහනම්. Mouse click වලින් විතරක් සම්පූර්ණ QA flow යන්න. Freshly URL එකකින් patan ganna එපා.
+
+WAIT-UNTIL-ANALYZABLE (Sinhala LOCKED): Click කළාට පස්සේ screen load වෙනකල් / analyze කරන්න පුළුවන් වෙනකල් wait කරන්න. IBAF/GBAF modal සහ TD dashboard වගේ screens වලට විශේෂයෙන්. Splash තියෙද්දී next click එපා.
 `;
 
 export const HUMAN_TESTCASE_TEMPLATE = `# [{{module}}] [{{submodule}}][{{feature}}][{{typeCode}}] - {{assertion}}

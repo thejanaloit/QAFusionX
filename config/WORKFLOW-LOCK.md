@@ -98,6 +98,7 @@ Until both are submitted via MCP, every mutating tool returns `BLOCKED`.
 - Never headless, never silent pipeline  
 - **UNBREAKABLE SESSION:** one browser for Round 1 → Round 2 → stories → maker → checker → suite. Never close/reopen mid-flow. Navigate in the same window. `closeBrowser` = end-of-flow only.
 - **MOUSE-CLICK-ONLY NAV (LOCKED):** load the entry URL **once**. After that, never `page.goto` / address-bar URL / deep-link. Full QA advances **only by mouse clicks** (and on-page fields). Fresh URL restarts are forbidden.
+- **WAIT UNTIL ANALYZABLE (LOCKED):** after every click, wait until splash/personalization is gone and the screen is readable (IBAF/GBAF modal, TD/Account dashboards included). Never rush the next click.
 
 ---
 
