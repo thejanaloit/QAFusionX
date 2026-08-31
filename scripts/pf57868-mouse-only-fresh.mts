@@ -196,35 +196,86 @@ async function clickText(page: Page, re: RegExp, label: string) {
   return true;
 }
 
-/** Home flip-grid modules relevant to PF-58374–58384 — clicks only. */
-const MODULES: Array<{ story: string; match: RegExp; label: string }> = [
-  { story: "PF-58374", match: /Lending|Loan Origination|Credit/i, label: "mod-lending" },
-  { story: "PF-58375", match: /Lending|Offer Letter|RTO/i, label: "mod-offer-rto" },
-  { story: "PF-58376", match: /Term Deposit|TD Management|Schedule/i, label: "mod-td-schedule" },
-  { story: "PF-58377", match: /Entity Management|Supplier|Payee/i, label: "mod-entity-supplier" },
-  { story: "PF-58378", match: /NCD|Negotiable|Certificate/i, label: "mod-ncd" },
-  { story: "PF-58380", match: /Receipt|Reversal|PERC/i, label: "mod-receipt" },
-  { story: "PF-58383", match: /Account Management|GBAF|IBAF|Selected Account/i, label: "mod-account" },
-  { story: "home", match: /Customer Relationship Management\s*\(Old\)|CRM/i, label: "mod-crm-old" },
+/** Home flip-grid modules — exact Kenya UAT tile labels; clicks only after entry URL. */
+const MODULES: Array<{ story: string; match: RegExp; label: string; deep?: RegExp[] }> = [
+  {
+    story: "PF-58374",
+    match: /Loan Origination and Management/i,
+    label: "mod-lending",
+    deep: [/PERC|Product|Grace|Instalment|View|Inquiry|Search/i],
+  },
+  {
+    story: "PF-58375",
+    match: /Loan Origination and Management/i,
+    label: "mod-offer-rto",
+    deep: [/Offer Letter|RTO|Print|Joint|Business|Template|Document/i],
+  },
+  {
+    story: "PF-58376",
+    match: /Term Deposit Management/i,
+    label: "mod-td-schedule",
+    deep: [/Schedule|Apply Interest|Auto|Success|Error|Inquiry|Search/i],
+  },
+  {
+    story: "PF-58377",
+    match: /Entity Management/i,
+    label: "mod-entity-supplier",
+    deep: [/Entity Creation|Supplier|Payee|Pending|View|Create/i],
+  },
+  {
+    story: "PF-58378",
+    match: /Term Deposit Management/i,
+    label: "mod-ncd",
+    deep: [/NCD|Value Date|Certificate|Inquiry|View|List/i],
+  },
+  {
+    story: "PF-58380",
+    match: /Loan Origination and Management/i,
+    label: "mod-receipt",
+    deep: [/Receipt|Reversal|PERC|Privilege/i],
+  },
+  {
+    story: "PF-58383",
+    match: /Account Management/i,
+    label: "mod-account",
+    deep: [/Manage Selected|GBAF|IBAF|Inquiry|Search Customer|Selected Account/i],
+  },
+  {
+    story: "home",
+    match: /Customer Relationship Management\s*\(Old\)/i,
+    label: "mod-crm-old",
+    deep: [/Onboarding|FACILITIES|CUSTOMER SEARCH|Search Customer/i],
+  },
 ];
 
 async function returnHomeByClicks(page: Page) {
-  // Prefer shell home / Duruma brand click — never URL.
+  // Prefer shell home / sidebar dashboard — never URL.
   const candidates = [
-    page.getByText(/^Duruma$/i).first(),
+    page.locator('[aria-label*="Home"], [title*="Home"], [aria-label*="Dashboard"]').first(),
+    page.locator("aside, nav").getByRole("button").first(),
     page.getByText(/Core Banking Modules/i).first(),
+    page.getByText(/^Duruma$/i).first(),
     page.getByRole("link", { name: /home|dashboard/i }).first(),
-    page.locator('[aria-label*="Home"], [title*="Home"]').first(),
   ];
   for (const c of candidates) {
     if (await c.count()) {
       await c.click({ force: true }).catch(() => undefined);
       await page.waitForTimeout(1500);
       const t = await body(page);
-      if (/Core Banking Modules|Ask FxMind/i.test(t)) {
+      if (/Core Banking Modules|Account Management|Loan Origination/i.test(t)) {
         await shot(page, "home-via-click");
         return true;
       }
+    }
+  }
+  // Sidebar first icon (usually home grid)
+  const side = page.locator("aside img, aside svg, [class*='sidebar'] button, [class*='side-nav'] a").first();
+  if (await side.count()) {
+    await side.click({ force: true }).catch(() => undefined);
+    await page.waitForTimeout(1500);
+    if (/Core Banking Modules|Account Management/i.test(await body(page))) {
+      await shot(page, "home-via-click");
+      return true;
     }
   }
   await shot(page, "home-click-miss");
@@ -261,14 +312,26 @@ async function main() {
 
   for (const m of MODULES) {
     await returnHomeByClicks(page);
-    const hit = await clickText(page, m.match, m.label);
-    // Open first useful submenu / tab if visible
-    await clickText(page, /Dashboard|Inquiry|View|Search|Create|Pending|List/i, `${m.label}-sub`).catch(() => false);
+    // Prefer exact flip-card click (double-click often opens module tab)
+    let hit = await clickText(page, m.match, m.label);
+    if (hit) {
+      await page.getByText(m.match).first().dblclick({ force: true }).catch(() => undefined);
+      await page.waitForTimeout(2000);
+      await shot(page, `${m.label}-after-dbl`);
+    }
+    const deepNotes: string[] = [];
+    for (const d of m.deep ?? [/Dashboard|Inquiry|View|Search|Create|Pending|List/i]) {
+      const ok = await clickText(page, d, `${m.label}-deep`);
+      deepNotes.push(ok ? `deep:${d}` : `miss:${d}`);
+      if (ok) break;
+    }
     log.push({
       story: m.story,
       label: m.label,
       url: page.url(),
-      note: hit ? "opened-by-click" : "tile-not-found-no-url-fallback",
+      note: hit
+        ? `opened-by-click; ${deepNotes.join("|")}`
+        : `tile-not-found-no-url-fallback; ${deepNotes.join("|")}`,
     });
   }
 
