@@ -23,8 +23,9 @@ When **any user** runs QAFusionX on **their device**:
 7. **Never close mid-flow.** Do not close between stories, screens, rounds, or maker→checker. Do not open a second Chromium "for the next story".
 8. Logout/login (maker → checker) stays **inside the same window**.
 9. `closeBrowser` is **end-of-flow only** (workflow reset or user ends the full QA run).
-10. Engine must **reuse** the live page (`openVisibleBrowser` / `getPage`); `openTarget` only navigates.
+10. Engine must **reuse** the live page (`openVisibleBrowser` / `getPage`); `openTarget` loads the **entry URL once only**.
+11. **MOUSE-CLICK-ONLY (LOCKED):** after that single entry load, never `page.goto`, never type another URL, never deep-link. Advance Round 1/2 / stories / maker→checker **only by mouse clicks**.
 
 `QAFUSIONX_HEADED=0` is rejected by the engine. There is no silent mode.
 
-Sinhala: එක browser එකක් open කරලා digatama යන්න. අතරේ close කරලා අලුතෙන් open කරන්න එපා.
+Sinhala: එක browser එකක් open කරලා digatama යන්න. URL එකක් වරක්. ඊට පස්සේ mouse click විතරක්. අතරේ close / URL reload තහනම්.

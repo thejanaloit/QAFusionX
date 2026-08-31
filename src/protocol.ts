@@ -93,13 +93,14 @@ UNBREAKABLE ONE-BROWSER SESSION (LOCKED)
 5. Logout/login (e.g. maker → checker) happens INSIDE the same window — not a new Chromium process.
 6. closeBrowser is END-OF-FLOW ONLY (workflow reset, or user explicitly ends the full QA run).
 7. If the window dies (crash / user closed), recover once — then continue in the new window without further closes.
+8. MOUSE-CLICK-ONLY NAV (LOCKED): load the entry URL ONCE via openTarget/gotoEntryUrlOnce. After that, NEVER page.goto / address-bar URL / deep-link reload. Reach every screen by mouse clicks only. Fresh URL restarts are forbidden.
 
-Engine: openVisibleBrowser() reuses the live page; openTarget() only navigates. Closing mid-flow is rejected.
+Engine: openVisibleBrowser() reuses the live page; openTarget() loads entry URL once then blocks further gotos. Closing mid-flow is rejected.
 
 ========================================
 CRAWL LOOP (ROUNDS 1 AND 2)
 ========================================
-You will be given a URL. Open it in a SEPARATE visible browser window on this user's device (or reuse the already-open window). Capture every screen, including popups. Never do this as a silent pipeline job. Do not close that window when Round 1 ends — Round 2 continues in the same window.
+You will be given a URL. Open it ONCE in a SEPARATE visible browser window on this user's device (or reuse the already-open window). After that single entry load, capture every screen by clicking only — never reload another URL. Capture popups. Never do this as a silent pipeline job. Do not close that window when Round 1 ends — Round 2 continues in the same window with mouse clicks only.
 
 After EACH screenshot:
 1. Save the PNG.
@@ -159,6 +160,8 @@ SINHALA — LOCKED FLOW SUMMARY
 QAFusionX MCP connect කරාම Ask mode. Q1: project + test karanna de + URL + screenshot. Q2 (aniwaryai): user stories — zip, Jira, ho generate. Tick නැතුව next step බෑ. Link eken gihilla hama screen ekak capture (popup samaga). SS → reference MD (hama button) → plan update → click. Round 1 + Round 2. complete-system-map.md — short නෑ. System map + stories use karala testCase Human. testc2ai YAML. AutomatedScripts. Visible browser run. CSV/XLSX proof. Jira bugs. Koima step skip කරන්න බෑ.
 
 BROWSER LOCK (Sinhala): එක browser එකක් open කරලා digatama යන්න. Story අතරේ / Round අතරේ / maker→checker අතරේ browser close කරන්න එපා. Close කරලා අලුතෙන් open කරන එක තහනම්. Logout වුණත් ඒකම window එකේ.
+
+MOUSE-CLICK-ONLY (Sinhala LOCKED): Entry URL එකක් වරක් load කරන්න. ඊට පස්සේ URL වලින් ආයෙ load / page.goto / deep-link තහනම්. Mouse click වලින් විතරක් සම්පූර්ණ QA flow යන්න. Freshly URL එකකින් patan ganna එපා.
 `;
 
 export const HUMAN_TESTCASE_TEMPLATE = `# [{{module}}] [{{submodule}}][{{feature}}][{{typeCode}}] - {{assertion}}

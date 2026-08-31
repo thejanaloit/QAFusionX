@@ -2,7 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { chromium, type Browser, type BrowserContext, type Page } from "playwright";
 import { bus } from "../events.ts";
-import { assertVisibleBrowserLock, VISIBLE_LAUNCH_ARGS } from "../visible-lock.ts";
+import {
+  assertMouseClickOnlyNav,
+  assertVisibleBrowserLock,
+  MOUSE_CLICK_ONLY_NAV_LOCK,
+  VISIBLE_LAUNCH_ARGS,
+} from "../visible-lock.ts";
 import { loadState } from "../workflow/engine.ts";
 import { abs, DIRS, ensureDir, writeFile } from "../workflow/paths.ts";
 import type { ScreenNode, WorkflowState } from "../workflow/types.ts";
@@ -32,6 +37,35 @@ export interface CaptureResult {
 let browser: Browser | null = null;
 let context: BrowserContext | null = null;
 let page: Page | null = null;
+/** LOCKED: entry URL may load once per unbreakable session; then mouse clicks only. */
+let entryUrlLoaded = false;
+
+export function mouseClickOnlyNavStatus() {
+  return { ...MOUSE_CLICK_ONLY_NAV_LOCK, entryUrlLoaded };
+}
+
+/**
+ * LOCKED entry navigation. First call may page.goto. Any later call throws.
+ * Prefer this over raw page.goto everywhere in the engine.
+ */
+export async function gotoEntryUrlOnce(
+  p: Page,
+  url: string,
+  opts?: { waitUntil?: "domcontentloaded" | "load" | "networkidle"; timeout?: number },
+): Promise<void> {
+  if (entryUrlLoaded) {
+    assertMouseClickOnlyNav(`page.goto(${url})`);
+  }
+  await p.goto(url, {
+    waitUntil: opts?.waitUntil ?? "domcontentloaded",
+    timeout: opts?.timeout ?? 45_000,
+  });
+  entryUrlLoaded = true;
+  bus.emitEvent(
+    "browser:entry-url",
+    `LOCKED: entry URL loaded once (${url}). From now on — mouse clicks only. No further URL navigation.`,
+  );
+}
 
 export function headedEnabled(): boolean {
   assertVisibleBrowserLock();
@@ -120,12 +154,23 @@ export async function closeBrowser(opts?: { reason?: string; force?: boolean }):
   browser = null;
   context = null;
   page = null;
+  entryUrlLoaded = false;
 }
 
-/** Navigate in the SAME open window — never relaunch. */
+/**
+ * LOCKED: entry URL once in the SAME open window — never relaunch, never second goto.
+ * After entry, crawl must advance only via clickControl / on-page UI.
+ */
 export async function openTarget(url: string): Promise<{ url: string; title: string }> {
   const p = await getPage();
-  await p.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
+  if (entryUrlLoaded) {
+    bus.emitEvent(
+      "browser:url-blocked",
+      `LOCKED mouse-click-only: refused openTarget(${url}). Already on ${p.url()}. Use mouse clicks.`,
+    );
+    return { url: p.url(), title: await p.title() };
+  }
+  await gotoEntryUrlOnce(p, url);
   await p.waitForTimeout(900);
   return { url: p.url(), title: await p.title() };
 }
@@ -328,10 +373,9 @@ function forbiddenTiles(): RegExp {
 }
 
 /**
- * Force the active Playwright page onto COB onboarding.
- * Root cause of Cash & Teller mislead: FusionX shell opens modules as tabs;
- * a wrong home flip-card (or restored session) leaves the automation page on
- * `/web/cash/...` while COB sits in another tab. Always reclaim COB here.
+ * Force the active Playwright page onto COB onboarding via MOUSE CLICKS only.
+ * LOCKED: never page.goto after entry URL. Prefer an already-open COB tab, else
+ * click Home / CRM OLD tiles. URL deep-links are forbidden.
  */
 export async function ensureCobDestination(p: Page): Promise<{ recovered: boolean; fromUrl: string; toUrl: string }> {
   const fromUrl = p.url();
@@ -340,14 +384,6 @@ export async function ensureCobDestination(p: Page): Promise<{ recovered: boolea
     return { recovered: false, fromUrl, toUrl: fromUrl };
   }
   const forbidden = forbiddenModuleUrl();
-  const origin = (() => {
-    try {
-      return new URL(fromUrl).origin;
-    } catch {
-      return "https://uat.fusionx.biz";
-    }
-  })();
-  const cobUrl = `${origin}${FUSIONX_COB_ONBOARDING_PATH}`;
 
   // Prefer an already-open COB tab in this context (bring to front + reuse).
   const ctx = p.context();
@@ -356,16 +392,8 @@ export async function ensureCobDestination(p: Page): Promise<{ recovered: boolea
     const u = other.url();
     if (u.includes("comn-react-module-cob") && !forbidden.test(u)) {
       await other.bringToFront().catch(() => undefined);
-      if (other !== p) {
-        // Navigate the primary handle too so callers keeping `page` stay correct.
-        if (!p.url().includes("comn-react-module-cob") || forbidden.test(p.url())) {
-          await p.goto(cobUrl, { waitUntil: "domcontentloaded", timeout: 90_000 }).catch(() => undefined);
-          await p.waitForTimeout(800);
-        }
-      }
-      const onCob =
-        p.url().includes("comn-react-module-cob") && !forbidden.test(p.url());
-      return { recovered: !onCob || forbidden.test(fromUrl), fromUrl, toUrl: p.url() };
+      page = other;
+      return { recovered: other !== p || forbidden.test(fromUrl), fromUrl, toUrl: other.url() };
     }
   }
 
@@ -377,18 +405,34 @@ export async function ensureCobDestination(p: Page): Promise<{ recovered: boolea
   if (needsForce) {
     bus.emitEvent(
       "browser:recover",
-      `Wrong/off-scope surface detected (${fromUrl}). Forcing COB ${cobUrl}.`,
+      `Wrong/off-scope surface (${fromUrl}). LOCKED mouse-only: clicking Home/CRM tiles — no URL goto.`,
     );
-    await p.goto(cobUrl, { waitUntil: "domcontentloaded", timeout: 90_000 });
-    await p.waitForTimeout(1200);
-    // Close sibling forbidden tabs so the headed window shows COB, not Cash.
+    // Try Duruma / home chrome then CRM OLD flip-card — clicks only.
+    const homeClick = p.getByText(/Duruma|Ask FxMind|Core Banking Modules/i).first();
+    if (await homeClick.count()) {
+      await homeClick.click({ force: true }).catch(() => undefined);
+      await p.waitForTimeout(800);
+    }
+    const crm = p.getByText(/Customer Relationship Management\s*\(Old\)|CRM\s*\(Old\)/i).first();
+    if (await crm.count()) {
+      await crm.click({ force: true }).catch(() => undefined);
+      await p.waitForTimeout(1500);
+      await crm.dblclick({ force: true }).catch(() => undefined);
+      await p.waitForTimeout(1200);
+    }
     for (const other of ctx.pages()) {
-      if (other === p || other.isClosed()) continue;
-      if (forbidden.test(other.url())) {
-        await other.close().catch(() => undefined);
+      if (other.isClosed()) continue;
+      if (other.url().includes("comn-react-module-cob") && !forbidden.test(other.url())) {
+        await other.bringToFront().catch(() => undefined);
+        page = other;
+        return { recovered: true, fromUrl, toUrl: other.url() };
       }
     }
-    return { recovered: true, fromUrl, toUrl: p.url() };
+    bus.emitEvent(
+      "browser:recover-blocked",
+      `LOCKED mouse-only: could not reach COB by clicks from ${fromUrl}. Refused page.goto. Continue clicking UI.`,
+    );
+    return { recovered: false, fromUrl, toUrl: p.url() };
   }
 
   return { recovered: false, fromUrl, toUrl: p.url() };
@@ -400,20 +444,19 @@ async function maybeOpenFlipCardModule(p: Page, label: string, beforeUrl: string
   }
   const route = FUSIONX_FLIP_CARD_ROUTES.find((r) => r.match.test(label));
   if (!route) return false;
-  // Flip-cards: only navigate when URL did not change. Explicit Start Onboarding labels always navigate.
-  const forceNav = /search customer|start onboarding|account management/i.test(label);
-  if (!forceNav && p.url() !== beforeUrl) return false;
-  try {
-    const origin = new URL(p.url()).origin;
-    const dest = `${origin}${route.path}`;
-    if (p.url().includes(route.path) && !forceNav) return false;
-    await p.goto(dest, { waitUntil: "domcontentloaded", timeout: 90_000 });
-    await p.waitForTimeout(1500);
-    return true;
-  } catch (err) {
-    if (err instanceof Error && err.message.startsWith("Blocked wrong module")) throw err;
-    return false;
+  // LOCKED mouse-only: flip-cards must open via further clicks, never page.goto deep-links.
+  if (p.url() !== beforeUrl) return true;
+  bus.emitEvent(
+    "browser:flip-no-goto",
+    `LOCKED mouse-only: flip-card "${label}" did not change URL. Refused goto(${route.path}). Keep clicking UI.`,
+  );
+  // Retry click/dblclick on the same label — still no URL navigation.
+  const loc = p.getByText(new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i")).first();
+  if (await loc.count()) {
+    await loc.dblclick({ force: true }).catch(() => undefined);
+    await p.waitForTimeout(1200);
   }
+  return p.url() !== beforeUrl;
 }
 
 async function clickCobDashboardTile(p: Page, label: string): Promise<boolean> {

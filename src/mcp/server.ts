@@ -122,7 +122,7 @@ export function createQaFusionXServer(): McpServer {
     {
       title: "Open the target URL",
       description:
-        "LOCKED: opens the recorded URL in a SEPARATE visible browser window on this user's device (reuses the same window if already open — never close/reopen mid-flow). Never a silent pipeline job. Never headless. Round 1.",
+        "LOCKED: opens the recorded entry URL ONCE in a SEPARATE visible browser (reuses same window — never close/reopen mid-flow). After that single load, further openTarget/page.goto calls are blocked — mouse clicks only. Never headless. Round 1.",
     },
     async () => {
       try {

@@ -15,6 +15,8 @@ import {
   fillField,
   getContextCookies,
   getPage,
+  gotoEntryUrlOnce,
+  mouseClickOnlyNavStatus,
 } from "../crawler/browser.ts";
 import { getFusionxUatCreds } from "../tbb/vault.ts";
 import type { HumanTestCase } from "../testdocs/format.ts";
@@ -74,12 +76,14 @@ async function waitPastSplash(page: Page, timeoutMs = 90_000): Promise<"ready" |
 /** Complete Azure AD SSO for FusionX UAT. Honest — uses vault/env credentials only. */
 export async function ensureAuthenticatedSession(page: Page, targetUrl: string): Promise<string> {
   if (!isFusionxTarget(targetUrl)) {
-    await page.goto(targetUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
+    await gotoEntryUrlOnce(page, targetUrl);
     return "non-fusionx target opened";
   }
 
   const creds = getFusionxUatCreds();
-  await page.goto(targetUrl, { waitUntil: "domcontentloaded", timeout: 90_000 });
+  if (!mouseClickOnlyNavStatus().entryUrlLoaded) {
+    await gotoEntryUrlOnce(page, targetUrl, { timeout: 90_000 });
+  }
   await page.waitForTimeout(1500);
 
   for (let step = 0; step < 24; step += 1) {
@@ -156,30 +160,19 @@ export async function ensureAuthenticatedSession(page: Page, targetUrl: string):
     await page.waitForTimeout(1500);
   }
 
-  await page.goto(targetUrl, { waitUntil: "domcontentloaded", timeout: 90_000 });
+  // LOCKED mouse-only: do not page.goto target again — stay in-session and reclaim via clicks.
+  await ensureCobDestination(page);
   const final = await waitPastSplash(page, 90_000);
   if (final !== "ready") {
     throw new Error(`Azure AD login did not reach app chrome. Last URL=${page.url()} state=${final}`);
   }
-  return `authenticated after forced navigation to ${page.url()}`;
+  return `authenticated after mouse-only reclaim on ${page.url()}`;
 }
 
 async function gotoDashboard(page: Page, targetUrl: string): Promise<void> {
-  // Always reclaim COB — never stay on Cash & Teller / home flip-grid / other modules.
+  // LOCKED mouse-only: reclaim COB via clicks / open tabs — never page.goto deep-links.
   await ensureCobDestination(page);
-  let dash = targetUrl.replace(/\/onboarding\/new.*$/i, "/onboarding").replace(/\/$/, "");
-  try {
-    const u = new URL(dash);
-    // PF-57868: suite asserts against comn-react-module-cob only (not home, not cash).
-    if (!/comn-react-module-cob/i.test(u.pathname) || /\/web\/(home|cash|atm)\//i.test(u.pathname)) {
-      dash = `${u.origin}/web/comn-react-module-cob/cNwNb/onboarding`;
-    }
-  } catch {
-    dash = "https://uat.fusionx.biz/web/comn-react-module-cob/cNwNb/onboarding";
-  }
-  if (!page.url().includes("comn-react-module-cob") || /\/web\/cash\//i.test(page.url())) {
-    await page.goto(dash, { waitUntil: "domcontentloaded", timeout: 90_000 });
-  }
+  void targetUrl;
   await waitPastSplash(page, 60_000);
   await ensureCobDestination(page);
   // Close customer identification modal if present
@@ -446,13 +439,15 @@ async function evaluateSampleGuiOnce(
   targetUrl: string,
   tc: HumanTestCase,
 ): Promise<{ ok: boolean; actual: string }> {
-  await page.goto(targetUrl, { waitUntil: "domcontentloaded", timeout: 20_000 });
+  if (!mouseClickOnlyNavStatus().entryUrlLoaded) {
+    await gotoEntryUrlOnce(page, targetUrl, { timeout: 20_000 });
+  }
   await page.waitForTimeout(800);
   const body = await bodyText(page);
   if (tc.id.includes("EMERGENCY-FIELDS") || /emergency details/.test(tc.assertion.toLowerCase())) {
-    await page.goto(new URL("/sample/intermediaries/new?step=emergency", page.url()).toString(), {
-      waitUntil: "domcontentloaded",
-    });
+    // LOCKED mouse-only: reach emergency step by UI clicks, not URL deep-link.
+    await page.getByRole("link", { name: /intermediar|emergency/i }).first().click({ timeout: 5_000 }).catch(() => undefined);
+    await page.getByText(/emergency details|emergency/i).first().click({ timeout: 5_000 }).catch(() => undefined);
     await page.waitForTimeout(700);
     const text = await bodyText(page);
     const hasName = text.includes("emergency name");
@@ -472,9 +467,8 @@ async function evaluateSampleGuiOnce(
     };
   }
   if (tc.id.includes("PHONE") || /phone|contact detail/.test(tc.assertion.toLowerCase())) {
-    await page.goto(new URL("/sample/intermediaries/new?step=emergency", page.url()).toString(), {
-      waitUntil: "domcontentloaded",
-    });
+    await page.getByRole("link", { name: /intermediar|emergency/i }).first().click({ timeout: 5_000 }).catch(() => undefined);
+    await page.getByText(/emergency details|emergency/i).first().click({ timeout: 5_000 }).catch(() => undefined);
     await page.waitForTimeout(700);
     const contact = page.locator("#emergency-contact");
     if (await contact.count()) {

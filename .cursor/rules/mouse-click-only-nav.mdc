@@ -1,0 +1,20 @@
+---
+description: LOCKED — after one entry URL, QA may only advance by mouse clicks (no URL reload / goto)
+alwaysApply: true
+---
+
+# LOCKED RULE — mouse-click-only navigation
+
+This is locked. Do not interpret, weaken, skip, or “freshly restart” around it.
+
+When running QAFusionX / Kenya UAT / PF-57868 / any headed FusionX QA:
+
+1. Open **one** visible browser.
+2. Load the **entry URL at most once** (first open only).
+3. After that URL has loaded: **never** `page.goto`, never type another URL, never deep-link, never refresh by URL to “start fresh”.
+4. Reach every screen, module, story path, Round 1/2 step, maker→checker surface **only by mouse clicks** (and filling on-page fields).
+5. Logout/login stays in the **same** window via UI clicks — not a new browser and not a new URL bootstrap.
+6. If a flip-card or shell does not navigate on click, keep clicking UI controls (menus, tiles, tabs, breadcrumbs). Do **not** fall back to URL navigation.
+7. Close the browser only at true end-of-flow.
+
+Sinhala (locked): එක browser එකක් open කරලා entry URL එකක් වරක් load කරන්න. ඊට පස්සේ URL වලින් ආයෙ load කරන්න බෑ. Mouse click වලින් විතරක් සම්පූර්ණ flow එක QA කරන්න. Freshly patan ganna / URL walin miss karanna එපා.
