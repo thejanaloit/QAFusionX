@@ -53,7 +53,12 @@ async function setInputValue(page: Page, selector: string, value: string) {
 }
 
 async function body(page: Page) {
-  return page.evaluate(() => document.body?.innerText ?? "");
+  try {
+    return await page.evaluate(() => document.body?.innerText ?? "");
+  } catch {
+    await page.waitForTimeout(800);
+    return (await page.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ");
+  }
 }
 
 /** LOCKED: page.goto only for the single entry URL. */
@@ -69,13 +74,24 @@ async function loadEntryOnce(page: Page) {
 async function azureLogin(page: Page, email: string, password: string) {
   const local = email.split("@")[0];
   for (let i = 0; i < 100; i++) {
-    const t = await body(page);
-    const u = page.url();
+    let t = "";
+    let u = "";
+    try {
+      t = await body(page);
+      u = page.url();
+    } catch {
+      await page.waitForTimeout(1500);
+      continue;
+    }
     if (
       /Duruma|Ask FxMind|Core Banking Modules/i.test(t) &&
-      !/Sign in|Continue with AzureAd|Enter a valid email|Enter password|Approve sign in|Pick an account/i.test(t)
+      !/Sign in|Continue with AzureAd|Enter a valid email|Enter password|Approve sign in|Pick an account|personalization is in progress/i.test(t)
     ) {
       return true;
+    }
+    if (/personalization is in progress|Please wait/i.test(t)) {
+      await page.waitForTimeout(2500);
+      continue;
     }
     if (/Continue with AzureAd/i.test(t)) {
       await page.getByText(/Continue with AzureAd/i).first().click({ force: true });
@@ -128,7 +144,6 @@ async function azureLogin(page: Page, email: string, password: string) {
       await page.waitForTimeout(3000);
       continue;
     }
-    // Fallback: any visible email input
     const emailInput = page.locator('input[type="email"], input[name="loginfmt"]').first();
     if (await emailInput.count()) {
       await emailInput.fill(email).catch(() => undefined);
