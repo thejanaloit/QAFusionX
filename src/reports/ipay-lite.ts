@@ -105,3 +105,38 @@ export function generatePf57868IpayExcel(): {
     paths,
   };
 }
+
+/**
+ * Book1 visual Excel — same shape as iPay Lite Testing (1).xlsx:
+ * Sheet1 columns Area | Issue | Screenshot (embedded), one workbook per story.
+ * Fine-tuned red-box annotations. Output: reports/book1-per-story/
+ */
+export function generatePf57868Book1PerStoryExcel(): {
+  ok: boolean;
+  stdout: string;
+  stderr: string;
+  paths: string[];
+} {
+  const repo = process.env.QAFUSIONX_REPO ?? "C:/Users/ThejanaD/QAFusionX";
+  const script = path.resolve(repo, "scripts/pf57868-finalize-book1-per-story.py");
+  const proc = spawnSync("py", [script], {
+    encoding: "utf8",
+    cwd: path.dirname(script),
+    timeout: 300_000,
+  });
+  const paths = [
+    "E:/QAFusionX/workspaces/PF-57868/reports/book1-per-story/",
+    "C:/Users/ThejanaD/Downloads/PF-57868-book1-per-story/",
+    "E:/QAFusionX/workspaces/PF-57868/artifacts/book1-per-story/",
+  ];
+  writeFile(
+    path.join(DIRS.reports, "book1-per-story-generate-log.txt"),
+    [proc.stdout, proc.stderr].filter(Boolean).join("\n"),
+  );
+  return {
+    ok: proc.status === 0,
+    stdout: proc.stdout ?? "",
+    stderr: proc.stderr ?? "",
+    paths,
+  };
+}

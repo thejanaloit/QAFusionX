@@ -15,8 +15,10 @@ coverage
 console/.next
 console/node_modules
 proof-*/
-tmp-*.mts
-tmp-*.py
-update_excel_live.py
+tmp-creds.json
+tmp-checker-creds.json
+tmp-login-probe.mts
+**/secrets/**
+credentials.json
 *.xlsx
 !seed/**/*.md

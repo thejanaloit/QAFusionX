@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 import { stringify as yamlStringify } from "yaml";
 import { ASK_MODE_BANNER } from "../protocol.ts";
 import { bus } from "../events.ts";
@@ -27,7 +28,7 @@ import {
 } from "../jira/client.ts";
 import { attachAllBugProofs, filesForBug, STORY_BUG_MAP } from "../jira/attach-bug-proofs.ts";
 import { writeIssuesWorkbook, type IssueRow } from "../reports/issues.ts";
-import { generatePf57868IpayExcel } from "../reports/ipay-lite.ts";
+import { generatePf57868IpayExcel, generatePf57868Book1PerStoryExcel } from "../reports/ipay-lite.ts";
 import {
   fetchJiraStories,
   ingestRawFiles,
@@ -1069,6 +1070,60 @@ export function generateIpayExcel() {
     note: out.ok
       ? "Saved to Downloads, reports/, and artifacts/. Same column contract as iPay Lite Testing.xlsx."
       : "Generator failed — see reports/ipay-lite-generate-log.txt",
+  };
+}
+
+/**
+ * Generate Book1-style visual Excel (same as iPay Lite Testing (1).xlsx):
+ * Sheet1 = Area | Issue | Screenshot (embedded). Fine-tuned boxes. ONE file per story.
+ */
+export function generateBook1PerStoryExcel() {
+  const out = generatePf57868Book1PerStoryExcel();
+  return {
+    ok: out.ok,
+    paths: out.paths,
+    stdout: out.stdout,
+    stderr: out.stderr,
+    columns: ["Area", "Issue / Concern", "Screenshot (embedded)"],
+    format: "iPay Lite Testing (1).xlsx Book1 visual — Sheet1, no matrix header row",
+    note: out.ok
+      ? "Per-story workbooks in reports/book1-per-story/ + Downloads/PF-57868-book1-per-story/. Fine-tuned ANN boxes."
+      : "Generator failed — see reports/book1-per-story-generate-log.txt",
+  };
+}
+
+/**
+ * Re-validate filed Kenya UAT bugs (prove CONFIRMED vs NOT_REPRO / fake challenge).
+ * Spawns headed Playwright; creds from gitignored files or env — never from committed source.
+ */
+export function runBugAuthenticityRound() {
+  const repo = process.env.QAFUSIONX_REPO ?? "C:/Users/ThejanaD/QAFusionX";
+  const script = path.resolve(repo, "scripts/pf57868-bug-revalidate.mts");
+  const proc = spawnSync("npx", ["tsx", script], {
+    encoding: "utf8",
+    cwd: repo,
+    env: {
+      ...process.env,
+      QAFUSIONX_HEADED: "1",
+      QAFUSIONX_CLOSE_BROWSER: process.env.QAFUSIONX_CLOSE_BROWSER ?? "1",
+    },
+    timeout: 900_000,
+  });
+  const reportMd = abs(path.join(DIRS.reports, "bug-authenticity-round.md"));
+  const reportJson = abs(path.join(DIRS.reports, "bug-authenticity-round.json"));
+  writeFile(
+    path.join(DIRS.reports, "bug-revalidate-run-log.txt"),
+    [proc.stdout, proc.stderr].filter(Boolean).join("\n"),
+  );
+  return {
+    ok: proc.status === 0,
+    status: proc.status,
+    stdoutTail: (proc.stdout ?? "").slice(-4000),
+    stderrTail: (proc.stderr ?? "").slice(-2000),
+    reportMd: fs.existsSync(reportMd) ? reportMd : null,
+    reportJson: fs.existsSync(reportJson) ? reportJson : null,
+    note:
+      "Verdicts: CONFIRMED=bug still true; NOT_REPRO=fixed/cannot reproduce. Passwords must NOT be in git.",
   };
 }
 

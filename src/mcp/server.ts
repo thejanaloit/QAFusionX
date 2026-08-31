@@ -501,6 +501,38 @@ export function createQaFusionXServer(): McpServer {
   );
 
   server.registerTool(
+    "qafusionx_generate_book1_excel",
+    {
+      title: "Generate Book1 visual Excel (Area|Issue|Screenshot) per story",
+      description:
+        "LOCKED visual format matching iPay Lite Testing (1).xlsx / SharePoint Book1: Sheet1 with Area | Issue text | embedded Screenshot. Fine-tunes red-box highlights on defect regions. Writes ONE workbook per story (PF-58374–58384) to reports/book1-per-story/, Downloads/PF-57868-book1-per-story/, and artifacts/book1-per-story/. Prefer this for stakeholder visual evidence; use qafusionx_generate_ipay_excel for the dense 7-column matrix.",
+    },
+    async () => {
+      try {
+        return ok(actions.generateBook1PerStoryExcel());
+      } catch (err) {
+        return fail(err);
+      }
+    },
+  );
+
+  server.registerTool(
+    "qafusionx_bug_revalidate",
+    {
+      title: "Bug authenticity round — prove filed bugs real or NOT_REPRO",
+      description:
+        "Headed one-browser recheck of filed Kenya UAT bugs (PF-58496, 58500, 58418, 58512, 58513, 58514, 58398, 58560, …). Verdicts: CONFIRMED (still true / not fake) | NOT_REPRO (fixed or cannot reproduce) | PARTIAL | BLOCKED. Writes reports/bug-authenticity-round.md + .json and proof-bug-revalidate-*/. Maker/checker passwords from gitignored tmp-creds.json / tmp-checker-creds.json or env — NEVER hardcode secrets in git.",
+    },
+    async () => {
+      try {
+        return ok(actions.runBugAuthenticityRound());
+      } catch (err) {
+        return fail(err);
+      }
+    },
+  );
+
+  server.registerTool(
     "qafusionx_knowledge_search",
     {
       title: "Search cloned Confluence / URS knowledge",

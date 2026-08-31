@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { STORY_BUG_MAP, attachAllBugProofs, filesForBug } from "./src/jira/attach-bug-proofs.ts";
+import { STORY_BUG_MAP, attachAllBugProofs, filesForBug } from "../src/jira/attach-bug-proofs.ts";
 
 const WORKSPACE = process.env.QAFUSIONX_WORKSPACE ?? "E:/QAFusionX/workspaces/PF-57868";
 const outRoot = path.join(WORKSPACE, "jira", "attachments");
@@ -9,11 +9,16 @@ const bugs = [...new Set(Object.values(STORY_BUG_MAP).flat())].sort();
 const manifest: Record<string, string[]> = {};
 for (const bug of bugs) {
   const dir = path.join(outRoot, bug);
+  if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
   manifest[bug] = [];
+  const seen = new Set<string>();
   for (const src of filesForBug(bug)) {
-    const dest = path.join(dir, path.basename(src));
-    if (!fs.existsSync(dest)) fs.copyFileSync(src, dest);
+    const base = path.basename(src);
+    if (seen.has(base)) continue;
+    seen.add(base);
+    const dest = path.join(dir, base);
+    fs.copyFileSync(src, dest);
     manifest[bug].push(dest);
   }
 }

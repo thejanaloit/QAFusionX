@@ -16,8 +16,10 @@ export const STORY_BUG_MAP: Record<string, string[]> = {
 };
 
 export const PROOF_ROOTS = [
+  path.resolve(process.env.QAFUSIONX_REPO ?? "C:/Users/ThejanaD/QAFusionX", "proof-full-all-11-r2-aug31"),
   path.resolve(process.env.QAFUSIONX_REPO ?? "C:/Users/ThejanaD/QAFusionX", "proof-full-all-11-aug31"),
   path.resolve(process.env.QAFUSIONX_REPO ?? "C:/Users/ThejanaD/QAFusionX", "proof-checker-aug31"),
+  abs("reports/proof/full-all-11-r2-aug31"),
   abs("reports/proof/full-all-11-aug31"),
   abs("reports/proof/checker-aug31"),
 ];

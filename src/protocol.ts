@@ -137,9 +137,13 @@ When filing or updating Jira bugs you MUST attach proof PNGs — not only list p
 
 1. On qafusionx_file_bugs: attach the primary proof PNG when creating each bug (if the file exists).
 2. After every headed QA run: call qafusionx_attach_bug_proofs to upload ALL matching proof PNGs from reports/proof/ and proof-* folders to the correct bug keys (story-prefix map + bugs/*.md proof paths).
-3. After verification runs on PF-57868-style packs: call qafusionx_generate_ipay_excel for iPay Lite Testing.xlsx column format (≥110 rows per story sheet).
-4. Do not mark jira-bugs step DONE until attachments are uploaded or logged in reports/jira-attachment-log.json.
-5. Skip re-uploading filenames already on the issue.
+3. After verification runs on PF-57868-style packs:
+   - call qafusionx_generate_ipay_excel for the 7-column matrix (≥110 rows per story sheet), AND
+   - call qafusionx_generate_book1_excel for Book1 visual packs (same as iPay Lite Testing (1).xlsx: Sheet1 Area | Issue | Screenshot embedded; fine-tuned red boxes; ONE workbook per story under reports/book1-per-story/).
+4. When bugs are challenged as “fake”: call qafusionx_bug_revalidate — headed authenticity round; verdicts CONFIRMED | NOT_REPRO | PARTIAL. Writes reports/bug-authenticity-round.md.
+5. Creds for maker/checker: gitignored tmp-creds.json / tmp-checker-creds.json or env vars. NEVER commit ThejanaD/MethmiB passwords to GitHub.
+6. Do not mark jira-bugs step DONE until attachments are uploaded or logged in reports/jira-attachment-log.json.
+7. Skip re-uploading filenames already on the issue.
 
 ========================================
 GATES
