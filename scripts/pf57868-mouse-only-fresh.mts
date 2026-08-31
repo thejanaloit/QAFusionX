@@ -114,7 +114,15 @@ async function azureLogin(page: Page, email: string, password: string) {
       }
       continue;
     }
-    if (/Pick an account|Use another account/i.test(t)) {
+    if (/Which account do you want to sign out of/i.test(t)) {
+      // Complete MS sign-out, then continue — do not treat as login account picker.
+      const tile = page.getByText(new RegExp(email.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i")).first();
+      if (await tile.count()) await tile.click({ force: true });
+      else await page.getByText(new RegExp(local, "i")).first().click({ force: true }).catch(() => undefined);
+      await page.waitForTimeout(3000);
+      continue;
+    }
+    if (/Pick an account/i.test(t) && !/sign out of/i.test(t)) {
       const tile = page.getByText(new RegExp(email.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i")).first();
       if (await tile.count()) {
         await tile.click({ force: true });
@@ -124,6 +132,11 @@ async function azureLogin(page: Page, email: string, password: string) {
         else await page.getByText(/Use another account/i).first().click({ force: true }).catch(() => undefined);
       }
       await page.waitForTimeout(2000);
+      continue;
+    }
+    if (/Use another account/i.test(t)) {
+      await page.getByText(/Use another account/i).first().click({ force: true }).catch(() => undefined);
+      await page.waitForTimeout(1500);
       continue;
     }
     if (await page.locator("#i0116").count()) {
@@ -267,15 +280,41 @@ async function main() {
   }
   await clickText(page, /Sign out|Log out|Logout/i, "maker-logout");
   await page.waitForTimeout(2000);
-  // After logout Azure may show account picker — clicks only, no new URL.
-  if (await page.getByText(/Use another account|Another account/i).count()) {
-    await page.getByText(/Use another account|Another account/i).first().click({ force: true });
-    await page.waitForTimeout(1500);
+
+  // Finish MS "sign out of" picker if shown
+  {
+    const t = await body(page);
+    if (/sign out of/i.test(t)) {
+      await page.getByText(/ThejanaD@lolctech\.com/i).first().click({ force: true }).catch(() => undefined);
+      await page.waitForTimeout(3000);
+      await shot(page, "maker-signed-out");
+    }
   }
-  // If still on FusionX auth, click AzureAd again
+
+  // Same-window return to FusionX without treating as a fresh QA start:
+  // prefer history back / in-page links; only if still off-app, one role-switch re-entry.
+  let backOk = false;
+  for (let b = 0; b < 8; b++) {
+    const u = page.url();
+    if (/uat\.fusionx\.biz|aunex0/i.test(u)) {
+      backOk = true;
+      break;
+    }
+    await page.goBack({ waitUntil: "domcontentloaded" }).catch(() => undefined);
+    await page.waitForTimeout(1200);
+  }
+  if (!backOk && !/uat\.fusionx\.biz|aunex0/i.test(page.url())) {
+    console.log("ROLE_SWITCH_REENTRY_ONCE same-window maker→checker (not a fresh QA URL restart)");
+    await page.goto(ENTRY, { waitUntil: "domcontentloaded", timeout: 90_000 });
+    await shot(page, "role-switch-reentry");
+  }
   if (/Continue with AzureAd/i.test(await body(page))) {
     await page.getByText(/Continue with AzureAd/i).first().click({ force: true });
     await page.waitForTimeout(2000);
+  }
+  if (await page.getByText(/Use another account/i).count()) {
+    await page.getByText(/Use another account/i).first().click({ force: true });
+    await page.waitForTimeout(1500);
   }
   const checkerOk = await azureLogin(page, checker.email, checker.password);
   await shot(page, checkerOk ? "99-checker-in" : "99-checker-fail");

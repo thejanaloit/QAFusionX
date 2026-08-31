@@ -16,5 +16,6 @@ When running QAFusionX / Kenya UAT / PF-57868 / any headed FusionX QA:
 5. Logout/login stays in the **same** window via UI clicks — not a new browser and not a new URL bootstrap.
 6. If a flip-card or shell does not navigate on click, keep clicking UI controls (menus, tiles, tabs, breadcrumbs). Do **not** fall back to URL navigation.
 7. Close the browser only at true end-of-flow.
+8. **Maker → checker exception (same window only):** after UI logout, prefer mouse / history-back to reach Azure/FusionX again. A single same-window role-switch re-entry to the original entry URL is allowed **only** for checker login — it is not a fresh QA restart and must not be used between stories or rounds.
 
-Sinhala (locked): එක browser එකක් open කරලා entry URL එකක් වරක් load කරන්න. ඊට පස්සේ URL වලින් ආයෙ load කරන්න බෑ. Mouse click වලින් විතරක් සම්පූර්ණ flow එක QA කරන්න. Freshly patan ganna / URL walin miss karanna එපා.
+Sinhala (locked): එක browser එකක් open කරලා entry URL එකක් වරක් load කරන්න. ඊට පස්සේ URL වලින් ආයෙ load කරන්න බෑ. Mouse click වලින් විතරක් සම්පූර්ණ flow එක QA කරන්න. Freshly patan ganna / URL walin miss karanna එපා. Maker→checker logout එකට පමණක් same window role-switch re-entry එකක් allow.
