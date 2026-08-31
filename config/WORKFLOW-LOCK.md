@@ -97,6 +97,7 @@ Until both are submitted via MCP, every mutating tool returns `BLOCKED`.
 - Crawl + GUI tests open a **separate window** on the user's device  
 - Never headless, never silent pipeline  
 - **UNBREAKABLE SESSION:** one browser for Round 1 → Round 2 → stories → maker → checker → suite. Never close/reopen mid-flow. Navigate in the same window. `closeBrowser` = end-of-flow only.
+- **MOUSE-CLICK-ONLY NAV (LOCKED):** load the entry URL **once**. After that, never `page.goto` / address-bar URL / deep-link. Full QA advances **only by mouse clicks** (and on-page fields). Fresh URL restarts are forbidden.
 
 ---
 
