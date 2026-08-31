@@ -196,20 +196,118 @@ async function goHomeFlipGrid(page: Page) {
   return /Core Banking Modules/i.test(await body(page));
 }
 
+async function clickFlipCard(page: Page, titleRe: RegExp, label: string) {
+  // Prefer whole flip-card container, not just label text (first click often only flips).
+  const handled = await page.evaluate((needle) => {
+    const re = new RegExp(needle, "i");
+    const cards = Array.from(
+      document.querySelectorAll('.flip-card, [class*="flip-card"], [class*="module-card"], [class*="ModuleCard"]'),
+    ) as HTMLElement[];
+    let target =
+      cards.find((c) => re.test(c.innerText || "")) ||
+      (Array.from(document.querySelectorAll("div,section,article")).find((el) => {
+        const t = (el as HTMLElement).innerText || "";
+        if (!re.test(t) && !/Open and manage current and savings/i.test(t)) return false;
+        // Match Account Management by title OR its known flip-back blurb
+        const matchTitle = re.test(t);
+        const matchAccountBlurb = /Account Management/i.test(needle) && /Open and manage current and savings/i.test(t);
+        if (!matchTitle && !matchAccountBlurb) return false;
+        const r = (el as HTMLElement).getBoundingClientRect();
+        return r.width > 140 && r.height > 100 && r.height < 320 && r.top > 120;
+      }) as HTMLElement | undefined);
+    if (!target) return null;
+    const r = target.getBoundingClientRect();
+    return { x: r.x + r.width / 2, y: r.y + r.height / 2, w: r.width, h: r.height };
+  }, titleRe.source);
+
+  if (!handled) {
+    return mouseClickText(page, titleRe, label);
+  }
+  const { x, y } = handled;
+  await page.evaluate(
+    ({ x: cx, y: cy }) => {
+      document.getElementById("qafx-ring")?.remove();
+      const d = document.createElement("div");
+      d.id = "qafx-ring";
+      d.style.cssText = `position:fixed;left:${cx - 36}px;top:${cy - 36}px;width:72px;height:72px;border:3px solid #e11;border-radius:50%;z-index:2147483647;pointer-events:none`;
+      document.body.appendChild(d);
+    },
+    { x, y },
+  );
+  await shot(page, `aim-card-${label}`);
+  console.log("MOUSE_CARD →", label, Math.round(x), Math.round(y));
+  await page.mouse.move(x, y, { steps: 40 });
+  await page.waitForTimeout(400);
+  await page.mouse.click(x, y); // flip
+  await page.waitForTimeout(1800);
+  await shot(page, `flipped-${label}`);
+  // Click the flipped blue face (description side) — this opens the module / IBAF-GBAF modal
+  const back = await page.evaluate(() => {
+    const blurbs = Array.from(document.querySelectorAll("div,section")).filter((el) => {
+      const t = (el as HTMLElement).innerText || "";
+      const r = (el as HTMLElement).getBoundingClientRect();
+      return (
+        /Open and manage current and savings|Shariah-compliant|fixed deposits/i.test(t) &&
+        r.width > 120 &&
+        r.height > 80 &&
+        r.height < 280 &&
+        r.top > 140
+      );
+    }) as HTMLElement[];
+    blurbs.sort((a, b) => a.getBoundingClientRect().width * a.getBoundingClientRect().height - b.getBoundingClientRect().width * b.getBoundingClientRect().height);
+    const t = blurbs[0];
+    if (!t) return null;
+    const r = t.getBoundingClientRect();
+    return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+  });
+  if (back) {
+    console.log("MOUSE_FLIP_BACK →", label, Math.round(back.x), Math.round(back.y));
+    await page.mouse.move(back.x, back.y, { steps: 30 });
+    await page.waitForTimeout(300);
+    await page.mouse.click(back.x, back.y);
+    await page.waitForTimeout(1200);
+    await page.mouse.dblclick(back.x, back.y);
+  } else {
+    await page.mouse.click(x, y);
+    await page.waitForTimeout(800);
+    await page.mouse.dblclick(x, y);
+  }
+  await page.evaluate(() => document.getElementById("qafx-ring")?.remove()).catch(() => undefined);
+  return true;
+}
+
 async function openAccountMgmtModal(page: Page) {
   await goHomeFlipGrid(page);
-  await mouseClickText(page, /Account Management/i, "account-mgmt-tile");
-  // Double-click if flip-card
-  const loc = page.getByText(/Account Management/i).first();
-  const box = await loc.boundingBox();
-  if (box) {
-    await page.mouse.dblclick(box.x + box.width / 2, box.y + 20);
-  }
+  await waitAnalyzable(page, "home-for-account", (t) => /Account Management/i.test(t), 45_000);
+  await clickFlipCard(page, /Account Management/i, "account-mgmt");
+  // Wait for modal OR navigation into /web/td or /web/account or /web/casa
   await waitAnalyzable(
     page,
     "ibaf-gbaf-modal",
-    (t) => /Select Banking & Finance Type|Islamic Banking|General Banking|IBAF|GBAF/i.test(t),
+    (t, u) =>
+      /Select Banking & Finance Type|Islamic Banking|General Banking & Finance|IBAF|GBAF/i.test(t) ||
+      /\/web\/(td|account|casa)\//i.test(u),
     90_000,
+  );
+  const t = await body(page);
+  const u = page.url();
+  if (/Select Banking & Finance Type|Islamic Banking|General Banking/i.test(t)) return true;
+  // Already inside module without modal this session
+  if (/\/web\/(td|account|casa)\//i.test(u)) {
+    console.log("LANDED_WITHOUT_MODAL", u);
+    return "landed" as unknown as boolean;
+  }
+  // Retry: click tile text then Enter
+  await mouseClickText(page, /Account Management/i, "account-retry-text");
+  await page.waitForTimeout(2000);
+  await page.keyboard.press("Enter").catch(() => undefined);
+  await waitAnalyzable(
+    page,
+    "ibaf-gbaf-modal-retry",
+    (tt, uu) =>
+      /Select Banking & Finance Type|Islamic Banking|General Banking/i.test(tt) ||
+      /\/web\/(td|account|casa)\//i.test(uu),
+    60_000,
   );
   return /Select Banking & Finance Type|Islamic Banking|General Banking/i.test(await body(page));
 }
@@ -265,15 +363,18 @@ async function main() {
 
   const log: Array<{ pick: string; modal: boolean; note: string; url: string }> = [];
 
-  // --- Pass 1: GBAF (2nd) — user already proved this lands on TD dashboard ---
+  // --- Pass 1: GBAF (2nd) — user proved this lands on TD dashboard ---
   {
     const modal = await openAccountMgmtModal(page);
-    if (modal) {
-      await mouseClickText(page, /General Banking & Finance|GBAF/i, "pick-GBAF-2nd");
+    if (modal === true) {
+      await mouseClickText(page, /General Banking & Finance/i, "pick-GBAF-2nd");
       await exploreAfterFinancePick(page, "GBAF");
-      log.push({ pick: "GBAF", modal: true, note: "clicked 2nd option + explored", url: page.url() });
+      log.push({ pick: "GBAF", modal: true, note: "clicked 2nd option + explored + waited", url: page.url() });
+    } else if (modal as unknown as string === "landed" || /\/web\/(td|account|casa)\//i.test(page.url())) {
+      await exploreAfterFinancePick(page, "GBAF");
+      log.push({ pick: "GBAF", modal: false, note: "landed in module without modal; explored", url: page.url() });
     } else {
-      log.push({ pick: "GBAF", modal: false, note: "modal not shown", url: page.url() });
+      log.push({ pick: "GBAF", modal: false, note: "modal not shown after flip-back clicks", url: page.url() });
       await shot(page, "no-modal-gbaf");
     }
   }
@@ -283,10 +384,13 @@ async function main() {
     await goHomeFlipGrid(page);
     await waitAnalyzable(page, "home-before-ibaf", (t) => /Core Banking Modules/i.test(t), 60_000);
     const modal = await openAccountMgmtModal(page);
-    if (modal) {
-      await mouseClickText(page, /Islamic Banking & Finance|IBAF/i, "pick-IBAF-1st");
+    if (modal === true) {
+      await mouseClickText(page, /Islamic Banking & Finance/i, "pick-IBAF-1st");
       await exploreAfterFinancePick(page, "IBAF");
-      log.push({ pick: "IBAF", modal: true, note: "clicked 1st option + explored", url: page.url() });
+      log.push({ pick: "IBAF", modal: true, note: "clicked 1st option + explored + waited", url: page.url() });
+    } else if (/\/web\/(td|account|casa)\//i.test(page.url())) {
+      await exploreAfterFinancePick(page, "IBAF");
+      log.push({ pick: "IBAF", modal: false, note: "landed in module; explored", url: page.url() });
     } else {
       log.push({ pick: "IBAF", modal: false, note: "modal not shown", url: page.url() });
     }
