@@ -1,0 +1,26 @@
+---
+description: LOCKED — Kenya UAT reinit pack for PF-57868 (11 stories + honest Done + Book1 Excel + Teams drop)
+alwaysApply: true
+---
+
+# LOCKED — PF-57868 reinit / 11-story QA pack
+
+## Scope
+- **11 Stories (Excel + Done target):** PF-58374 … PF-58384
+- **11 Dev-fix bugs (authenticity):** PF-58496, 58497, 58500, 58502, 58503, 58426, 58505, 58507, 58514, 58398, 58416
+- **Output root:** `E:\QA OUTPUTS\PF-57868-reinit\` (excel/, proof/, testcases/, teams-drop/)
+
+## Mandatory gates (per story, in order)
+1. Mouse-only headed QA (one browser, entry URL once, wait-until-analyzable).
+2. Find issues → authenticity recheck (CONFIRMED / NOT_REPRO / PARTIAL).
+3. Redo QA after authenticity.
+4. Rebuild Book1 Excel (Area | Issue | Screenshot) — one workbook per story.
+5. Proof-screenshot audit vs Excel rows.
+6. **Honest Jira status:** Done only if ACs pass or N/A Kenya with written proof. Never fake Done.
+7. Drop Excel into `teams-drop/` then post to **AI QA Agent** Teams group one-by-one.
+
+## Training knowledge (prior practice — keep)
+- Flip-cards: leaf tile → flip → click blue back → adopt new tab.
+- IBAF/GBAF modal must be exercised (both options) with waits.
+- Creds: gitignored `tmp-creds.json` / `tmp-checker-creds.json` only — never GitHub.
+- Old local bug markdown under `bugs/` / `jira/bugs/` archived at reinit start.
