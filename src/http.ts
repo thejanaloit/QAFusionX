@@ -120,6 +120,8 @@ app.post("/api/scripts", async (c) => c.json(await wrap(() => actions.generateSc
 app.post("/api/suite/run", async (c) => c.json(await wrap(() => actions.runSuite())()));
 app.post("/api/issues/export", async (c) => c.json(await wrap(() => actions.exportIssues())()));
 app.post("/api/jira/bugs", async (c) => c.json(await wrap(() => actions.fileBugs())()));
+app.post("/api/jira/bug-attachments", async (c) => c.json(await wrap(() => actions.attachBugProofs())()));
+app.post("/api/reports/ipay-lite", async (c) => c.json(await wrap(() => actions.generateIpayExcel())()));
 app.post("/api/demo/start", async (c) => {
   const body = await c.req.json().catch(() => ({}));
   const source = body?.source === "generate" ? "generate" : "zip";

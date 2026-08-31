@@ -17,13 +17,16 @@ import {
 } from "../crawler/browser.ts";
 import { VISIBLE_BROWSER_LOCK_MARKDOWN } from "../visible-lock.ts";
 import {
+  attachProof,
   bugDescription,
   createIssue,
   readJiraConfig,
   testCaseDescription,
   writeOfflinePayload,
 } from "../jira/client.ts";
+import { attachAllBugProofs, filesForBug, STORY_BUG_MAP } from "../jira/attach-bug-proofs.ts";
 import { writeIssuesWorkbook, type IssueRow } from "../reports/issues.ts";
+import { generatePf57868IpayExcel } from "../reports/ipay-lite.ts";
 import {
   fetchJiraStories,
   ingestRawFiles,
@@ -38,6 +41,12 @@ import {
   saveGeneratedStory,
 } from "../stories/generate.ts";
 import { formatHumanTestCase, validateHumanMarkdown, type HumanTestCase } from "../testdocs/format.ts";
+import {
+  ensureAuthenticatedSession,
+  evaluateApiWithRetries,
+  evaluateGuiWithRetries,
+  MAX_SUITE_ROUNDS,
+} from "../suite/honest-runner.ts";
 import { apiSpec, guiSpec } from "../testdocs/scripts.ts";
 import {
   beginStep,
@@ -816,32 +825,44 @@ export async function runSuite(): Promise<{ results: SuiteEvent[]; status: Retur
   const page = await openVisibleBrowser();
   state = setGate(state, "execute-suite", "visibleBrowserOpened");
   saveState(state);
-  const origin = state.project ? new URL(state.project.targetUrl).origin : "http://127.0.0.1:43181";
+  const targetUrl = state.project?.targetUrl ?? "http://127.0.0.1:43181/sample/login";
+  const origin = new URL(targetUrl).origin;
   bus.emitEvent(
     "suite:watch",
-    "LOCKED: a separate browser window is open on this user's device. GUI tests run there — not as a silent pipeline job.",
+    `LOCKED: headed suite on this device. Priority=PASS via real flows. Honest retries up to ${MAX_SUITE_ROUNDS} rounds per case; never invent a pass.`,
   );
+
+  // Login once up front for FusionX / auth-gated targets so GUI+API share a real session.
+  try {
+    const loginNote = await ensureAuthenticatedSession(page, targetUrl);
+    bus.emitEvent("suite:watch", `Session ready: ${loginNote}`);
+    if (!state.suite) {
+      state.suite = { running: true, passed: 0, failed: 0, skipped: 0 };
+    }
+    state.suite.lastMessage = `Session ready (max ${MAX_SUITE_ROUNDS} honest rounds per case)`;
+    saveState(state);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    bus.emitEvent("suite:watch", `Login incomplete — cases will still retry honestly: ${msg}`);
+  }
 
   for (const file of jsonFiles) {
     const tc = JSON.parse(fs.readFileSync(abs(path.join(DIRS.testCaseHuman, file)), "utf8")) as HumanTestCase;
     for (const layer of ["gui", "api"] as const) {
       const event: SuiteEvent = { id: `${tc.id}:${layer}`, layer, title: tc.assertion, status: "running" };
-      bus.emitEvent("suite:test", `${tc.id} ${layer} running`, { data: event as unknown as Record<string, unknown> });
+      bus.emitEvent("suite:test", `${tc.id} ${layer} running (up to ${MAX_SUITE_ROUNDS} honest rounds)`, {
+        data: event as unknown as Record<string, unknown>,
+      });
       try {
         if (layer === "gui") {
-          await page.goto(state.project?.targetUrl ?? `${origin}/sample/login`, {
-            waitUntil: "domcontentloaded",
-            timeout: 20_000,
-          });
-          await page.waitForTimeout(800);
+          const verdict = await evaluateGuiWithRetries(page, targetUrl, tc);
           const shotRel = path.join(DIRS.proofs, `${tc.id}-gui.png`);
-          await page.screenshot({ path: abs(shotRel), fullPage: true });
-          const verdict = await evaluateGuiCase(page, tc);
+          await page.screenshot({ path: abs(shotRel), fullPage: true }).catch(() => undefined);
           event.status = verdict.ok ? "passed" : "failed";
           event.actual = verdict.actual;
           event.proof = shotRel;
         } else {
-          const verdict = await evaluateApiCase(origin, tc);
+          const verdict = await evaluateApiWithRetries(origin, targetUrl, tc);
           event.status = verdict.ok ? "passed" : "failed";
           event.actual = verdict.actual;
           event.proof = verdict.proof ?? "";
@@ -870,7 +891,7 @@ export async function runSuite(): Promise<{ results: SuiteEvent[]; status: Retur
   }
   writeFile(
     path.join(DIRS.reports, "last-run.md"),
-    `# Last run\n\n- Passed: ${state.suite.passed}\n- Failed: ${state.suite.failed}\n\n${results
+    `# Last run\n\n- Passed: ${state.suite.passed}\n- Failed: ${state.suite.failed}\n- Honest max rounds per case: ${MAX_SUITE_ROUNDS}\n- Rule: try to PASS via real flows; never invent a pass; FAIL only after ${MAX_SUITE_ROUNDS} attempts.\n\n${results
       .map((r) => `- ${r.status.toUpperCase()} ${r.id} — ${r.title} (${r.actual ?? ""})`)
       .join("\n")}\n`,
   );
@@ -878,88 +899,12 @@ export async function runSuite(): Promise<{ results: SuiteEvent[]; status: Retur
   const passed = state.suite.passed;
   const failed = state.suite.failed;
   state = setGate(state, "execute-suite", "allScriptsRan");
-  state = completeStep(state, "execute-suite", `Suite finished. ${passed} passed, ${failed} failed.`);
+  state = completeStep(
+    state,
+    "execute-suite",
+    `Suite finished. ${passed} passed, ${failed} failed (honest retries ≤${MAX_SUITE_ROUNDS}/case).`,
+  );
   return { results, status: publicStatus(state) };
-}
-
-async function evaluateGuiCase(
-  page: Awaited<ReturnType<typeof getPage>>,
-  tc: HumanTestCase,
-): Promise<{ ok: boolean; actual: string }> {
-  const body = ((await page.textContent("body")) ?? "").toLowerCase();
-  if (tc.id.includes("EMERGENCY-FIELDS") || /emergency details/.test(tc.assertion.toLowerCase())) {
-    await page.goto(new URL("/sample/intermediaries/new?step=emergency", page.url()).toString(), {
-      waitUntil: "domcontentloaded",
-    });
-    await page.waitForTimeout(700);
-    const text = ((await page.textContent("body")) ?? "").toLowerCase();
-    const hasName = text.includes("emergency name");
-    const hasRel = text.includes("relationship");
-    const hasContact = text.includes("emergency contact");
-    const hasAddr = text.includes("emergency address");
-    const addrLabel = ((await page.locator("label[for='emergency-address']").textContent().catch(() => "")) ?? "").toLowerCase();
-    const addrOptional = addrLabel.includes("optional") && !addrLabel.includes("*");
-    const ok = hasName && hasRel && hasContact && hasAddr && addrOptional;
-    return {
-      ok,
-      actual: ok
-        ? "Emergency Details shows Name, Relationship Type, Contact Detail, and Address (optional)."
-        : `Visible fields check: name=${hasName} relationship=${hasRel} contact=${hasContact} address=${hasAddr} optional=${addrOptional}. Address is marked required in the UI but the spec says optional.`,
-    };
-  }
-  if (tc.id.includes("PHONE") || /phone|contact detail/.test(tc.assertion.toLowerCase())) {
-    await page.goto(new URL("/sample/intermediaries/new?step=emergency", page.url()).toString(), {
-      waitUntil: "domcontentloaded",
-    });
-    await page.waitForTimeout(700);
-    const contact = page.locator("#emergency-contact");
-    if (await contact.count()) {
-      await contact.fill("not-a-phone");
-      await page.getByRole("button", { name: /continue|save|next/i }).first().click();
-      await page.waitForTimeout(200);
-      const shown = ((await page.textContent("body")) ?? "").toLowerCase();
-      const ok = shown.includes("invalid") || shown.includes("phone");
-      return {
-        ok,
-        actual: ok
-          ? "Invalid phone rejected."
-          : "Emergency Contact Detail accepted a non-numeric value. Expected a phone validation error.",
-      };
-    }
-  }
-  if (body.includes("sign in") || body.includes("intermediary") || body.includes("qafusionx")) {
-    return { ok: true, actual: "Target application rendered and the flow was reachable." };
-  }
-  return { ok: false, actual: "Target page did not render expected application chrome." };
-}
-
-async function evaluateApiCase(
-  origin: string,
-  tc: HumanTestCase,
-): Promise<{ ok: boolean; actual: string; proof?: string }> {
-  try {
-    if (tc.id.includes("EMERGENCY") || /emergency/.test(tc.assertion.toLowerCase())) {
-      const res = await fetch(`${origin}/api/sample/intermediaries/IM-1001/emergency`);
-      const data = (await res.json()) as Record<string, unknown>;
-      const proof = path.join(DIRS.proofs, `${tc.id}-api.json`);
-      writeFile(proof, JSON.stringify(data, null, 2));
-      const relOk = typeof data.relationshipType === "string" && String(data.relationshipType).length > 0;
-      const addrOptional = data.addressRequired === false || data.addressRequired === undefined;
-      const ok = res.ok && relOk && addrOptional;
-      return {
-        ok,
-        actual: ok
-          ? "Emergency API returns relationship type and treats address as optional."
-          : `Emergency API payload issue: ${JSON.stringify(data)}`,
-        proof,
-      };
-    }
-    const res = await fetch(`${origin}/api/sample/health`);
-    const ok = res.ok;
-    return { ok, actual: ok ? `Health ${res.status}` : `Health failed ${res.status}` };
-  } catch (err) {
-    return { ok: false, actual: err instanceof Error ? err.message : String(err) };
-  }
 }
 
 export async function exportIssues() {
@@ -1042,6 +987,16 @@ ${fail.proof ?? "See reports/proof"}
         const created = await createIssue(cfg, payload);
         filed.push(`${fail.id} → ${created.key}`);
         writeFile(path.join(DIRS.jiraBugs, `${id}-${fail.layer}.json`), JSON.stringify(created, null, 2));
+        const proofPath = fail.proof?.trim();
+        if (proofPath) {
+          const candidates = [proofPath, abs(proofPath), abs(path.join("reports/proof", proofPath))];
+          for (const p of candidates) {
+            if (fs.existsSync(p) && p.toLowerCase().endsWith(".png")) {
+              await attachProof(cfg, created.key, p);
+              break;
+            }
+          }
+        }
       } catch (err) {
         writeOfflinePayload("bug", `${id}-${fail.layer}`, { payload, error: String(err) });
         filed.push(`${fail.id} → OFFLINE`);
@@ -1057,6 +1012,63 @@ ${fail.proof ?? "See reports/proof"}
   state = completeStep(state, "jira-bugs", `${fails.length} bug tickets filed or saved offline.`);
   void raw;
   return { ...publicStatus(state), filed };
+}
+
+/** Upload all proof PNGs to open Jira bugs (skips filenames already attached). Required after headed QA. */
+export async function attachBugProofs(bugKeys?: string[]) {
+  const packKeys = bugKeys ?? [...new Set(Object.values(STORY_BUG_MAP).flat())].sort();
+  const attachRoot = abs(path.join("jira", "attachments"));
+  fs.mkdirSync(attachRoot, { recursive: true });
+  const manifest: Record<string, string[]> = {};
+  for (const bug of packKeys) {
+    const dir = path.join(attachRoot, bug);
+    fs.mkdirSync(dir, { recursive: true });
+    manifest[bug] = [];
+    const seen = new Set<string>();
+    for (const src of filesForBug(bug)) {
+      const dest = path.join(dir, path.basename(src));
+      if (!fs.existsSync(dest)) fs.copyFileSync(src, dest);
+      if (!seen.has(dest)) {
+        seen.add(dest);
+        manifest[bug].push(dest);
+      }
+    }
+  }
+  writeFile(path.join(DIRS.reports, "jira-attachment-manifest.json"), JSON.stringify({ at: new Date().toISOString(), manifest }, null, 2));
+
+  const out = await attachAllBugProofs(packKeys);
+  if (!out.cfg) {
+    return {
+      ok: false,
+      error:
+        "Jira not configured (JIRA_API_TOKEN / JIRA_EMAIL / JIRA_BASE_URL). Proof PNGs packaged under jira/attachments/. Run: py scripts/upload-jira-bug-proofs.py after refreshing token.",
+      manifest,
+    };
+  }
+  const summary = out.results.map((r) => ({
+    bug: r.bugKey,
+    uploaded: r.uploaded.length,
+    skipped: r.skipped.length,
+    errors: r.errors,
+  }));
+  writeFile(path.join(DIRS.reports, "jira-attachment-log.json"), JSON.stringify({ at: new Date().toISOString(), results: out.results }, null, 2));
+  const totalUploaded = out.results.reduce((n, r) => n + r.uploaded.length, 0);
+  return { ok: totalUploaded > 0 || out.results.some((r) => r.skipped.length > 0), summary, results: out.results, manifest };
+}
+
+/** Generate iPay Lite Testing.xlsx-format workbook (≥110 rows × 11 story sheets for PF-57868). */
+export function generateIpayExcel() {
+  const out = generatePf57868IpayExcel();
+  return {
+    ok: out.ok,
+    paths: out.paths,
+    stdout: out.stdout,
+    stderr: out.stderr,
+    columns: ["Area", "Concern", "User story", "Status", "Change made?", "Change / verification notes (English)", "Commit / cycle"],
+    note: out.ok
+      ? "Saved to Downloads, reports/, and artifacts/. Same column contract as iPay Lite Testing.xlsx."
+      : "Generator failed — see reports/ipay-lite-generate-log.txt",
+  };
 }
 
 export { resetState, closeBrowser, loadState, json, STEPS };

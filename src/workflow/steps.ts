@@ -167,7 +167,7 @@ export const STEPS: StepDefinition[] = [
     summary:
       "Open a separate browser on this user's device and run every GUI script there. Also stream results to the Control Console.",
     agentInstructions:
-      "LOCKED: open a separate visible browser window on this user's device and run GUI scripts there. Do not execute GUI tests as a silent pipeline job. API scripts may run without a window. Do not mark complete until every script has a pass/fail/error outcome. The Control Console live runner must receive events.",
+      "LOCKED: open a separate visible browser window on this user's device and run GUI scripts there. Do not execute GUI tests as a silent pipeline job. Priority is to PASS by completing the real user flow (login, waits, alternate controls). Retry each case honestly up to 10 rounds (QAFUSIONX_SUITE_MAX_ROUNDS); never invent a pass; mark FAILED only after all rounds. FusionX UAT must Azure-AD login via vault/env before asserts. API probes use real product endpoints (not /api/sample/health on remote UAT). Do not mark complete until every script has a pass/fail/error outcome. The Control Console live runner must receive events.",
     gates: ["visibleBrowserOpened", "allScriptsRan"],
     produces: ["reports/suite-results.json", "reports/last-run.md"],
   },
@@ -191,7 +191,7 @@ export const STEPS: StepDefinition[] = [
     summary:
       "Open a bug ticket per issue: subject, precondition, test steps, expected, actual, proof.",
     agentInstructions:
-      "One bug per confirmed failure. Structure must include subject, precondition, test steps, expected result, actual result, and proof attachment. Offline payloads if Jira is not configured.",
+      "One bug per confirmed failure. Structure must include subject, precondition, test steps, expected result, actual result, and proof PNG attachments on Jira (not paths only). Use qafusionx_file_bugs then qafusionx_attach_bug_proofs. Offline payloads if Jira is not configured.",
     gates: ["bugsFiledOrOffline"],
     produces: ["jira/bugs/", "bugs/"],
   },

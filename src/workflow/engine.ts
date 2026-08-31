@@ -102,9 +102,19 @@ export function saveState(state: WorkflowState): WorkflowState {
 }
 
 export function resetState(): WorkflowState {
-  const artifacts = abs(".");
-  if (fs.existsSync(artifacts)) {
-    fs.rmSync(artifacts, { recursive: true, force: true });
+  // Delete workspace *contents*, not the root folder — Cursor often has
+  // QAFUSIONX_WORKSPACE open, so rmdir of the root fails with EBUSY on Windows.
+  const root = abs(".");
+  if (fs.existsSync(root)) {
+    for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
+      const target = path.join(root, entry.name);
+      try {
+        fs.rmSync(target, { recursive: true, force: true });
+      } catch {
+        // Best-effort: locked files (e.g. Playwright .webm) are skipped;
+        // fresh layout + state still re-engage Ask mode.
+      }
+    }
   }
   ensureLayout();
   const state = freshState();

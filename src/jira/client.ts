@@ -29,6 +29,13 @@ function authHeader(cfg: JiraConfig): string {
   return `Basic ${Buffer.from(`${cfg.email}:${cfg.token}`).toString("base64")}`;
 }
 
+export async function issueExists(cfg: JiraConfig, issueKey: string): Promise<boolean> {
+  const res = await fetch(`${cfg.baseUrl}/rest/api/3/issue/${issueKey}`, {
+    headers: { Authorization: authHeader(cfg), Accept: "application/json" },
+  });
+  return res.status === 200;
+}
+
 function adfDoc(text: string) {
   const paragraphs = text.split("\n").map((line) => ({
     type: "paragraph",
@@ -120,6 +127,18 @@ export async function createIssue(
     throw new Error(`Jira create failed (${res.status}): ${(await res.text()).slice(0, 800)}`);
   }
   return (await res.json()) as { key: string; id: string; self: string };
+}
+
+export async function listAttachments(cfg: JiraConfig, issueKey: string): Promise<string[]> {
+  const res = await fetch(`${cfg.baseUrl}/rest/api/3/issue/${issueKey}?fields=attachment`, {
+    headers: { Authorization: authHeader(cfg), Accept: "application/json" },
+  });
+  if (res.status === 404) return [];
+  if (!res.ok) {
+    throw new Error(`Jira list attachments failed (${res.status}): ${(await res.text()).slice(0, 400)}`);
+  }
+  const json = (await res.json()) as { fields?: { attachment?: { filename: string }[] } };
+  return (json.fields?.attachment ?? []).map((a) => a.filename);
 }
 
 export async function attachProof(cfg: JiraConfig, issueKey: string, fileAbs: string): Promise<void> {

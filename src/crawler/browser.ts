@@ -3,6 +3,7 @@ import path from "node:path";
 import { chromium, type Browser, type BrowserContext, type Page } from "playwright";
 import { bus } from "../events.ts";
 import { assertVisibleBrowserLock, VISIBLE_LAUNCH_ARGS } from "../visible-lock.ts";
+import { loadState } from "../workflow/engine.ts";
 import { abs, DIRS, ensureDir, writeFile } from "../workflow/paths.ts";
 import type { ScreenNode, WorkflowState } from "../workflow/types.ts";
 
@@ -40,6 +41,14 @@ export function headedEnabled(): boolean {
 export async function getPage(): Promise<Page> {
   if (page && !page.isClosed()) return page;
   return openVisibleBrowser();
+}
+
+/** Cookie jar from the live headed context (for authenticated API probes). */
+export async function getContextCookies(): Promise<
+  Array<{ name: string; value: string; domain?: string; path?: string }>
+> {
+  if (!context) return [];
+  return context.cookies();
 }
 
 /** Always open a new headed window on this user's device. Never headless. */
@@ -225,6 +234,203 @@ Choose the first unvisited actionable control unless a user-story path must be f
   return node.referenceRel;
 }
 
+/** Canonical CRM OLD / COB destination for PF-57868 (never Cash/ATM/home tiles). */
+export const FUSIONX_COB_ONBOARDING_PATH = "/web/comn-react-module-cob/cNwNb/onboarding";
+
+/** Account Management shell (PF-58142 Account Opening / cross-branch subsequent accounts). */
+export const FUSIONX_ACCOUNT_MODULE_PATH = "/web/casa/cNwNb/dashboard";
+
+/** Active crawl scope from recorded project (Ask Q1). */
+export function crawlScope(): "cob" | "account" {
+  try {
+    const p = loadState().project;
+    const blob = `${p?.parent ?? ""} ${p?.name ?? ""} ${p?.whatToTest ?? ""}`.toLowerCase();
+    if (/pf-58142|account opening|cross-branch|subsequent account|account management/.test(blob)) {
+      return "account";
+    }
+  } catch {
+    // fall through
+  }
+  return "cob";
+}
+
+/**
+ * Wrong-module URLs that mislead the headed browser (seen: Cash & Teller tab
+ * becomes active while COB opens in a sibling tab). Detect by path, not tile label.
+ * Account scope allows /web/account; COB scope forbids it.
+ */
+export function forbiddenModuleUrl(): RegExp {
+  if (crawlScope() === "account") {
+    return /\/web\/(cash|atm|loan|yard|smartcore|term[-_]?deposit|collateral|entity|incentive|legal|recovery|design[-_]?studio|user[-_]?access|common[-_]?sync|comn-react-module-cob)\b/i;
+  }
+  return /\/web\/(cash|atm|loan|account|yard|smartcore|term[-_]?deposit|collateral|entity|incentive|legal|recovery|design[-_]?studio|user[-_]?access|common[-_]?sync)\b/i;
+}
+
+/** @deprecated use forbiddenModuleUrl() — kept for suite imports */
+export const FUSIONX_FORBIDDEN_MODULE_URL =
+  /\/web\/(cash|atm|loan|account|yard|smartcore|term[-_]?deposit|collateral|entity|incentive|legal|recovery|design[-_]?studio|user[-_]?access|common[-_]?sync)\b/i;
+
+/** Known FusionX home flip-cards that only flip — open the real module URL. */
+const FUSIONX_FLIP_CARD_ROUTES: Array<{ match: RegExp; path: string }> = [
+  {
+    match: /customer relationship management\s*\(old\)/i,
+    path: FUSIONX_COB_ONBOARDING_PATH,
+  },
+  {
+    match: /search customer|start onboarding/i,
+    path: "/web/comn-react-module-cob/cNwNb/onboarding/new",
+  },
+  {
+    match: /account management/i,
+    path: FUSIONX_ACCOUNT_MODULE_PATH,
+  },
+];
+
+/** Never open these home tiles during the active programme scope. */
+function forbiddenTiles(): RegExp {
+  if (crawlScope() === "account") {
+    return /cash and transaction|atm and payment|loan origination|yard management|smartcore|term deposit management|incentive management|legal affairs|recovery management|entity management|collateral|design studio|user access|common sync|smart customer onboarding|customer relationship management/i;
+  }
+  return /cash and transaction|atm and payment|account management|loan origination|yard management|smartcore|term deposit management|incentive management|legal affairs|recovery management|entity management|collateral|design studio|user access|common sync|smart customer onboarding/i;
+}
+
+/**
+ * Force the active Playwright page onto COB onboarding.
+ * Root cause of Cash & Teller mislead: FusionX shell opens modules as tabs;
+ * a wrong home flip-card (or restored session) leaves the automation page on
+ * `/web/cash/...` while COB sits in another tab. Always reclaim COB here.
+ */
+export async function ensureCobDestination(p: Page): Promise<{ recovered: boolean; fromUrl: string; toUrl: string }> {
+  const fromUrl = p.url();
+  // PF-58142 Account Opening: never force COB — stay on Account Management surfaces.
+  if (crawlScope() === "account") {
+    return { recovered: false, fromUrl, toUrl: fromUrl };
+  }
+  const forbidden = forbiddenModuleUrl();
+  const origin = (() => {
+    try {
+      return new URL(fromUrl).origin;
+    } catch {
+      return "https://uat.fusionx.biz";
+    }
+  })();
+  const cobUrl = `${origin}${FUSIONX_COB_ONBOARDING_PATH}`;
+
+  // Prefer an already-open COB tab in this context (bring to front + reuse).
+  const ctx = p.context();
+  for (const other of ctx.pages()) {
+    if (other.isClosed()) continue;
+    const u = other.url();
+    if (u.includes("comn-react-module-cob") && !forbidden.test(u)) {
+      await other.bringToFront().catch(() => undefined);
+      if (other !== p) {
+        // Navigate the primary handle too so callers keeping `page` stay correct.
+        if (!p.url().includes("comn-react-module-cob") || forbidden.test(p.url())) {
+          await p.goto(cobUrl, { waitUntil: "domcontentloaded", timeout: 90_000 }).catch(() => undefined);
+          await p.waitForTimeout(800);
+        }
+      }
+      const onCob =
+        p.url().includes("comn-react-module-cob") && !forbidden.test(p.url());
+      return { recovered: !onCob || forbidden.test(fromUrl), fromUrl, toUrl: p.url() };
+    }
+  }
+
+  const needsForce =
+    forbidden.test(fromUrl) ||
+    /\/web\/home\//i.test(fromUrl) ||
+    (!fromUrl.includes("comn-react-module-cob") && /fusionx\.biz/i.test(fromUrl) && !/aunex0|microsoftonline/i.test(fromUrl));
+
+  if (needsForce) {
+    bus.emitEvent(
+      "browser:recover",
+      `Wrong/off-scope surface detected (${fromUrl}). Forcing COB ${cobUrl}.`,
+    );
+    await p.goto(cobUrl, { waitUntil: "domcontentloaded", timeout: 90_000 });
+    await p.waitForTimeout(1200);
+    // Close sibling forbidden tabs so the headed window shows COB, not Cash.
+    for (const other of ctx.pages()) {
+      if (other === p || other.isClosed()) continue;
+      if (forbidden.test(other.url())) {
+        await other.close().catch(() => undefined);
+      }
+    }
+    return { recovered: true, fromUrl, toUrl: p.url() };
+  }
+
+  return { recovered: false, fromUrl, toUrl: p.url() };
+}
+
+async function maybeOpenFlipCardModule(p: Page, label: string, beforeUrl: string): Promise<boolean> {
+  if (forbiddenTiles().test(label)) {
+    throw new Error(`Blocked wrong module click for ${crawlScope()} scope: ${label}`);
+  }
+  const route = FUSIONX_FLIP_CARD_ROUTES.find((r) => r.match.test(label));
+  if (!route) return false;
+  // Flip-cards: only navigate when URL did not change. Explicit Start Onboarding labels always navigate.
+  const forceNav = /search customer|start onboarding|account management/i.test(label);
+  if (!forceNav && p.url() !== beforeUrl) return false;
+  try {
+    const origin = new URL(p.url()).origin;
+    const dest = `${origin}${route.path}`;
+    if (p.url().includes(route.path) && !forceNav) return false;
+    await p.goto(dest, { waitUntil: "domcontentloaded", timeout: 90_000 });
+    await p.waitForTimeout(1500);
+    return true;
+  } catch (err) {
+    if (err instanceof Error && err.message.startsWith("Blocked wrong module")) throw err;
+    return false;
+  }
+}
+
+async function clickCobDashboardTile(p: Page, label: string): Promise<boolean> {
+  if (!/^(FACILITIES|CUSTOMER SEARCH)$/i.test(label.trim())) return false;
+  const before = await p.locator("text=/Search Customer/i").count();
+  const ok = await p.evaluate((labelText) => {
+    const want = labelText.trim().toUpperCase();
+    // Prefer leaf-ish nodes whose visible label is exactly the tile title.
+    const candidates = Array.from(document.querySelectorAll("div, button, section, span, p, a")).filter((el) => {
+      const kids = Array.from(el.children);
+      const ownText = (el.textContent ?? "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toUpperCase();
+      // Tile text is short: "FACILITIES" or "FACILITIES >" etc.
+      if (!(ownText === want || ownText === `${want} >` || ownText === `${want}>` || ownText.startsWith(`${want} `) && ownText.length < want.length + 8)) {
+        return false;
+      }
+      const r = (el as HTMLElement).getBoundingClientRect();
+      return r.width >= 70 && r.height >= 36 && r.height <= 160 && r.top > 80;
+    }) as HTMLElement[];
+    candidates.sort((a, b) => {
+      const ra = a.getBoundingClientRect();
+      const rb = b.getBoundingClientRect();
+      return ra.width * ra.height - rb.width * rb.height;
+    });
+    const target = candidates[0];
+    if (!target) return false;
+    let node: HTMLElement | null = target;
+    for (let i = 0; i < 5 && node; i++) {
+      const r = node.getBoundingClientRect();
+      if (r.height >= 48 && r.height <= 180 && r.width >= 90 && r.width <= 360) {
+        node.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
+        return true;
+      }
+      node = node.parentElement;
+    }
+    target.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
+    return true;
+  }, label);
+  if (!ok) return false;
+  await p.waitForTimeout(900);
+  if (/FACILITIES/i.test(label)) {
+    const after = await p.locator("text=/Search Customer/i").count();
+    const selected = await p.locator("text=/Select one or more facilities/i").count();
+    return after > before || selected > 0;
+  }
+  return true;
+}
+
 export async function clickControl(
   index: number,
   label?: string,
@@ -234,69 +440,104 @@ export async function clickControl(
   const dialogBefore = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
   if (label?.trim()) {
     const text = label.trim();
+    if (await clickCobDashboardTile(p, text)) {
+      await p.waitForTimeout(1200);
+      await maybeOpenFlipCardModule(p, text, beforeUrl);
+      if (forbiddenModuleUrl().test(p.url())) {
+        await ensureCobDestination(p);
+        throw new Error(
+          `Blocked wrong-module navigation after tile click: forbidden URL. Recovered to in-scope module.`,
+        );
+      }
+      const dialogAfterTile = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
+      return {
+        url: p.url(),
+        title: await p.title(),
+        popupOpened: dialogAfterTile > dialogBefore || (p.url() === beforeUrl && dialogAfterTile > 0),
+      };
+    }
     const escaped = text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const candidates = [
-      p.getByRole("link", { name: text }),
-      p.getByRole("button", { name: text }),
-      p.locator("p, span, h3, h4, a, div").filter({ hasText: new RegExp(`^${escaped}$`, "i") }),
-      p.getByText(text, { exact: true }),
+      p.getByRole("link", { name: new RegExp(escaped, "i") }),
+      p.getByRole("button", { name: new RegExp(escaped, "i") }),
+      p.locator("a[href]").filter({ hasText: new RegExp(escaped, "i") }),
+      p.locator("button").filter({ hasText: new RegExp(escaped, "i") }),
+      p.locator("p, span, h3, h4, a, div").filter({ hasText: new RegExp(escaped, "i") }),
       p.getByText(text, { exact: false }),
       p.locator(`[title="${text}"]`),
     ];
     let clicked = false;
     for (const loc of candidates) {
-      const target = loc.first();
-      if ((await target.count()) > 0) {
-        await target.click({ timeout: 8_000 });
-        await p.waitForTimeout(400);
-        if (p.url() === beforeUrl) {
-          await target.dblclick({ timeout: 8_000 }).catch(() => undefined);
+      const count = await loc.count();
+      for (let i = 0; i < Math.min(count, 8); i++) {
+        const target = loc.nth(i);
+        const box = await target.boundingBox().catch(() => null);
+        if (!box || box.width < 8 || box.height < 8) continue;
+        try {
+          await target.scrollIntoViewIfNeeded().catch(() => undefined);
+          await target.click({ timeout: 8_000 });
+          await p.waitForTimeout(400);
+          if (p.url() === beforeUrl) {
+            await target.dblclick({ timeout: 8_000 }).catch(() => undefined);
+          }
+          clicked = true;
+          break;
+        } catch {
+          try {
+            await target.click({ timeout: 8_000, force: true });
+            clicked = true;
+            break;
+          } catch {
+            // try next match
+          }
         }
-        clicked = true;
-        break;
       }
+      if (clicked) break;
     }
     if (!clicked) {
       clicked = await p.evaluate((labelText) => {
+        const needle = labelText.toLowerCase();
         const card = Array.from(document.querySelectorAll(".flip-card, [class*='module-card'], [class*='flip-card']")).find(
-          (el) => (el.textContent ?? "").includes(labelText),
+          (el) => (el.textContent ?? "").toLowerCase().includes(needle),
         ) as HTMLElement | undefined;
         if (card) {
           card.scrollIntoView({ block: "center" });
           card.click();
           return true;
         }
-        const match = Array.from(document.querySelectorAll("p, span, h3, h4, div, a")).find(
-          (el) => (el.textContent ?? "").trim() === labelText,
+        const match = Array.from(document.querySelectorAll("a, button, [role='button'], [role='link'], [role='menuitem']")).find(
+          (el) => (el.textContent ?? "").toLowerCase().replace(/\s+/g, " ").includes(needle),
         ) as HTMLElement | undefined;
         if (!match) return false;
-        let node: HTMLElement | null = match;
-        for (let i = 0; i < 6 && node; i++) {
-          node.scrollIntoView({ block: "center" });
-          const st = window.getComputedStyle(node);
-          if (st.cursor === "pointer" || node.tagName === "A" || node.classList.contains("flip-card")) {
-            node.click();
-            return true;
-          }
-          node = node.parentElement;
-        }
+        match.scrollIntoView({ block: "center" });
         match.click();
         return true;
       }, text);
     }
     if (!clicked) {
+      // Known COB deep-links (Search Customer / Start Onboarding) when the control is not in the a11y tree.
+      clicked = await maybeOpenFlipCardModule(p, text, beforeUrl);
+    }
+    if (!clicked) {
       throw new Error(`Could not find clickable control matching label: ${text}`);
     }
     await p.waitForTimeout(1200);
+    // Flip-cards only flip — open the known CRM OLD / COB module URL in-session.
+    await maybeOpenFlipCardModule(p, text, beforeUrl);
   } else {
-    const locator = p
-      .locator(
-        'button, a[href], input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [data-testid]',
-      )
-      .locator("visible=true");
-    await locator.nth(index).click({ timeout: 8_000 });
+    const locator = p.locator(
+      'button, a[href], input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [data-testid]',
+    );
+    await locator.nth(index).click({ timeout: 8_000, force: true });
   }
   await p.waitForTimeout(800);
+  // Hard stop: if Cash/ATM/etc. became the active page, reclaim COB immediately.
+  if (forbiddenModuleUrl().test(p.url())) {
+    const recover = await ensureCobDestination(p);
+    throw new Error(
+      `Blocked wrong-module navigation for ${crawlScope()} scope: landed on ${recover.fromUrl}; recovered to ${recover.toUrl}.`,
+    );
+  }
   const dialogAfter = await p.locator('[role="dialog"], [data-slot="dialog-content"]').count();
   return {
     url: p.url(),

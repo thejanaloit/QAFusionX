@@ -454,11 +454,46 @@ export function createQaFusionXServer(): McpServer {
     {
       title: "File Jira bug tickets",
       description:
-        "One bug per failure: subject, precondition, test steps, expected result, actual result, and proof.",
+        "One bug per failure: subject, precondition, test steps, expected result, actual result, proof PNG attachment on create when proof path exists. After filing, call qafusionx_attach_bug_proofs to upload all remaining proof PNGs.",
     },
     async () => {
       try {
         return ok(await actions.fileBugs());
+      } catch (err) {
+        return fail(err);
+      }
+    },
+  );
+
+  server.registerTool(
+    "qafusionx_attach_bug_proofs",
+    {
+      title: "Attach proof PNGs to Jira bugs",
+      description:
+        "LOCKED RULE: every proof PNG from reports/proof/ and proof-* runs MUST be uploaded as Jira attachments on the matching bug (by story prefix + bugs/*.md proof paths). Skips filenames already attached. Writes reports/jira-attachment-log.json. Requires valid JIRA_API_TOKEN; packages to jira/attachments/ even when REST fails.",
+      inputSchema: {
+        bugKeys: z.array(z.string()).optional(),
+      },
+    },
+    async (args) => {
+      try {
+        return ok(await actions.attachBugProofs(args.bugKeys));
+      } catch (err) {
+        return fail(err);
+      }
+    },
+  );
+
+  server.registerTool(
+    "qafusionx_generate_ipay_excel",
+    {
+      title: "Generate iPay Lite format Excel QA pack",
+      description:
+        "Writes PF-57868 Kenya UAT workbook with the same columns as iPay Lite Testing.xlsx (Area | Concern | User story | Status | Change made? | Change / verification notes | Commit / cycle). ≥110 rows per story sheet PF-58374–58384. Saves to Downloads, reports/, and artifacts/.",
+    },
+    async () => {
+      try {
+        return ok(actions.generateIpayExcel());
       } catch (err) {
         return fail(err);
       }

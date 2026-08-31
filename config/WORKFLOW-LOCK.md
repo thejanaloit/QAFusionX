@@ -83,9 +83,11 @@ Until both are submitted via MCP, every mutating tool returns `BLOCKED`.
 
 | Step | Output | Rule |
 |------|--------|------|
-| **13** | `reports/suite-results.json` | Run **all** scripts. GUI in **visible browser**. |
+| **13** | `reports/suite-results.json` | Run **all** scripts. GUI in **visible browser**. **Priority=PASS** via real user flows (login, waits, alternate paths). Retry each case **honestly up to 10 rounds**; never invent a pass; mark **FAILED** only after all rounds. FusionX UAT: Azure AD via vault/env; assert real COB chrome / product APIs (not `/api/sample/health`). |
 | **14** | `reports/QAFusionX-Issues.xlsx` + `.csv` | Every failure with proof (like iPay Lite Testing workbook) |
 | **15** | `jira/bugs/`, `bugs/` | Bug per issue: subject, precondition, steps, expected, actual, proof |
+| **15b** | `jira/attachments/<PF-xxxx>/`, `reports/jira-attachment-log.json` | **LOCKED:** every proof PNG must be a Jira **attachment** on the matching bug (`qafusionx_attach_bug_proofs`). REST via `JIRA_API_TOKEN` or `scripts/upload-jira-bug-proofs.py`. |
+| **16** | `reports/*-ipay-lite.xlsx`, `artifacts/` | iPay Lite Testing.xlsx column format — ≥110 rows per story sheet (`qafusionx_generate_ipay_excel`). |
 
 ---
 

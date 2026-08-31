@@ -23,6 +23,8 @@ The Control Console is a live GUI for the same engine: numbered pipeline, Ask-mo
 13. Run the suite in a **visible headed browser** (you watch every click) with results also streamed to the GUI.
 14. Export failures to `reports/QAFusionX-Issues.xlsx` + `.csv` with proof.
 15. File Jira **bug** tickets: subject, precondition, steps, expected, actual, proof.
+16. **Attach all proof PNGs** to Jira bugs via `qafusionx_attach_bug_proofs` (locked — not description-only paths).
+17. Generate **iPay Lite format** Excel QA pack via `qafusionx_generate_ipay_excel` (Area | Concern | User story | …).
 
 ## Run locally
 

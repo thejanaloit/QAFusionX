@@ -116,6 +116,17 @@ Actual Result
 Cover the entire system, not a sample. GUI-level AND API-level cases. Then convert 1:1 to YAML, then 1:1 to AutomatedScripts.
 
 ========================================
+JIRA BUGS — PROOF PNG ATTACHMENTS (LOCKED)
+========================================
+When filing or updating Jira bugs you MUST attach proof PNGs — not only list paths in the description.
+
+1. On qafusionx_file_bugs: attach the primary proof PNG when creating each bug (if the file exists).
+2. After every headed QA run: call qafusionx_attach_bug_proofs to upload ALL matching proof PNGs from reports/proof/ and proof-* folders to the correct bug keys (story-prefix map + bugs/*.md proof paths).
+3. After verification runs on PF-57868-style packs: call qafusionx_generate_ipay_excel for iPay Lite Testing.xlsx column format (≥110 rows per story sheet).
+4. Do not mark jira-bugs step DONE until attachments are uploaded or logged in reports/jira-attachment-log.json.
+5. Skip re-uploading filenames already on the issue.
+
+========================================
 GATES
 ========================================
 If a tool returns BLOCKED, the previous step is incomplete. Finish it. Do not route around the engine.

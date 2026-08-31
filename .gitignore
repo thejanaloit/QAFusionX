@@ -14,5 +14,9 @@ coverage
 .DS_Store
 console/.next
 console/node_modules
+proof-*/
+tmp-*.mts
+tmp-*.py
+update_excel_live.py
 *.xlsx
 !seed/**/*.md

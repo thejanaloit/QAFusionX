@@ -4,57 +4,19 @@
  * Credentials: QAFUSIONX_EMAIL / QAFUSIONX_PASSWORD env only.
  */
 import * as actions from "../src/actions/index.ts";
-import { clickControl, closeBrowser, fillField, getPage } from "../src/crawler/browser.ts";
+import { clickControl, closeBrowser, getPage } from "../src/crawler/browser.ts";
+import { ensureAuthenticatedSession } from "../src/suite/honest-runner.ts";
 import { loadState, saveState } from "../src/workflow/engine.ts";
 import type { HumanTestCase } from "../src/testdocs/format.ts";
 
-const EMAIL = process.env.QAFUSIONX_EMAIL ?? "";
-const PASSWORD = process.env.QAFUSIONX_PASSWORD ?? "";
 const COB_BASE = "https://uat.fusionx.biz/web/comn-react-module-cob/cNwNb";
 const COB_ONBOARDING = `${COB_BASE}/onboarding/new`;
 
 async function ensureAzureLogin(): Promise<void> {
   const page = await getPage();
-  await page.waitForTimeout(1500);
-
-  for (let attempt = 0; attempt < 3; attempt += 1) {
-    const url = page.url();
-    if (url.includes("/web/home/") && url.includes("/dashboard")) return;
-
-    if (url.includes("aunex0") || url.includes("fusionx-uat.aunex0")) {
-      const azure = page.getByRole("button", { name: /Continue with AzureAd/i });
-      if (await azure.count()) {
-        await azure.first().click({ timeout: 10_000 });
-      } else {
-        await clickControl(0, "Continue with AzureAd");
-      }
-      await page.waitForTimeout(2500);
-      continue;
-    }
-
-    if (url.includes("microsoftonline") || url.includes("login.microsoft")) {
-      if (EMAIL) await fillField("#i0116", EMAIL);
-      await page.locator("#idSIButton9").click();
-      await page.waitForTimeout(1500);
-      if (await page.locator("#i0118").count()) {
-        if (PASSWORD) await fillField("#i0118", PASSWORD);
-        await page.locator("#idSIButton9").click();
-        await page.waitForTimeout(2500);
-      }
-      const yes = page.getByRole("button", { name: "Yes" });
-      if (await yes.count()) await yes.first().click();
-      await page.waitForTimeout(8000);
-      continue;
-    }
-
-    if (url.includes("accounts.google.com")) {
-      await page.goBack({ waitUntil: "domcontentloaded" }).catch(() => undefined);
-      await page.waitForTimeout(1500);
-      continue;
-    }
-
-    await page.waitForTimeout(2000);
-  }
+  const target = loadState().project?.targetUrl ?? "https://uat.fusionx.biz/web/home/cNwNb/dashboard";
+  const msg = await ensureAuthenticatedSession(page, target);
+  console.log("auth:", msg);
 }
 
 async function captureRound(
