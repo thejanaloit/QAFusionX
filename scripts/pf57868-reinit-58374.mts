@@ -18,11 +18,15 @@ const maker = JSON.parse(fs.readFileSync("C:/Users/ThejanaD/QAFusionX/tmp-creds.
 let seq = 0;
 let entryLoaded = false;
 
+async function sleep(ms: number) {
+  await new Promise((r) => setTimeout(r, ms));
+}
+
 async function body(page: Page) {
   try {
     return await page.evaluate(() => document.body?.innerText ?? "");
   } catch {
-    await page.waitForTimeout(800);
+    await sleep(800);
     return "";
   }
 }
@@ -49,18 +53,18 @@ async function waitReady(page: Page, label: string, ok: (t: string, u: string) =
     const u = page.url();
     if (/personalization is in progress|Please wait, Your/i.test(t) && t.length < 500) {
       quiet = 0;
-      await page.waitForTimeout(2500);
+      await sleep(2500);
       continue;
     }
     if (ok(t, u)) {
       quiet++;
       if (quiet >= 2) {
-        await page.waitForTimeout(1000);
+        await sleep(1000);
         await shot(page, `ready-${label}`);
         return true;
       }
     } else quiet = 0;
-    await page.waitForTimeout(1200);
+    await sleep(1200);
   }
   await shot(page, `timeout-${label}`);
   return false;
@@ -89,7 +93,7 @@ async function mouseText(page: Page, re: RegExp, label: string) {
   );
   await shot(page, `aim-${label}`);
   await page.mouse.move(x, y, { steps: 40 });
-  await page.waitForTimeout(300);
+  await sleep(300);
   await page.mouse.click(x, y);
   await page.evaluate(() => document.getElementById("qafx-ring")?.remove()).catch(() => undefined);
   return true;
@@ -116,12 +120,12 @@ async function login(page: Page) {
     const t = await body(page);
     if (/Core Banking Modules/i.test(t) && /Loan Origination/i.test(t) && !/personalization is in progress/i.test(t)) return true;
     if (/personalization is in progress|Please wait/i.test(t)) {
-      await page.waitForTimeout(3500);
+      await sleep(3500);
       continue;
     }
     if (/Continue with AzureAd/i.test(t)) {
       await mouseText(page, /Continue with AzureAd/i, "azuread");
-      await page.waitForTimeout(2000);
+      await sleep(2000);
       continue;
     }
     if (/Use my password|Use your password instead/i.test(t)) {
@@ -131,13 +135,13 @@ async function login(page: Page) {
     if (await page.locator("#i0116").count()) {
       await setInput(page, "#i0116", maker.email);
       await page.locator("#idSIButton9").click({ force: true }).catch(() => page.keyboard.press("Enter"));
-      await page.waitForTimeout(2200);
+      await sleep(2200);
       continue;
     }
     if (await page.locator("#i0118").count()) {
       await setInput(page, "#i0118", maker.password);
       await page.locator("#idSIButton9").click({ force: true }).catch(() => page.keyboard.press("Enter"));
-      await page.waitForTimeout(2800);
+      await sleep(2800);
       continue;
     }
     if (/Stay signed in/i.test(t)) {
@@ -148,7 +152,7 @@ async function login(page: Page) {
       await mouseText(page, /ThejanaD@lolctech\.com/i, "pick");
       continue;
     }
-    await page.waitForTimeout(1000);
+    await sleep(1000);
   }
   return false;
 }
@@ -173,15 +177,19 @@ async function clickLoanFlip(page: Page) {
     const r = best.getBoundingClientRect();
     return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
   });
-  if (!box) return mouseText(page, /Loan Origination and Management/i, "loan-text");
-  await page.mouse.move(box.x, box.y, { steps: 40 });
-  await page.mouse.click(box.x, box.y);
-  await page.waitForTimeout(1800);
-  await shot(page, "loan-flipped");
-  await page.mouse.click(box.x, box.y);
-  await page.waitForTimeout(1200);
-  await page.mouse.dblclick(box.x, box.y);
-  await page.waitForTimeout(2000);
+  if (!box) {
+    await mouseText(page, /Loan Origination and Management/i, "loan-text");
+    await sleep(2000);
+  } else {
+    await page.mouse.move(box.x, box.y, { steps: 40 });
+    await page.mouse.click(box.x, box.y);
+    await sleep(1800);
+    await shot(page, "loan-flipped");
+    await page.mouse.click(box.x, box.y);
+    await sleep(1200);
+    await page.mouse.dblclick(box.x, box.y);
+    await sleep(2000);
+  }
   // adopt new tab
   const pages = page.context().pages().filter((p) => !p.isClosed());
   for (const p of [...pages].reverse()) {
@@ -210,54 +218,79 @@ async function main() {
   await shot(page, ok ? "01-home" : "01-fail");
 
   page = await clickLoanFlip(page);
-  await waitReady(page, "lending", (t, u) => /Penal|PERC|Interest|Loan|Grace|Dashboard|Inquiry/i.test(t) || /loan|lending|perc/i.test(u), 90_000);
+  await waitReady(page, "lending", (t, u) => /Welcome to Lending|Loan Origination|Settings|Dashboard/i.test(t) || /lending|loan/i.test(u), 90_000);
 
   const findings: Array<{ bug: string; claim: string; verdict: string; notes: string; shot: string }> = [];
 
-  // Navigate menus for grace / PERC
-  for (const m of [
-    /Penal Interest/i,
-    /PERC/i,
-    /Interest Rate Change/i,
-    /Grace/i,
-    /Template/i,
-    /Authorization/i,
-    /Pending/i,
-    /Inquiry/i,
-    /Settings/i,
-  ]) {
-    await mouseText(page, m, m.source.replace(/[^a-z0-9]+/gi, "-").slice(0, 24));
-    await waitReady(page, "menu", (t) => t.length > 40, 45_000);
-  }
+  // Human path: Settings → Penal Interest Template Setting → open row/view
+  await mouseText(page, /^Settings$/i, "settings-nav");
+  await waitReady(page, "settings", (t) => /Penal Interest Template Setting/i.test(t), 60_000);
+  await shot(page, "settings-hub");
 
-  const t = await body(page);
-  const hasGrace = /instalment.?wise|grace period|grace days/i.test(t);
-  const hasPerc = /PERC|Penal Interest|Interest Rate Change/i.test(t);
-  const shotA = await shot(page, "assert-grace-ui");
+  await mouseText(page, /Penal Interest Template Setting/i, "perc-tpl-tile");
+  await waitReady(
+    page,
+    "perc-tpl",
+    (t) => /Penal|Template|Create|Search|No Data|Grace|Interest/i.test(t) && !/Welcome to Lending System/i.test(t),
+    60_000,
+  );
+  await shot(page, "perc-template-list");
+
+  // Try create / view / first row actions for grace UI
+  for (const m of [/Create/i, /Add/i, /View/i, /Edit/i, /Search/i]) {
+    await mouseText(page, m, `tpl-${m.source.replace(/[^a-z]+/gi, "").slice(0, 12)}`);
+    await waitReady(page, "tpl-act", (t) => t.length > 80, 35_000);
+  }
+  await shot(page, "perc-template-detail");
+
+  let t = await body(page);
+  const hasGrace =
+    /instalment.?wise|installment.?wise|grace period|grace days|grace\s*day/i.test(t);
+  const onPercUi = /Penal Interest|Template|PERC|Interest Rate/i.test(t);
+  const shotA = await shot(page, "assert-58496-grace");
 
   findings.push({
     bug: "PF-58496",
-    claim: "Instalment-wise grace fields missing on PERC View",
-    verdict: hasGrace ? "NOT_REPRO" : "CONFIRMED",
-    notes: hasGrace ? "Grace/instalment-wise text visible after mouse nav" : "No instalment-wise grace fields found on reachable Lending/PERC screens",
+    claim: "Instalment-wise grace fields missing on PERC / Penal Interest Template View",
+    verdict: !onPercUi ? "BLOCKED" : hasGrace ? "NOT_REPRO" : "CONFIRMED",
+    notes: !onPercUi
+      ? "Did not reach Penal Interest Template detail UI after mouse nav"
+      : hasGrace
+        ? "Grace / instalment-wise fields visible on Penal Interest Template UI"
+        : "On Penal Interest Template UI — no instalment-wise grace fields/labels found",
     shot: shotA,
   });
 
-  // Go To Edit / Approve reject check (58497) — best effort
-  const editHit = await mouseText(page, /Go To Edit|Edit|Approve|Reject|Authorization/i, "auth-edit");
-  await waitReady(page, "auth", (x) => x.length > 40, 45_000);
+  // Back to Settings → Penal Interest Template Authorization
+  await mouseText(page, /^Settings$/i, "settings-back");
+  await waitReady(page, "settings2", (t) => /Penal Interest Template Authorization/i.test(t), 45_000);
+  await mouseText(page, /Penal Interest Template Authorization setting/i, "perc-auth-tile");
+  await waitReady(page, "perc-auth", (t) => /Authorize|Approve|Pending|ACTIVE|View|Search/i.test(t), 60_000);
+  await shot(page, "perc-auth-list");
+
+  const viewHit = await mouseText(page, /\bView\b/i, "auth-view");
+  await waitReady(page, "auth-view", (x) => x.length > 60, 35_000);
+  await mouseText(page, /Go To Edit|Edit|Authorize|Approve|Reject/i, "auth-edit");
+  await waitReady(page, "auth-edit", (x) => x.length > 60, 35_000);
   const t2 = await body(page);
-  const badEdit = /Approve|Reject/i.test(t2) && /APPROVED|approved/i.test(t2);
+  const hasApproved = /APPROVED|Approved/i.test(t2);
+  const hasApproveReject = /\bApprove\b|\bReject\b/i.test(t2);
   const shotB = await shot(page, "assert-58497");
+
   findings.push({
     bug: "PF-58497",
     claim: "Go To Edit on APPROVED PERC reopens Approve/Reject",
-    verdict: editHit && badEdit ? "CONFIRMED" : editHit ? "PARTIAL" : "BLOCKED",
-    notes: editHit
-      ? badEdit
-        ? "Approve/Reject still visible in approved context"
-        : "Reached auth/edit area — approved reopen not clearly reproduced this pass"
-      : "Could not reach Go To Edit / Authorization control by mouse this pass",
+    verdict:
+      viewHit && hasApproved && hasApproveReject
+        ? "CONFIRMED"
+        : viewHit
+          ? "PARTIAL"
+          : "BLOCKED",
+    notes: viewHit
+      ? hasApproved && hasApproveReject
+        ? "Approved context still exposes Approve/Reject after View/Edit"
+        : `Auth UI reached (approved=${hasApproved}, approveReject=${hasApproveReject}) — reopen defect not fully reproduced`
+      : "Could not open View on Penal Interest Template Authorization list",
     shot: shotB,
   });
 
@@ -267,6 +300,10 @@ async function main() {
     at: new Date().toISOString(),
     storyPassAttempt: storyPass,
     honestDoneAllowed: storyPass,
+    jiraDone: false,
+    reasonNotDone: storyPass
+      ? null
+      : "Open/confirmed defects or incomplete repro — story cannot be Done honestly",
     findings,
     out: OUT,
     rule: "mouse-only + wait-until-analyzable + honest-done",
@@ -277,6 +314,7 @@ async function main() {
     JSON.stringify(summary, null, 2),
   );
   console.log("REINIT_58374_DONE", JSON.stringify(summary, null, 2));
+  // Keep browser open for continuous session (one-browser rule) — do not close.
 }
 
 main().catch((e) => {
