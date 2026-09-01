@@ -1,0 +1,35 @@
+---
+description: LOCKED Book1 Excel columns — Area, Issue, Screenshot, What is testing, Why failed prediction + footer counts
+alwaysApply: true
+---
+
+# Book1 visual Excel (LOCKED)
+
+Produce one workbook per user story **only after** execution + bug reporting (see `qafusionx-mcp-full-flow-mouse-only.mdc`).
+
+## Sheet1 columns (exact order)
+| Col | Header |
+|-----|--------|
+| A | Area |
+| B | Issue |
+| C | Screenshot (embedded image) |
+| D | What is testing |
+| E | Why that failed your prediction |
+
+Row 1 = headers. Data from row 2.
+
+## Footer (after last data row, leave one blank row)
+```
+Test cases tested: N
+Passed: P
+Failed: F
+```
+
+- Count only real test/finding rows (not decorative proof duplicates unless they are assertions).
+- **Passed:** AC met, NOT_REPRO, or prediction held (incl. Kenya N/A_CONFIRMED).
+- **Failed:** CONFIRMED, PARTIAL, unmet AC, failed prediction.
+
+## Layout
+- Fine-tuned boxes on defect region when embedding screenshots.
+- Drop copy into `teams-drop/` for Teams **AI QA Agent**.
+- Output root for PF-57868 reinit: `E:\QA OUTPUTS\PF-57868-reinit\`

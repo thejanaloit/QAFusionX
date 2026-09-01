@@ -384,7 +384,7 @@ async function main() {
   console.log("=== IBAF/GBAF + WAIT-ANALYZABLE (mouse-only) ===");
   const browser = await chromium.launch({ headless: false, slowMo: 180, args: ["--start-maximized", "--new-window"] });
   const ctx = await browser.newContext({ viewport: null });
-  const page = await ctx.newPage();
+  let page = await ctx.newPage();
   await page.setViewportSize({ width: 1520, height: 960 }).catch(() => undefined);
   await page.bringToFront();
 
@@ -402,12 +402,14 @@ async function main() {
 
   // --- Pass 1: GBAF (2nd) — user proved this lands on TD dashboard ---
   {
-    const modal = await openAccountMgmtModal(page);
-    if (modal === true) {
+    const opened = await openAccountMgmtModal(page);
+    page = opened.page;
+    if (opened.modal) {
       await mouseClickText(page, /General Banking & Finance/i, "pick-GBAF-2nd");
+      page = await adoptNewestPage(page);
       await exploreAfterFinancePick(page, "GBAF");
       log.push({ pick: "GBAF", modal: true, note: "clicked 2nd option + explored + waited", url: page.url() });
-    } else if (modal as unknown as string === "landed" || /\/web\/(td|account|casa)\//i.test(page.url())) {
+    } else if (opened.landed) {
       await exploreAfterFinancePick(page, "GBAF");
       log.push({ pick: "GBAF", modal: false, note: "landed in module without modal; explored", url: page.url() });
     } else {
@@ -418,14 +420,24 @@ async function main() {
 
   // --- Pass 2: back home, open modal again, pick IBAF (1st) ---
   {
+    // Prefer home tab if still open
+    for (const p of page.context().pages()) {
+      if (/\/web\/home\//i.test(p.url())) {
+        await p.bringToFront();
+        page = p;
+        break;
+      }
+    }
     await goHomeFlipGrid(page);
     await waitAnalyzable(page, "home-before-ibaf", (t) => /Core Banking Modules/i.test(t), 60_000);
-    const modal = await openAccountMgmtModal(page);
-    if (modal === true) {
+    const opened = await openAccountMgmtModal(page);
+    page = opened.page;
+    if (opened.modal) {
       await mouseClickText(page, /Islamic Banking & Finance/i, "pick-IBAF-1st");
+      page = await adoptNewestPage(page);
       await exploreAfterFinancePick(page, "IBAF");
       log.push({ pick: "IBAF", modal: true, note: "clicked 1st option + explored + waited", url: page.url() });
-    } else if (/\/web\/(td|account|casa)\//i.test(page.url())) {
+    } else if (opened.landed) {
       await exploreAfterFinancePick(page, "IBAF");
       log.push({ pick: "IBAF", modal: false, note: "landed in module; explored", url: page.url() });
     } else {

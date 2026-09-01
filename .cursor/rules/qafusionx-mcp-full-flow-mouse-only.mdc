@@ -1,0 +1,50 @@
+---
+description: LOCKED — QAFusionX MCP full pipeline + mouse-only only (no shortcut memory)
+alwaysApply: true
+---
+
+# LOCKED — QAFusionX MCP: full flow + mouse-only only
+
+This is locked. When **QAFusionX MCP** (or FusionX Kenya UAT / PF-57868 headed QA) is connected or in use:
+
+## Forbidden shortcuts (memory wipe)
+- Do **not** skip to Excel-only, screenshot-only, or “authenticity pack” without the pipeline below.
+- Do **not** use prior chat/training memory that allowed URL deep-links, headless crawl, or jumping straight to Book1.
+- Do **not** invent Done / fake pass counts.
+
+## Navigation lock (always with this MCP)
+1. One visible browser. Entry URL once.
+2. After entry: **mouse clicks only** (+ on-page typing). No `page.goto` / address-bar / deep-link between stories (maker→checker same-window exception only).
+3. After every click: **wait until analyzable**.
+
+## Compulsory full flow (order is fixed)
+1. **Get user stories** from Jira and/or Confluence.
+2. **Filter** to assigned tasks / in-scope user stories only.
+3. **Store** filtered stories in the workspace (`User stories/` or equivalent).
+4. **Get older test cases** from **xtrai** (prior pack / knowledge).
+5. **Create new test cases** by referring to stories + xtrai + system understanding; cover try-to-pass every case.
+6. **Store all test cases** in the directory (`testCase Human/` / project testcases path).
+7. **Create YAML** (`testc2ai/`) 1:1 from human cases.
+8. **Create test scripts** (`AutomatedScripts/`) from YAML.
+9. **Execute** (headed GUI; mouse-driven where FusionX UI nav applies).
+10. **One-by-one full check** — attempt to **pass every test case**; record actual vs expected honestly.
+11. **Bug reports** with proof for failures (authenticity: CONFIRMED / NOT_REPRO / PARTIAL).
+12. **Create Excel** Book1 per story (columns below) only **after** execution + bug reporting.
+
+## Book1 Excel contract (after step 12)
+Columns (Sheet1):
+1. **Area**
+2. **Issue**
+3. **Screenshot** (embedded)
+4. **What is testing**
+5. **Why that failed your prediction**
+
+Footer (below data rows):
+- Test cases tested: N
+- Passed: P
+- Failed: F
+
+Pass = AC met / NOT_REPRO / prediction held (including honest Kenya N/A_CONFIRMED).  
+Fail = CONFIRMED defect or PARTIAL / unmet AC / failed prediction.
+
+Sinhala: QAFusionX MCP connect වෙද්දී full flow එක skip කරන්න එපා. Mouse click විතරක්. Excel අගට. xtrai → test cases → YAML → scripts → execute → bugs → Excel.

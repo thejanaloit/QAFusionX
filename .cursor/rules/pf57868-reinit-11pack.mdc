@@ -11,10 +11,12 @@ alwaysApply: true
 - **Output root:** `E:\QA OUTPUTS\PF-57868-reinit\` (excel/, proof/, testcases/, teams-drop/)
 
 ## Mandatory gates (per story, in order)
-1. Mouse-only headed QA (one browser, entry URL once, wait-until-analyzable).
+Follow **full QAFusionX flow** (see `qafusionx-mcp-full-flow-mouse-only.mdc`): Jira/Confluence stories → filter assigned → store → xtrai older cases → new test cases → store → YAML → scripts → execute → one-by-one try-pass → bug reports → Excel.
+
+1. Mouse-only headed QA (one browser, entry URL once, wait-until-analyzable). **No shortcut memory.**
 2. Find issues → authenticity recheck (CONFIRMED / NOT_REPRO / PARTIAL).
 3. Redo QA after authenticity.
-4. Rebuild Book1 Excel (Area | Issue | Screenshot) — one workbook per story.
+4. Rebuild Book1 Excel — columns: **Area | Issue | Screenshot | What is testing | Why that failed your prediction** + footer (tested / passed / failed).
 5. Proof-screenshot audit vs Excel rows.
 6. **Honest Jira status:** Done only if ACs pass or N/A Kenya with written proof. Never fake Done.
 7. Drop Excel into `teams-drop/` then post to **AI QA Agent** Teams group one-by-one.
